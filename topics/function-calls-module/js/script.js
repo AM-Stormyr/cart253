@@ -18,9 +18,9 @@ function draw() {
 
     //french fries
     noStroke();
-    fill(255, 255, 0)
+    fill(250, 250, 0)
     rect(100, 100, 420, 50);
     rect(200, 200, 420, 50);
-    rect(570, 420, 420, 50);
+    rect(270, 420, 420, 50);
 
 }
