@@ -1,24 +1,26 @@
 /**
- * Title of Project
- * Author Name
+ * Function Calls
+ * Amanda Stormyr
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * Working on the function calls examples! 
  */
 
 "use strict";
 
-/**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
-*/
-function setup() {
 
+function setup() {
+    createCanvas(1100, 677);
 }
 
 
-/**
- * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
-*/
 function draw() {
+    background(180, 180, 180);
+
+    //french fries
+    noStroke();
+    fill(255, 255, 0)
+    rect(100, 100, 420, 50);
+    rect(200, 200, 420, 50);
+    rect(570, 420, 420, 50);
 
 }
