@@ -1,6 +1,6 @@
 /**
- * Title of Project
- * Author Name
+ * landscape
+ * Amanda and Chloe
  * 
  * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
  * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
@@ -12,6 +12,7 @@
  * OH LOOK I DIDN'T DESCRIBE SETUP!!
 */
 function setup() {
+    createCanvas(920, 640)
 
 }
 
@@ -21,4 +22,34 @@ function setup() {
 */
 function draw() {
 
+    /** illustation of a pink night sky */
+    background(250, 150, 180);
+
+    drawMoonOne();
+    drawMoonTwo();
+    drawHill();
+
+}
+
+function drawMoonOne() {
+    push()
+    noStroke()
+    fill(100, 150, 250);
+    ellipse(200, 200, 180)
+    pop()
+}
+
+function drawMoonTwo() {
+    push();
+    noStroke();
+    fill(200, 150, 250);
+    ellipse(250, 250, 100);
+    pop();
+}
+function drawHill() {
+    push()
+    noStroke()
+    fill("#32cd32")
+    ellipse(460, 640, 1000, 300);
+    pop()
 }
