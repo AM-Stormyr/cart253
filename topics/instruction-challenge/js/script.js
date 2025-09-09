@@ -27,6 +27,7 @@ function draw() {
 
     drawMoonOne();
     drawMoonTwo();
+    drawTree();
     drawHill();
 
 }
@@ -51,5 +52,19 @@ function drawHill() {
     noStroke()
     fill("#32cd32")
     ellipse(460, 640, 1000, 300);
+    pop()
+}
+
+function drawTree() {
+    push()
+    noStroke()
+    fill(250, 250, 0)
+    rect(700, 300, 80, 300)
+    pop()
+
+    push()
+    noStroke()
+    fill(0, 0, 0)
+    ellipse(740, 300, 200, 250)
     pop()
 }
