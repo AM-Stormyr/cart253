@@ -24,19 +24,24 @@ function setup() {
 function draw() {
 
     drawSky();
-
     drawCloud();
-
     drawGround();
-
     drawHouse();
 }
 
+
+/** Draws a blue sky 
+ * 
+*/
 function drawSky() {
     // The sky
     background(150, 200, 250);
 }
 
+
+/** Draws a fluffy white cloud
+ * 
+ */
 function drawCloud() {
     // A cloud
     push();
@@ -53,6 +58,9 @@ function drawCloud() {
     pop();
 }
 
+/** Draws the ground
+ * 
+ */
 function drawGround() {
     // The ground
     push();
@@ -62,45 +70,69 @@ function drawGround() {
     pop();
 }
 
+/** Draws the entire house
+ * 
+ */
 function drawHouse() {
-    // The main body of the house
-    push();
-    noStroke();
-    fill(250, 250, 200);
-    rect(200, 240, 280, 180);
-    pop();
+    drawHouseBody();
+    drawHouseRoof();
+    drawHouseWindow();
+    drawHouseDoor();
 
-    // The roof
-    push();
-    noStroke();
-    // You can also write colors in hex code in quote marks
-    fill("#dc143c");
-    triangle(180, 240, 340, 120, 500, 240);
-    pop();
 
-    // A window
-    push();
-    // You can also write colour names from the CSS standard in quotes
-    // https://www.w3.org/wiki/CSS/Properties/color/keywords
-    stroke("deeppink");
-    strokeWeight(5);
-    fill("blanchedalmond");
-    rect(220, 260, 80, 80);
-    pop();
+
+
+
 
     // An entrace
 
-    // The door
-    push();
-    noStroke();
-    fill(0, 128, 0);
-    rect(320, 300, 80, 120);
-    pop();
 
-    // The doorknob
-    push();
-    noStroke();
-    fill(255, 215, 0);
-    ellipse(340, 360, 10, 10);
-    pop();
+
+    function drawHouseBody() {
+        // The main body of the house
+        push();
+        noStroke();
+        fill(250, 250, 200);
+        rect(200, 240, 280, 180);
+        pop();
+
+    }
+
+    function drawHouseRoof() {
+        // The roof
+        push();
+        noStroke();
+        // You can also write colors in hex code in quote marks
+        fill("#dc143c");
+        triangle(180, 240, 340, 120, 500, 240);
+        pop();
+    }
+
+    function drawHouseWindow() {
+        // A window
+        push();
+        // You can also write colour names from the CSS standard in quotes
+        // https://www.w3.org/wiki/CSS/Properties/color/keywords
+        stroke("deeppink");
+        strokeWeight(5);
+        fill("blanchedalmond");
+        rect(220, 260, 80, 80);
+        pop();
+    }
+
+    function drawHouseDoor() {
+        // The door
+        push();
+        noStroke();
+        fill(0, 128, 0);
+        rect(320, 300, 80, 120);
+        pop();
+
+        // The doorknob
+        push();
+        noStroke();
+        fill(255, 215, 0);
+        ellipse(340, 360, 10, 10);
+        pop();
+    }
 }
