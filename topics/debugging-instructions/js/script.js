@@ -13,7 +13,7 @@
  * Creates the canvas
 */
 function setup() {
-    createCanva(500, 500);
+    createCanvas(500, 500);
 }
 
 
@@ -22,61 +22,64 @@ function setup() {
 */
 function draw() {
     // Pink background
-    background(255, 150);
+    background(255, 150, 150);
 
     // Draw the bug
     drawBug();
 }
 
-function drawInsect() {
+function drawBug() {
     drawBody();
+    drawLegs();
     drawAntennae();
-    drawEye();
-}
+    drawEyes();
 
-/**
- * Draws the body of the bug!
- */
-function drawBody() {
-    push();
-    noStroke();
-    fill(0);
-    ellipse(250, 250, 200, 300);
-    pop();
-}
 
-/**
- * Draws the legs of the bug!
- */
-function drawLegs() {
-    push();
-    stroke(0);
-    strokeWeight(10);
-    line(100, 200, 400, 200);
-    line(100, 250, 400, 250);
-    line(100, 300, 400, 300);
-    pop();
-}
+    /**
+     * Draws the body of the bug!
+     */
+    function drawBody() {
+        push();
+        noStroke();
+        fill(0);
+        ellipse(250, 250, 200, 300);
+        pop();
+    }
 
-/**
- * Draws the antennae of the bug
- */
-function drawAntennae({
-    push();
-strok(0);
-strokeWeight(5);
-line(250, 250, 200, 50);
-line(250, 250, 300, 50);
-pop();
-}
+    /**
+     * Draws the legs of the bug!
+     */
+    function drawLegs() {
+        push();
+        stroke(0);
+        strokeWeight(10);
+        line(100, 200, 400, 200);
+        line(100, 250, 400, 250);
+        line(100, 300, 400, 300);
+        pop();
+    }
 
-/**
- * Draws the eyes of the bug
- */
-function drawEyes() {
-    push();
-    fill(255, 0, 0);
-    noStroke();
-    ellipse(200, 150, 15);
-    ellipse(300, 150, 15);
-    pop();
+    /**
+     * Draws the antennae of the bug
+     */
+    function drawAntennae() {
+        push();
+        stroke(0);
+        strokeWeight(5);
+        line(250, 250, 200, 50);
+        line(250, 250, 300, 50);
+        pop();
+    }
+
+    /**
+     * Draws the eyes of the bug
+     */
+    function drawEyes() {
+        push();
+        fill(255, 0, 0);
+        noStroke();
+        ellipse(200, 150, 15);
+        ellipse(300, 150, 15);
+        pop();
+    }
+}
