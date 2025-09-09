@@ -30,7 +30,7 @@ function draw() {
 }
 
 
-/** Draws a blue sky 
+/** Depicts the blue sky 
  * 
 */
 function drawSky() {
@@ -78,14 +78,6 @@ function drawHouse() {
     drawHouseRoof();
     drawHouseWindow();
     drawHouseDoor();
-
-
-
-
-
-
-    // An entrace
-
 
 
     function drawHouseBody() {
