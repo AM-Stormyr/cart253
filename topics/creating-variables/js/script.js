@@ -2,13 +2,22 @@
  * Creating Variables Project
  * Amanda Stormyr
  * 
- * Drawing of a hole in a piece of cheese!
+ * Experimenting with variables!
  */
 
 "use strict";
 
+let cheeseRed = 250;
+let cheeseGreen = 250;
+let cheeseBlue = 0;
+
+let holeShade = 0;
+let holeSize = 130;
+let holeSizeX = 150;
+let holeSizeY = 150;
+
 /**
- * Canvas Dimensions 
+ * Creates the canvas
 */
 function setup() {
     createCanvas(480, 480);
@@ -18,16 +27,18 @@ function setup() {
 
 
 /**
- * Drawing of a hole in a piece of cheese!
+ * Draws of a hole in a piece of cheese
 */
 function draw() {
-    //drawing a yellow piece of cheese!
-    background(250, 250, 0);
 
+    // The Cheese
+    background(cheeseRed, cheeseGreen, cheeseBlue);
+
+    // The hole
     push();
     noStroke();
-    fill(0, 0, 0);
-    ellipse(150, 150, 130);
+    fill(holeShade);
+    ellipse(holeSizeX, holeSizeY, holeSize);
     pop();
 
 }
