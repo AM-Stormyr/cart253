@@ -33,6 +33,8 @@ function setup() {
  * Displays a UFO
 */
 function draw() {
+    // Dawn
+    skyShade = skyShade + 1;
     // Display the sky
     background(skyShade);
 
