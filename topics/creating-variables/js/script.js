@@ -1,24 +1,33 @@
 /**
- * Title of Project
- * Author Name
+ * Creating Variables Project
+ * Amanda Stormyr
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * Drawing of a hole in a piece of cheese!
  */
 
 "use strict";
 
 /**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
+ * Canvas Dimensions 
 */
 function setup() {
+    createCanvas(480, 480);
+
 
 }
 
 
 /**
- * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
+ * Drawing of a hole in a piece of cheese!
 */
 function draw() {
+    //drawing a yellow piece of cheese!
+    background(250, 250, 0);
+
+    push();
+    noStroke();
+    fill(0, 0, 0);
+    ellipse(150, 150, 130);
+    pop();
 
 }
