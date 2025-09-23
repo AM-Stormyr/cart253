@@ -1,6 +1,6 @@
 /**
  * Creature Loves Mouse
- * Pippin Barr
+ * Amanda Stormyr
  * 
  * A creature that responds to the mouse by changing colour
  */
@@ -48,7 +48,21 @@ function draw() {
  * Responds to user input
  */
 function checkInput() {
-    // We'll need to figure this out
+    //Check if the mouse button is pressed
+    if (mouseIsPressed) {
+        //if it is, mouse gets happy!
+        creature.fill = creature.fills.happy;
+    }
+
+    else if (keyIsPressed) {
+        creature.fill = creature.fills.angry;
+    }
+
+    else {
+        creature.fill = creature.fills.bored;
+    }
+
+
 }
 
 /**
