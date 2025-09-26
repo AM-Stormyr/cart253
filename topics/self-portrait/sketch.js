@@ -15,9 +15,11 @@
 // Loading the images
 let pic1;
 let einsteinHead;
+let backgroundImage;
 function preload() {
   pic1 = loadImage('/assets/images/amandaSmall.png');
   einsteinHead = loadImage('/assets/images/einsteinHead.png');
+  backgroundImage = loadImage('/assets/images/BG.png');
 }
 
 //Function to let me see the precise coordinates in Developer. 
@@ -32,11 +34,13 @@ function setup() {
   createCanvas(1430, 768);
   //Changing the anglemode to degrees 
   angleMode(DEGREES);
+
 }
 
 function draw() {
-  //beautiful background colour goes here
-  background(140, 250, 150);
+  // //beautiful background colour goes here
+  // background(140, 250, 150);
+  image(backgroundImage, 0, 0, 1920, 1080);
 
   //cute picture of me and my dog Einstein! 
   image(pic1, 250, 105, 826, 664);
