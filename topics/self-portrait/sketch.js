@@ -2,21 +2,22 @@
  * Doggy and Me
  * AM Stormyr
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * This is a selfportrait by AM Stormyr and her dog Einstein who LOVES to puzzle!   
  */
 
 
 /**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
+ * I can't wait to see what this will be!
 */
 
-let pic1;
 
-// Load the image.
+// Loading the images
+let pic1;
 function preload() {
   pic1 = loadImage('/assets/images/amandaSmall.png');
 }
+
+//Function to let me see the precise coordinates in Developer. 
 document.onmousemove = function (e) {
   console.log("X: " + e.x + ", Y: " + e.y);
 };
@@ -25,14 +26,28 @@ document.onmousemove = function (e) {
 
 
 function setup() {
+  //Canvas that fills entire laptop screen
   createCanvas(1430, 768);
+  //Changing the anglemode to degrees 
   angleMode(DEGREES);
 }
 
 function draw() {
+  //beautiful background colour goes here
   background(250, 200, 120);
+
+  //cute picture of me and my dog Einstein! 
   image(pic1, 250, 105, 826, 664);
 
+
+  // Draw the human eye
+  drawEye();
+  // Draw the dog tungue
+  drawTongue();
+}
+
+//Amanda's creepy lazy-eye
+function drawEye() {
 
   //white eyeball
   push();
@@ -55,8 +70,12 @@ function draw() {
   fill(0, 0, 0);
   ellipse(797, 235, 7);
   pop();
+}
 
-  //pink dog tounge
+
+//Einstein's pink dog tongue
+function drawTongue() {
+
   push();
 
   noStroke();
