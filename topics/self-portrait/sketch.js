@@ -16,10 +16,18 @@
 let pic1;
 let einsteinHead;
 let backgroundImage;
+
+// Loading the sounds
+let ambientSound;
+
 function preload() {
+  //images
   pic1 = loadImage('/assets/images/amandaSmall.png');
   einsteinHead = loadImage('/assets/images/einsteinHead.png');
   backgroundImage = loadImage('/assets/images/BG.png');
+
+  //sounds
+  ambientSound = loadSound('/assets/sounds/ambient-street-sounds.mp3')
 }
 
 //Function to let me see the precise coordinates in Developer. 
@@ -34,6 +42,8 @@ function setup() {
   createCanvas(1430, 768);
   //Changing the anglemode to degrees 
   angleMode(DEGREES);
+  ambientSound.loop();
+  ambientSound.setVolume(0.3);
 
 }
 
