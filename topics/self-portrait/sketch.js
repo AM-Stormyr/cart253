@@ -26,35 +26,44 @@ document.onmousemove = function (e) {
 
 function setup() {
   createCanvas(1430, 768);
+  angleMode(DEGREES);
 }
 
 function draw() {
   background(250, 200, 120);
-  image(pic1, 250, 105, 826, 664)
+  image(pic1, 250, 105, 826, 664);
 
 
   //white eyeball
-  push;
+  push();
   noStroke();
-  fill(250, 250, 250)
-  ellipse(797, 235, 25, 10)
-  pop;
+  fill(250, 250, 250);
+  ellipse(797, 235, 25, 10);
+  pop();
+
+  //green iris
+  push();
+  noStroke();
+  fill(20, 170, 46);
+  ellipse(797, 235, 10);
+  pop();
+
 
   //black pupil
-  push;
+  push();
   noStroke();
-  fill(20, 170, 46)
-  ellipse(797, 235, 10)
-  pop;
+  fill(0, 0, 0);
+  ellipse(797, 235, 7);
+  pop();
 
+  //pink dog tounge
+  push();
 
-  //black pupil
-  push;
   noStroke();
-  fill(0, 0, 0)
-  ellipse(797, 235, 7)
-  pop;
+  fill(250, 194, 194);
+  translate(50, 50);
+  rect(532, 419, 15, 23)
 
-
+  pop();
 
 }
