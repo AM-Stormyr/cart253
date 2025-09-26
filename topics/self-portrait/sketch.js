@@ -27,9 +27,6 @@ document.onmousemove = function (e) {
 
 
 
-
-
-
 function setup() {
   //Canvas that fills entire laptop screen
   createCanvas(1430, 768);
@@ -39,7 +36,7 @@ function setup() {
 
 function draw() {
   //beautiful background colour goes here
-  background(250, 200, 120);
+  background(140, 250, 150);
 
   //cute picture of me and my dog Einstein! 
   image(pic1, 250, 105, 826, 664);
@@ -63,28 +60,35 @@ function drawEye() {
   ellipse(797, 235, 25, 10);
   pop();
 
-  // //green iris
-  // push();
-  // noStroke();
-  // fill(20, 170, 46);
-  // ellipse(797, 235, 10);
-  // pop();
-
-
-  //black pupil
+  //black pupil that follows the mouse
   push();
   noStroke();
   fill(0, 0, 0);
-  ellipse(797, 235, 7);
+
+  // Calculate the direction from eye center to mouse
+  let eyeCenterX = 797;
+  let eyeCenterY = 235;
+  let mouseDirection = atan2(mouseY - eyeCenterY, mouseX - eyeCenterX);
+
+  // Calculate how far the pupil can move (stay within the white eyeball)
+  let maxDistance = 3.5;
+
+  // Calculate the pupil's new position
+  let pupilX = eyeCenterX + cos(mouseDirection) * maxDistance;
+  let pupilY = eyeCenterY + sin(mouseDirection) * maxDistance;
+
+  // Draw the pupil at the new position
+  ellipse(pupilX, pupilY, 10);
   pop();
 }
+
 
 
 //Einstein's pink dog tongue swinging like a pendulum!
 function drawTongue() {
   push();
   noStroke();
-  fill(250, 194, 194);
+  fill(250, 160, 200);
 
   // Move to the pivot point (center-top of where the tongue should be)
   translate(587, 460); // This is the connection point at the mouth
