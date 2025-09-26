@@ -11,16 +11,21 @@
 */
 
 
+
 // Loading the images
 let pic1;
+let einsteinHead;
 function preload() {
   pic1 = loadImage('/assets/images/amandaSmall.png');
+  einsteinHead = loadImage('/assets/images/einsteinHead.png');
 }
 
 //Function to let me see the precise coordinates in Developer. 
 document.onmousemove = function (e) {
   console.log("X: " + e.x + ", Y: " + e.y);
 };
+
+
 
 
 
@@ -44,6 +49,8 @@ function draw() {
   drawEye();
   // Draw the dog tungue
   drawTongue();
+  // Draw Einstein's head on top to hide the base of the tongue
+  image(einsteinHead, 514, 380, 111, 143);
 }
 
 //Amanda's creepy lazy-eye
@@ -56,12 +63,12 @@ function drawEye() {
   ellipse(797, 235, 25, 10);
   pop();
 
-  //green iris
-  push();
-  noStroke();
-  fill(20, 170, 46);
-  ellipse(797, 235, 10);
-  pop();
+  // //green iris
+  // push();
+  // noStroke();
+  // fill(20, 170, 46);
+  // ellipse(797, 235, 10);
+  // pop();
 
 
   //black pupil
@@ -73,16 +80,27 @@ function drawEye() {
 }
 
 
-//Einstein's pink dog tongue
+//Einstein's pink dog tongue swinging like a pendulum!
 function drawTongue() {
-
   push();
-
   noStroke();
   fill(250, 194, 194);
-  translate(50, 50);
-  rect(532, 419, 15, 23)
+
+  // Move to the pivot point (center-top of where the tongue should be)
+  translate(587, 460); // This is the connection point at the mouth
+
+  // Calculate fast pendulum motion with small swing
+  // sin() naturally goes from -1 to +1 and back, creating pendulum motion
+  // Multiply by smaller number for smaller swing
+  // Divide frameCount by smaller number to make it swing faster
+  let pendulumAngle = sin(frameCount / 0.25) * 15;
+
+  // Rotate around the pivot point
+  rotate(pendulumAngle);
+
+  // Draw the tongue hanging down from the pivot point
+  // x: -7.5 centers it horizontally, y: 0 starts it right at the pivot
+  rect(-7.5, 0, 15, 40);
 
   pop();
-
 }
