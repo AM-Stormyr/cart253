@@ -18,22 +18,25 @@ let einsteinHead;
 let backgroundImage;
 
 // Loading the sounds
-let ambientSound;
+// let ambientSound;
 
 function preload() {
+  // console.log("preload is running");
   //images
-  pic1 = loadImage('/assets/images/amandaSmall.png');
-  einsteinHead = loadImage('/assets/images/einsteinHead.png');
-  backgroundImage = loadImage('/assets/images/BG.png');
+  pic1 = loadImage('assets/images/amandaSmall.png');
+  einsteinHead = loadImage('assets/images/einsteinHead.png');
+  backgroundImage = loadImage('assets/images/BG.png');
 
   //sounds
-  ambientSound = loadSound('/assets/sounds/ambient-street-sounds.mp3')
+  // ambientSound = loadSound('/assets/sounds/ambient-street-sounds.mp3')
 }
 
-//Function to let me see the precise coordinates in Developer. 
-document.onmousemove = function (e) {
-  console.log("X: " + e.x + ", Y: " + e.y);
-};
+// //Function to let me see the precise coordinates in Developer. 
+// document.onmousemove = function (e) {
+//   console.log("X: " + e.x + ", Y: " + e.y);
+// };
+
+
 
 
 
@@ -42,8 +45,8 @@ function setup() {
   createCanvas(1430, 768);
   //Changing the anglemode to degrees 
   angleMode(DEGREES);
-  ambientSound.loop();
-  ambientSound.setVolume(0.3);
+  // ambientSound.loop();
+  // ambientSound.setVolume(1);
 
 }
 
