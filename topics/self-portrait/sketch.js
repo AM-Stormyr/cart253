@@ -18,7 +18,7 @@ let einsteinHead;
 let backgroundImage;
 
 // Loading the sounds
-// let ambientSound;
+let ambientSound;
 
 function preload() {
   // console.log("preload is running");
@@ -28,7 +28,7 @@ function preload() {
   backgroundImage = loadImage('assets/images/BG.png');
 
   //sounds
-  // ambientSound = loadSound('/assets/sounds/ambient-street-sounds.mp3')
+  ambientSound = loadSound('assets/sounds/ambient-street-sounds.mp3')
 }
 
 // //Function to let me see the precise coordinates in Developer. 
@@ -45,8 +45,8 @@ function setup() {
   createCanvas(1430, 768);
   //Changing the anglemode to degrees 
   angleMode(DEGREES);
-  // ambientSound.loop();
-  // ambientSound.setVolume(1);
+  ambientSound.loop();
+  ambientSound.setVolume(0.3);
 
 }
 
