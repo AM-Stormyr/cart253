@@ -62,14 +62,14 @@ function setup() {
 function mousePressed() {
   if (!soundStarted) {
     ambientSound.loop();
-    ambientSound.setVolume(0.1);
+    ambientSound.setVolume(0.05);
 
     dogPant.loop();
-    dogPant.setVolume(0.15);
+    dogPant.setVolume(0.1);
     dogPant.pan(-0.4)
 
 
-    ohHey.setVolume(0.25);
+    ohHey.setVolume(0.12);
     ohHey.pan(0.4)
     ohHey.play(1)
 
@@ -93,13 +93,13 @@ function draw() {
   if (!soundStarted) {
     push;
     noStroke();
-    fill(250, 250, 250);
+    fill(100, 250, 15);
     rect(308, 270, 250, 150)
     pop;
 
     push;
-    textFont("arial")
-    fill(50, 250, 170);
+    textFont("undefined")
+    fill(250, 250, 0);
     textAlign(RIGHT);
     textSize(50);
     text("Click to say hi", 260, 290, 245);
