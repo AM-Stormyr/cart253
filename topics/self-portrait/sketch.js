@@ -22,6 +22,7 @@ let backgroundImage;
 let ambientSound;
 let soundStarted = false;
 let dogPant;
+let ohHey;
 
 function preload() {
   // console.log("preload is running");
@@ -33,6 +34,7 @@ function preload() {
   //sounds
   ambientSound = loadSound('assets/sounds/ambient-street-sounds.mp3')
   dogPant = loadSound('assets/sounds/dog-panting.mp3')
+  ohHey = loadSound('assets/sounds/oh-hey.mp3')
 }
 
 // //Function to let me see the precise coordinates in Developer. 
@@ -63,8 +65,13 @@ function mousePressed() {
     ambientSound.setVolume(0.1);
 
     dogPant.loop();
-    dogPant.setVolume(0.25);
+    dogPant.setVolume(0.15);
     dogPant.pan(-0.4)
+
+
+    ohHey.setVolume(0.25);
+    ohHey.pan(0.4)
+
     soundStarted = true;
     console.log("sound started")
   }
@@ -87,6 +94,7 @@ function draw() {
     noStroke();
     fill(250, 250, 250);
     rect(308, 270, 250, 150)
+    pop;
 
     push;
     textFont("arial")
