@@ -71,6 +71,7 @@ function mousePressed() {
 
     ohHey.setVolume(0.25);
     ohHey.pan(0.4)
+    ohHey.play(1)
 
     soundStarted = true;
     console.log("sound started")
