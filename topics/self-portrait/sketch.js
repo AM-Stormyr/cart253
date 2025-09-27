@@ -22,6 +22,9 @@ let ambientSound;
 let soundStarted = false;
 let dogPant;
 let ohHey;
+let somethingFun;
+let ohHeyFinished = false;
+let showTextBox = false;
 
 //Loading Cursor
 let pinkCursor;
@@ -37,6 +40,7 @@ function preload() {
   ambientSound = loadSound('assets/sounds/ambient-street-sounds.mp3')
   dogPant = loadSound('assets/sounds/dog-panting.mp3')
   ohHey = loadSound('assets/sounds/oh-hey.mp3')
+  somethingFun = loadSound('assets/sounds/something-fun.mp3')
 
   pinkCursor = loadImage('assets/images/pink-cursor.png');
 }
@@ -80,10 +84,29 @@ function mousePressed() {
     ohHey.pan(0.4)
     ohHey.play(1)
 
+    // Set up callback for when ohHey finishes
+    ohHey.onended(function () {
+      ohHeyFinished = true;
+      showTextBox = true;
+      console.log("ohHey finished, showing text box");
+    });
+
     soundStarted = true;
     console.log("sound started")
   }
+  // Separate condition for text box clicks
+  else if (ohHeyFinished && showTextBox) {
+    // Check if mouse is over the text box area
+    if (mouseX > 308 && mouseX < 558 && mouseY > 270 && mouseY < 420) {
+      somethingFun.play();
+      somethingFun.setVolume(0.2);
+      somethingFun.pan(0.4);
+      showTextBox = false;
+      console.log("Text box clicked, playing next sound");
+    }
+  }
 }
+
 
 
 
@@ -116,6 +139,26 @@ function draw() {
     pop;
 
   }
+
+  // Show new text box after ohHey finishes
+  if (showTextBox && ohHeyFinished) {
+    push();
+    noStroke();
+    fill(255, 200, 200); // Different color for the new box
+    rect(308, 270, 250, 150);
+    pop();
+
+    push();
+    textFont('Press Start 2P');
+    fill(100, 50, 200);
+    textAlign(RIGHT);
+    textSize(22);
+    text("Not much. You?", 267, 319, 245);
+    pop();
+  }
+
+
+
 
 
   // Draw the human eye
