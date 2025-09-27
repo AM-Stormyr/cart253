@@ -17,9 +17,11 @@ let pic1;
 let einsteinHead;
 let backgroundImage;
 
+
 // Loading the sounds
 let ambientSound;
 let soundStarted = false;
+let dogPant;
 
 function preload() {
   // console.log("preload is running");
@@ -30,6 +32,7 @@ function preload() {
 
   //sounds
   ambientSound = loadSound('assets/sounds/ambient-street-sounds.mp3')
+  dogPant = loadSound('assets/sounds/dog-panting.mp3')
 }
 
 // //Function to let me see the precise coordinates in Developer. 
@@ -52,11 +55,17 @@ function setup() {
 function mousePressed() {
   if (!soundStarted) {
     ambientSound.loop();
-    ambientSound.setVolume(0.3);
+    ambientSound.setVolume(0.1);
+
+    dogPant.loop();
+    dogPant.setVolume(0.25);
+    dogPant.pan(-0.4)
     soundStarted = true;
     console.log("sound started")
   }
 }
+
+
 
 
 
