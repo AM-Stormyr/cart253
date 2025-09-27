@@ -52,6 +52,11 @@ function setup() {
 
 }
 
+
+
+
+
+
 function mousePressed() {
   if (!soundStarted) {
     ambientSound.loop();
@@ -76,6 +81,22 @@ function draw() {
 
   //cute picture of me and my dog Einstein! 
   image(pic1, 250, 105, 826, 664);
+
+  if (!soundStarted) {
+    push;
+    noStroke();
+    fill(250, 250, 250);
+    rect(308, 270, 250, 150)
+
+    push;
+    textFont("arial")
+    fill(50, 250, 170);
+    textAlign(RIGHT);
+    textSize(50);
+    text("Click to say hi", 260, 290, 245);
+    pop;
+
+  }
 
 
   // Draw the human eye
