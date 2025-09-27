@@ -11,7 +11,6 @@
 */
 
 
-
 // Loading the images
 let pic1;
 let einsteinHead;
@@ -24,6 +23,9 @@ let soundStarted = false;
 let dogPant;
 let ohHey;
 
+//Loading Cursor
+let pinkCursor;
+
 function preload() {
   // console.log("preload is running");
   //images
@@ -35,7 +37,11 @@ function preload() {
   ambientSound = loadSound('assets/sounds/ambient-street-sounds.mp3')
   dogPant = loadSound('assets/sounds/dog-panting.mp3')
   ohHey = loadSound('assets/sounds/oh-hey.mp3')
+
+  pinkCursor = loadImage('assets/images/pink-cursor.png');
 }
+
+
 
 // //Function to let me see the precise coordinates in Developer. 
 // document.onmousemove = function (e) {
@@ -51,6 +57,7 @@ function setup() {
   createCanvas(1430, 768);
   //Changing the anglemode to degrees 
   angleMode(DEGREES);
+  noCursor();
 
 }
 
@@ -83,26 +90,29 @@ function mousePressed() {
 
 
 function draw() {
-  // //beautiful background colour goes here
-  // background(140, 250, 150);
+  //Background image of street in Montreal.
   image(backgroundImage, 0, 0, 1920, 1080);
 
   //cute picture of me and my dog Einstein! 
   image(pic1, 250, 105, 826, 664);
 
+
+
+
+  //
   if (!soundStarted) {
     push;
     noStroke();
-    fill(100, 250, 15);
+    fill(20, 250, 15);
     rect(308, 270, 250, 150)
     pop;
 
     push;
-    textFont("undefined")
-    fill(250, 250, 0);
+    textFont('Press Start 2P');
+    fill(250, 250, 250);
     textAlign(RIGHT);
-    textSize(50);
-    text("Click to say hi", 260, 290, 245);
+    textSize(22);
+    text("Click to say hi", 267, 319, 245);
     pop;
 
   }
@@ -114,7 +124,16 @@ function draw() {
   drawTongue();
   // Draw Einstein's head on top to hide the base of the tongue
   image(einsteinHead, 514, 380, 111, 143);
+  //pink cursor
+  //Pink Cursor
+  image(pinkCursor, mouseX - 10, mouseY - 10, 80, 80);
 }
+
+
+/**This is where the movement of the 
+ * lazy-eye and the pink pendulum dog-tongue happens
+ * */
+
 
 //Amanda's creepy lazy-eye
 function drawEye() {
@@ -156,7 +175,7 @@ function drawTongue() {
   noStroke();
   fill(250, 160, 200);
 
-  // Move to the pivot point (center-top of where the tongue should be)
+
   translate(587, 460); // This is the connection point at the mouth
 
   // Calculate fast pendulum motion with small swing
@@ -173,4 +192,9 @@ function drawTongue() {
   rect(-7.5, 0, 15, 40);
 
   pop();
+
+
+
+
+
 }
