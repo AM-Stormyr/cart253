@@ -19,6 +19,7 @@ let backgroundImage;
 
 // Loading the sounds
 let ambientSound;
+let soundStarted = false;
 
 function preload() {
   // console.log("preload is running");
@@ -45,10 +46,19 @@ function setup() {
   createCanvas(1430, 768);
   //Changing the anglemode to degrees 
   angleMode(DEGREES);
-  ambientSound.loop();
-  ambientSound.setVolume(0.3);
 
 }
+
+function mousePressed() {
+  if (!soundStarted) {
+    ambientSound.loop();
+    ambientSound.setVolume(0.3);
+    soundStarted = true;
+    console.log("sound started")
+  }
+}
+
+
 
 function draw() {
   // //beautiful background colour goes here
