@@ -133,7 +133,7 @@ function mousePressed() {
     // Check if clicking "NO" box (left box)
     if (mouseX > 250 && mouseX < 400 && mouseY > 270 && mouseY < 370) {
       imBored.play();
-      imBored.setVolume(0.22);
+      imBored.setVolume(0.2);
       showYesNoBoxes = false;
 
       // When im-bored finishes, show yes/no boxes again
@@ -206,7 +206,7 @@ function draw() {
     push;
     noStroke();
     fill(20, 250, 15);
-    rect(308, 270, 250, 150)
+    rect(308, 270, 250, 100)
     pop;
 
     push;
@@ -214,7 +214,7 @@ function draw() {
     fill(250, 250, 250);
     textAlign(RIGHT);
     textSize(22);
-    text("Click to say hi", 267, 319, 245);
+    text("Click to say hi", 272, 295, 245);
     pop;
 
   }
@@ -223,8 +223,8 @@ function draw() {
   if (showTextBox && ohHeyFinished) {
     push();
     noStroke();
-    fill(255, 200, 200); // Different color for the new box
-    rect(308, 270, 250, 150);
+    fill(255, 200, 200);
+    rect(308, 270, 250, 100);
     pop();
 
     push();
@@ -232,7 +232,7 @@ function draw() {
     fill(100, 50, 200);
     textAlign(RIGHT);
     textSize(22);
-    text("Not much! You?", 280, 319, 245);
+    text("Not much! You?", 285, 297, 245);
     pop();
   }
 
@@ -272,19 +272,19 @@ function draw() {
 
   // Show "To Be Continued" text box at the end
   if (showToBeContinued) {
-    push();
-    noStroke();
-    fill(255, 150, 200); // Pink text box
-    rectMode(CENTER);
-    rect(width / 2, height / 2, 400, 150);
-    pop();
+    // push();
+    // noStroke();
+    // fill(244, 194, 194); // Pink text box
+    // rectMode(CENTER);
+    // rect(width / 2, height / 2, 400, 120);
+    // pop();
 
     push();
     textFont('Press Start 2P');
     fill(255, 255, 255);
     textAlign(CENTER);
-    textSize(24);
-    text("To Be Continued", width / 2, height / 2);
+    textSize(26);
+    text("To Be Continued", width / 2, 425);
     pop();
   }
 
