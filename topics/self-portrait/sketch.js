@@ -290,7 +290,7 @@ function draw() {
 
 
 
-  // Pink cursor - hide during ending sequence and final screen
+  // Pink cursor hide during ending sequence and final screen
   if (!endingStarted && !showToBeContinued) {
     image(pinkCursor, mouseX - 10, mouseY - 10, 60, 60);
   }
