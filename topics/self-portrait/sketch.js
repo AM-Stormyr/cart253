@@ -174,8 +174,6 @@ function draw() {
   //Background image of street in Montreal.
   image(backgroundImage, 0, 0, 1920, 1080);
 
-  //cute picture of me and my dog Einstein! 
-  image(pic1, 250, 105, 826, 664);
 
   // Only show normal portrait elements if ending hasn't started
   if (!endingStarted) {
