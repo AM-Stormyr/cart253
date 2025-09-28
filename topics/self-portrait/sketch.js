@@ -15,6 +15,7 @@
 let pic1;
 let einsteinHead;
 let backgroundImage;
+let amandaSmallSide;
 
 
 // Loading the sounds
@@ -30,6 +31,13 @@ let letsGo;
 let somethingFunFinished = false;
 let showYesNoBoxes = false;
 
+
+// Ending sequence variables
+let endingStarted = false;
+let sideImageX = 250;
+let showToBeContinued = false;
+
+
 //Loading Cursor
 let pinkCursor;
 
@@ -39,6 +47,7 @@ function preload() {
   pic1 = loadImage('assets/images/amandaSmall.png');
   einsteinHead = loadImage('assets/images/einsteinHead.png');
   backgroundImage = loadImage('assets/images/BG.png');
+  amandaSmallSide = loadImage('assets/images/amandaSmallSide.png');
 
   //sounds
   ambientSound = loadSound('assets/sounds/ambient-street-sounds.mp3')
@@ -124,7 +133,7 @@ function mousePressed() {
     // Check if clicking "NO" box (left box)
     if (mouseX > 250 && mouseX < 400 && mouseY > 270 && mouseY < 370) {
       imBored.play();
-      imBored.setVolume(0.299);
+      imBored.setVolume(0.22);
       showYesNoBoxes = false;
 
       // When im-bored finishes, show yes/no boxes again
@@ -140,10 +149,20 @@ function mousePressed() {
       letsGo.play();
       letsGo.setVolume(0.3);
       showYesNoBoxes = false;
+
+      // Move setTimeout INSIDE the YES click
+      setTimeout(function () {
+        endingStarted = true;
+        dogPant.stop();
+        console.log("2.5 seconds elapsed, starting ending sequence");
+      }, 2500);
+
       console.log("YES clicked, playing letsGo");
     }
+
   }
 }
+
 
 
 
@@ -158,7 +177,30 @@ function draw() {
   //cute picture of me and my dog Einstein! 
   image(pic1, 250, 105, 826, 664);
 
+  // Only show normal portrait elements if ending hasn't started
+  if (!endingStarted) {
+    // Cute picture of me and my dog Einstein! 
+    image(pic1, 250, 105, 826, 664);
 
+    // Draw the human eye
+    drawEye();
+    // Draw the dog tongue
+    drawTongue();
+    // Draw Einstein's head on top to hide the base of the tongue
+    image(einsteinHead, 514, 380, 111, 143);
+  }
+
+
+
+  // ENDING SEQUENCE: Show side image moving left
+  if (endingStarted && !showToBeContinued) {
+    image(amandaSmallSide, sideImageX, 105, 826, 664);
+    sideImageX -= 5;
+    if (sideImageX < -826) {
+      showToBeContinued = true;
+    }
+
+  }
 
 
   //
@@ -230,21 +272,32 @@ function draw() {
   }
 
 
+  // Show "To Be Continued" text box at the end
+  if (showToBeContinued) {
+    push();
+    noStroke();
+    fill(255, 150, 200); // Pink text box
+    rectMode(CENTER);
+    rect(width / 2, height / 2, 400, 150);
+    pop();
+
+    push();
+    textFont('Press Start 2P');
+    fill(255, 255, 255);
+    textAlign(CENTER);
+    textSize(24);
+    text("To Be Continued", width / 2, height / 2);
+    pop();
+  }
 
 
 
-
-
-  // Draw the human eye
-  drawEye();
-  // Draw the dog tungue
-  drawTongue();
-  // Draw Einstein's head on top to hide the base of the tongue
-  image(einsteinHead, 514, 380, 111, 143);
-  //pink cursor
   //Pink Cursor
   image(pinkCursor, mouseX - 10, mouseY - 10, 80, 80);
 }
+
+
+
 
 
 /**This is where the movement of the 
