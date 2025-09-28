@@ -2,12 +2,12 @@
  * Doggy and Me
  * AM Stormyr
  * 
- * This is a selfportrait by AM Stormyr and her dog Einstein who LOVES to puzzle!   
+ * A self-portrait by AM Stormyr and her dog Einstein!   
  */
 
 
 /**
- * This is a simulation of meeting in the street. 
+ * This is a simulation of meeting us in the street. 
 */
 
 
@@ -147,7 +147,7 @@ function mousePressed() {
     // Check if clicking "YES" box (right box)
     else if (mouseX > 450 && mouseX < 600 && mouseY > 270 && mouseY < 370) {
       letsGo.play();
-      letsGo.setVolume(0.3);
+      letsGo.setVolume(0.27);
       showYesNoBoxes = false;
 
       // Move setTimeout INSIDE the YES click
@@ -290,8 +290,10 @@ function draw() {
 
 
 
-  //Pink Cursor
-  image(pinkCursor, mouseX - 10, mouseY - 10, 80, 80);
+  // Pink cursor - hide during ending sequence and final screen
+  if (!endingStarted && !showToBeContinued) {
+    image(pinkCursor, mouseX - 10, mouseY - 10, 60, 60);
+  }
 }
 
 
