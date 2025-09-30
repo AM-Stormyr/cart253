@@ -1,18 +1,18 @@
 /**
- * Doggy and Me
+ * Doggy Doggy! 
  * AM Stormyr
  * 
- * A self-portrait by AM Stormyr and her dog Einstein!   
+ * A portrait of friendship!   
  */
 
 
 /**
- * This is a simulation of meeting us in the street. 
+ * This is an simulation of a friendly meeting in the street. 
 */
 
 
 // Loading the images
-let pic1;
+let amandaAndEinstein;
 let einsteinHead;
 let backgroundImage;
 let amandaSmallSide;
@@ -44,7 +44,7 @@ let pinkCursor;
 function preload() {
   // console.log("preload is running");
   //images
-  pic1 = loadImage('assets/images/amandaSmall.png');
+  amandaAndEinstein = loadImage('assets/images/amandaSmall.png');
   einsteinHead = loadImage('assets/images/einsteinHead.png');
   backgroundImage = loadImage('assets/images/BG.png');
   amandaSmallSide = loadImage('assets/images/amandaSmallSide.png');
@@ -178,7 +178,7 @@ function draw() {
   // Only show normal portrait elements if ending hasn't started
   if (!endingStarted) {
     // Cute picture of me and my dog Einstein! 
-    image(pic1, 250, 105, 826, 664);
+    image(amandaAndEinstein, 250, 105, 826, 664);
 
     // Draw the human eye
     drawEye();
