@@ -28,16 +28,21 @@ Sound-assets are are partially from freesound.org and created by me:
 - The rest of the sounds are recorded on an Iphone and edited in AbletonLive by me.
 
 Pink Pointer Cursor:
-(https://sweezy-cursors.com/cursor/pinky-pixel/)
+- (https://sweezy-cursors.com/cursor/pinky-pixel/)
 
-Image-assets are created by me using [PolyCam](https://poly.cam/) & Reg. Iphone camera
+Image-assets: 
+- All created by me using [PolyCam](https://poly.cam/) 
+- Street photo taken with regular Iphone camera
 
 Thanks great tutorials:
-[The Coding Train](https://www.youtube.com/@TheCodingTrain)
-[tim rodenbröker creative coding](https://www.youtube.com/@timrodenbroeker)
-[Computing Masterclass](https://www.youtube.com/@ComputingMasterclass)
+- [The Coding Train](https://www.youtube.com/@TheCodingTrain)
+- [tim rodenbröker creative coding](https://www.youtube.com/@timrodenbroeker)
+- [Computing Masterclass](https://www.youtube.com/@ComputingMasterclass)
 
-[Claude](https://claude.ai/) Thank you Claude for helping me debugging when I wanted to throw myself of a cliff!
+And for transparency:
+- [Claude](https://claude.ai/) Thank you Claude for helping me debugging when I wanted to throw myself of a cliff!
+
+
 
 
 
