@@ -22,16 +22,22 @@ Through selection of choices, you can let the interaction unfold by using your m
 JavaScript libraries:
 - [p5.js](https://p5js.org) and p5.sound.js
 
-Sound assets are are partially from freesound.org and created by me:
-- [ambient-street-sounds.mp3] (https://freesound.org/people/The_Underdog/sounds/628805/) by The_Underdog 
+Sound-assets are are partially from freesound.org and created by me:
+- [ambient-street-sounds.mp3](https://freesound.org/people/The_Underdog/sounds/628805/) by The_Underdog 
 - [dog-panting.mp3](https://freesound.org/people/dobroide/sounds/39980/) by dobroide
-- The rest of the sounds are created by me
+- The rest of the sounds are recorded on an Iphone and edited in AbletonLive by me.
 
 Pink Pointer Cursor:
 (https://sweezy-cursors.com/cursor/pinky-pixel/)
 
-Image assets are created by me using [PolyCam](https://poly.cam/) & Reg. Iphone camera
+Image-assets are created by me using [PolyCam](https://poly.cam/) & Reg. Iphone camera
 
+Thanks great tutorials:
+[The Coding Train](https://www.youtube.com/@TheCodingTrain)
+[tim rodenbröker creative coding](https://www.youtube.com/@timrodenbroeker)
+[Computing Masterclass](https://www.youtube.com/@ComputingMasterclass)
+
+[Claude](https://claude.ai/) Thank you Claude for helping me debugging when I wanted to throw myself of a cliff!
 
 
 
