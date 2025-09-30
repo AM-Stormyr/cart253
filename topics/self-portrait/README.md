@@ -24,7 +24,16 @@ JavaScript libraries:
 
 Sound assets are are partially from freesound.org and created by me:
 - [ambient-street-sounds.mp3] (https://freesound.org/people/The_Underdog/sounds/628805/) by The_Underdog 
-ambient-street-sounds.mp3 [The_Underdog](https://freesound.org/people/The_Underdog/sounds/628805/)  
 - [dog-panting.mp3](https://freesound.org/people/dobroide/sounds/39980/) by dobroide
 - The rest of the sounds are created by me
+
+Pink Pointer Cursor:
+(https://sweezy-cursors.com/cursor/pinky-pixel/)
+
+Image assets are created by me using [PolyCam](https://poly.cam/) & Reg. Iphone camera
+
+
+
+
+
 
