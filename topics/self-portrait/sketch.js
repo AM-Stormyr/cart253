@@ -1,24 +1,30 @@
 /**
  * Doggy Doggy! 
  * AM Stormyr
- * 
- * A portrait of friendship!   
- */
-
-
 /**
- * This is an simulation of a friendly meeting in the street. 
+ * /*
+Doggy Doggy is a fun simulation of bumping into Amanda in Montréal.  
+Built in p5.js using functions triggered by mouse clicks and audio timing:
+
+- First mouse click: start ambient + panting + first voice clip.  
+- After first clip ends: show 2nd text box.  
+- Clicking 2nd text box: play 3rd clip + show Yes/No boxes.  
+- "No": play bored clip + loop back to Yes/No.  
+- "Yes": play final "Yay let's go!" clip + trigger ending sequence.  
+
+Ending sequence: Amanda + Einstein image changes to side view, slides left off canvas,  
+"to be continued" appears in center, cursor disappears, game ends.
 */
 
 
-// Loading the images
+//variables for images
 let amandaAndEinstein;
 let einsteinHead;
 let backgroundImage;
 let amandaSmallSide;
 
 
-// Loading the sounds
+// variables for sounds
 let ambientSound;
 let soundStarted = false;
 let dogPant;
@@ -38,11 +44,13 @@ let sideImageX = 250;
 let showToBeContinued = false;
 
 
-//Loading Cursor
+//Variable of Pink Cursor
 let pinkCursor;
 
+/**
+ Here all the image and sound assets are being pre-loaded for the game
+ */
 function preload() {
-  // console.log("preload is running");
   //images
   amandaAndEinstein = loadImage('assets/images/amandaSmall.png');
   einsteinHead = loadImage('assets/images/einsteinHead.png');
@@ -57,58 +65,55 @@ function preload() {
   imBored = loadSound('assets/sounds/im-bored.mp3')
   letsGo = loadSound('assets/sounds/letsGo.mp3')
 
+  //Cursor
   pinkCursor = loadImage('assets/images/pink-cursor.png');
 }
 
-
-
-// //Function to let me see the precise coordinates in Developer. 
-// document.onmousemove = function (e) {
-//   console.log("X: " + e.x + ", Y: " + e.y);
-// };
-
-
-
-
-
+/**
+ * Here are the dimenstions of the canvas  
+ */
 function setup() {
-  //Canvas that fills entire laptop screen
+  //Canvas that fills (my) entire laptop screen
   createCanvas(1430, 768);
   //Changing the anglemode to degrees 
   angleMode(DEGREES);
+  //Removing cursor
   noCursor();
-
 }
 
-
-
-
-
+/**
+ * The First sequence happens after first mouse-clik:
+ * The ambient-street- and dog-panting sounds start playing. 
+ * The first voice audio clip also starts playing  
+ */
 
 function mousePressed() {
   if (!soundStarted) {
+    //The ambient street sound starts playing, after first mouse click
     ambientSound.loop();
     ambientSound.setVolume(0.05);
 
+    //The dog panting sound panned slightly to the left, after first mouse click
     dogPant.loop();
     dogPant.setVolume(0.1);
     dogPant.pan(-0.4)
 
-
+    //The first voice clip "Oh hey, I didn't see you there" panned slightly to the right, after first mouse click
     ohHey.setVolume(0.14);
     ohHey.pan(0.4)
     ohHey.play(1)
 
-    // Set up callback for when ohHey finishes
+    /**
+ * After the first voice audio clip ends the second text box appears saying "Not much, you?" 
+ */
+    // first text box appears when oh-hey.mp3 finishes playing
     ohHey.onended(function () {
       ohHeyFinished = true;
       showTextBox = true;
-      console.log("ohHey finished, showing text box");
     });
-
     soundStarted = true;
-    console.log("sound started")
   }
+
   // Separate condition for text box clicks
   else if (ohHeyFinished && showTextBox) {
     // Check if mouse is over the text box area
@@ -118,6 +123,7 @@ function mousePressed() {
       somethingFun.pan(0.4);
       showTextBox = false;
       console.log("Text box clicked, playing next sound");
+
       // Set up callback for when somethingFun finishes
       somethingFun.onended(function () {
         somethingFunFinished = true;
@@ -128,6 +134,11 @@ function mousePressed() {
       console.log("Text box clicked, playing somethingFun");
     }
   }
+
+  /**
+* After the third voice audio clip ends the two text boxes appear; Yes|No and the player has to make a choice"
+*/
+  // first text box appears when oh-hey.mp3 finishes playing
   // Third click - handle yes/no choices
   else if (somethingFunFinished && showYesNoBoxes) {
     // Check if clicking "NO" box (left box)
@@ -139,10 +150,8 @@ function mousePressed() {
       // When im-bored finishes, show yes/no boxes again
       imBored.onended(function () {
         showYesNoBoxes = true;
-        console.log("im-bored finished, showing yes/no boxes again");
       });
 
-      console.log("NO clicked, playing im-bored");
     }
     // Check if clicking "YES" box (right box)
     else if (mouseX > 450 && mouseX < 600 && mouseY > 270 && mouseY < 370) {
@@ -154,32 +163,22 @@ function mousePressed() {
       setTimeout(function () {
         endingStarted = true;
         dogPant.stop();
-        console.log("2.5 seconds elapsed, starting ending sequence");
       }, 2500);
-
-      console.log("YES clicked, playing letsGo");
     }
 
   }
 }
-
-
-
-
-
-
-
-
+/**
+* The Background image is constant whereas the other images dissapears when the ending sequence start
+*/
 function draw() {
   //Background image of street in Montreal.
   image(backgroundImage, 0, 0, 1920, 1080);
-
 
   // Only show normal portrait elements if ending hasn't started
   if (!endingStarted) {
     // Cute picture of me and my dog Einstein! 
     image(amandaAndEinstein, 250, 105, 826, 664);
-
     // Draw the human eye
     drawEye();
     // Draw the dog tongue
@@ -188,9 +187,8 @@ function draw() {
     image(einsteinHead, 514, 380, 111, 143);
   }
 
-
-
-  // ENDING SEQUENCE: Show side image moving left
+  // ENDING SEQUENCE: The last image of me and einstein sliding from the center
+  // to the left out until it's out the frame
   if (endingStarted && !showToBeContinued) {
     image(amandaSmallSide, sideImageX, 105, 826, 664);
     sideImageX -= 5;
@@ -200,8 +198,7 @@ function draw() {
 
   }
 
-
-  //
+  //First text box saying "Click to say hi"
   if (!soundStarted) {
     push;
     noStroke();
@@ -219,7 +216,8 @@ function draw() {
 
   }
 
-  // Show new text box after ohHey finishes
+  // Second textbox saying "Not much! You?" 
+  //which shows after oh-hey.mp3 ends
   if (showTextBox && ohHeyFinished) {
     push();
     noStroke();
@@ -236,7 +234,7 @@ function draw() {
     pop();
   }
 
-  // Show yes/no boxes after somethingFun finishes
+  // The yes/no text boxes that pops up after something-fun.mp3 finishes playing
   if (showYesNoBoxes && somethingFunFinished) {
     // NO box (left)
     push();
@@ -269,16 +267,9 @@ function draw() {
     pop();
   }
 
-
-  // Show "To Be Continued" text box at the end
+  // Show "To Be Continued" 
+  // The text in the very end
   if (showToBeContinued) {
-    // push();
-    // noStroke();
-    // fill(244, 194, 194); // Pink text box
-    // rectMode(CENTER);
-    // rect(width / 2, height / 2, 400, 120);
-    // pop();
-
     push();
     textFont('Press Start 2P');
     fill(255, 255, 255);
@@ -288,22 +279,15 @@ function draw() {
     pop();
   }
 
-
-
   // Pink cursor hide during ending sequence and final screen
   if (!endingStarted && !showToBeContinued) {
     image(pinkCursor, mouseX - 10, mouseY - 10, 60, 60);
   }
 }
 
-
-
-
-
 /**This is where the movement of the 
  * lazy-eye and the pink pendulum dog-tongue happens
  * */
-
 
 //Amanda's creepy lazy-eye
 function drawEye() {
@@ -337,14 +321,11 @@ function drawEye() {
   pop();
 }
 
-
-
 //Einstein's pink dog tongue swinging like a pendulum!
 function drawTongue() {
   push();
   noStroke();
   fill(250, 160, 200);
-
 
   translate(587, 460); // This is the connection point at the mouth
 
@@ -362,9 +343,4 @@ function drawTongue() {
   rect(-7.5, 0, 15, 40);
 
   pop();
-
-
-
-
-
 }
