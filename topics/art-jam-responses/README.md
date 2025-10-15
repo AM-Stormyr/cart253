@@ -39,7 +39,7 @@ Aside from that, I’m really excited to see your self-portrait because your cod
 I also really appreciate the way you added comments in your JavaScript file, not only describing the different functions but also reflecting on your process. It might technically be “cleaner” to document that journal-style in your GitHub commits, but personally, I really enjoy reading it right there in the code. It helps me understand your thought process and makes it easier to follow, especially as someone who’s still learning.
 
 
-> ![Image Jordan's selfportrait costumized by me](assets/images/assets/images/jordan_selfportrait_screenshot.png)
+> ![Image Jordan's selfportrait costumized by me](assets/images/jordan_selfportrait_screenshot.png)
 
 ## Jordan Jordan Lobasso – 'Character color customization'
 
