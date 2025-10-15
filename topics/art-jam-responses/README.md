@@ -1,6 +1,7 @@
 # Art Jam Response
 
-AM Stormyr
+Responses by Amanda Stormyr. 
+Thanks for letting me look at your creative work. It was really fun!  
 
 ## Arielle Wong – 'Ari and the Soup' 
 
