@@ -9,14 +9,25 @@
 "use strict";
 
 // Our ball
-const ball = {
-    x: 300,
+const ball1 = {
+    x: 200,
     y: 20,
     width: 10,
     height: 10,
     velocity: {
         x: 0,
-        y: 10
+        y: .25
+    }
+};
+
+const ball2 = {
+    x: 400,
+    y: 20,
+    width: 10,
+    height: 10,
+    velocity: {
+        x: 0,
+        y: .08
     }
 };
 
@@ -43,12 +54,15 @@ function draw() {
     background("#87ceeb");
 
     movePaddle(paddle);
-    moveBall(ball);
+    moveBall(ball1);
+    moveBall(ball2);
 
-    handleBounce(ball, paddle);
+    handleBounce(ball1, paddle);
+    handleBounce(ball2, paddle);
 
     drawPaddle(paddle);
-    drawBall(ball);
+    drawBall(ball1);
+    drawBall(ball2);
 
 }
 
@@ -66,15 +80,32 @@ function movePaddle(paddle) {
  * Moves the ball passed in as a parameter
  */
 function moveBall(ball) {
+    ball.y += ball.velocity.y
 
 }
+
 
 /**
  * Bounces the provided ball off the provided paddle
  */
 function handleBounce(ball, paddle) {
+    if (checkOverlap(ball, paddle) === true) {
+        ball.velocity.y *= -1
+    }
 
+    else {
+        ball.velocity.y *= 1
+
+    }
 }
+
+
+
+
+
+
+
+
 
 /**
  * Draws the specified paddle on the canvas
@@ -99,6 +130,9 @@ function drawBall(ball) {
     rect(ball.x, ball.y, ball.width, ball.height);
     pop();
 }
+
+
+
 
 /**
  * Returns true if rectA and rectB overlap, and false otherwise
