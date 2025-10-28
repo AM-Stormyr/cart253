@@ -1,6 +1,6 @@
 /**
  * Frogfrogfrog
- * Pippin Barr
+ * Amanda Stormyr
  * 
  * A game of catching flies with your frog-tongue
  * 
