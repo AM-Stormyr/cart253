@@ -28,12 +28,24 @@ function draw() {
     // And ending at the bottom
     let x = 200;
     let y = 0;
-    let diameter = 50;
+    let diameter = 25;
 
-    for (i = 0; i < 9; i++) {
 
+
+    let numCircles = 9;
+
+    // for (let i = 0; i < numCircles; i++) {
+
+    //     ellipse(x, y, diameter);
+    //     y += diameter;
+    // }
+
+
+    let i = 1;
+    while (i < numCircles) {
+        const y = diameter * i;
         ellipse(x, y, diameter);
-        y += diameter;
+        i++;
     }
-
 }
+
