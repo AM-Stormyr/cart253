@@ -1,9 +1,8 @@
 /**
- * Title of Project
- * Author Name
+ * Star-field
+ * Amanda Stormyr
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * Creating a star field using for-loops! 
  */
 
 "use strict";
@@ -11,8 +10,10 @@
 /**
  * OH LOOK I DIDN'T DESCRIBE SETUP!!
 */
-function setup() {
+const numStars = 100;
 
+function setup() {
+    createCanvas(400, 400);
 }
 
 
@@ -20,5 +21,30 @@ function setup() {
  * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
 */
 function draw() {
+    background(0);
+    // starField();
 
+    for (let i = 0; i < numStars; i++) {
+        drawStar();
+
+    }
+    randomSeed(100);
+
+    function drawStar() {
+        const x = random(0, width);
+        const y = random(0, height);
+        const diameter = random(2, 5);
+
+        //draw startfield
+        // function starField{
+
+
+
+        push();
+        fill(250);
+        noStroke();
+        ellipse(x, y, diameter);
+        pop();
+
+    }
 }
