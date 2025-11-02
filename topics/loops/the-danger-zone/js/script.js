@@ -31,6 +31,7 @@ function setup() {
     placeHero();
 }
 
+
 /**
  * Display the zone and the hero
  */
@@ -60,7 +61,21 @@ function placeHero() {
     hero.x = random(0, width);
     hero.y = random(0, height);
     // This COULD BE IN THE DANGER ZONE
+
+
+    hero.x = random(0, width);
+    hero.y = random(0, height);
+
+    let d = dist(hero.x, hero.y, dangerZone.x, dangerZone.y);
+
+    while (d < hero.size / 2 + dangerZone.size / 2) {
+        hero.x = random(0, width);
+        hero.y = random(0, height);
+        d = dist(hero.x, hero.y, dangerZone.x, dangerZone.y);
+    }
+
 }
+
 
 /**
  * Move the hero to a new position on mouse click so we can
