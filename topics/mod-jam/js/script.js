@@ -1,19 +1,34 @@
 /**
- * Frogfrogfrog
+ * Fun Part I: Einstein's Treat Frenzy
  * Amanda Stormyr
  * 
- * A game of catching flies with your frog-tongue
+ * Help Einstein catch as many treats before time runs out.!
  * 
  * Instructions:
- * - Move the frog with your mouse
+ * - Move the Einstein with your mouse
  * - Click to launch the tongue
- * - Catch flies
+ * - Catch as many treats before the music ends 
  * 
  * Made with p5
  * https://p5js.org/
  */
 
 "use strict";
+
+/**
+ * Here all the image and sound assets are being preloaded for the game
+ */
+
+
+function preload() {
+    //images
+    einstein = loadImage('assets/images/einsteinTwo.png');
+    treat = loadImage('assets/images/treatOneShadow.png');
+    backgroundImage = loadImage('assets/images/bgTwo.png');
+}
+
+
+
 
 // Our frog
 const frog = {
