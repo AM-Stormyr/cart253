@@ -19,7 +19,7 @@
  * Here all the image and sound assets are being preloaded for the game
  */
 
-let einstein;
+let einsteinImage;
 let treat;
 let backgroundImage;
 
@@ -41,7 +41,7 @@ let letsGo;
 function preload() {
     /**IMAGES*/
     //Einstein's head
-    einstein = loadImage('assets/images/einsteinTwo.png');
+    einsteinImage = loadImage('assets/images/einsteinTwo.png');
     //Image of a dog treat
     treat = loadImage('assets/images/treatOneShadow.png');
     //Background image of floor
@@ -70,15 +70,15 @@ function preload() {
 
 
 
-// Our frog
-const frog = {
-    // The frog's body has a position and size
+// Our einstein
+const einstein = {
+    // The einstein's body has a position and size
     body: {
         x: 320,
         y: 520,
         size: 150
     },
-    // The frog's tongue has a position, size, speed, and state
+    // The einstein's tongue has a position, size, speed, and state
     tongue: {
         x: undefined,
         y: 480,
@@ -116,9 +116,10 @@ function draw() {
     // background("#87ceeb");
     drawBackGround();
     drawFly();
-    moveFrog();
+    moveFly();
+    moveEinstein();
     moveTongue();
-    drawFrog();
+    drawEinstein();
     checkTongueFlyOverlap();
 }
 
@@ -155,79 +156,103 @@ function resetFly() {
 }
 
 /**
- * Moves the frog to the mouse position on x
+ * Moves the einstein to the mouse position on x
  */
-function moveFrog() {
-    frog.body.x = mouseX;
+function moveEinstein() {
+    einstein.body.x = mouseX;
 }
 
 /**
  * Handles moving the tongue based on its state
  */
 function moveTongue() {
-    // Tongue matches the frog's x
-    frog.tongue.x = frog.body.x;
+    // Tongue matches the einstein's x
+    einstein.tongue.x = einstein.body.x;
     // If the tongue is idle, it doesn't do anything
-    if (frog.tongue.state === "idle") {
+    if (einstein.tongue.state === "idle") {
         // Do nothing
     }
     // If the tongue is outbound, it moves up
-    else if (frog.tongue.state === "outbound") {
-        frog.tongue.y += -frog.tongue.speed;
+    else if (einstein.tongue.state === "outbound") {
+        einstein.tongue.y += -einstein.tongue.speed;
         // The tongue bounces back if it hits the top
-        if (frog.tongue.y <= 0) {
-            frog.tongue.state = "inbound";
+        if (einstein.tongue.y <= 0) {
+            einstein.tongue.state = "inbound";
         }
     }
     // If the tongue is inbound, it moves down
-    else if (frog.tongue.state === "inbound") {
-        frog.tongue.y += frog.tongue.speed;
+    else if (einstein.tongue.state === "inbound") {
+        einstein.tongue.y += einstein.tongue.speed;
         // The tongue stops if it hits the bottom
-        if (frog.tongue.y >= height) {
-            frog.tongue.state = "idle";
+        if (einstein.tongue.y >= height) {
+            einstein.tongue.state = "idle";
         }
     }
 }
 
 /**
- * Displays the tongue (tip and line connection) and the frog (body)
+ * Displays the tongue (tip and line connection) and the einstein (body)
  */
-function drawFrog() {
+// function draweinstein() {
+//     // Draw the tongue tip
+//     push();
+//     fill("#ff0000");
+//     noStroke();
+//     ellipse(einstein.tongue.x, einstein.tongue.y, einstein.tongue.size);
+//     pop();
+
+//     // Draw the rest of the tongue
+//     push();
+//     stroke("#ff0000");
+//     strokeWeight(einstein.tongue.size);
+//     line(einstein.tongue.x, einstein.tongue.y, einstein.body.x, einstein.body.y);
+//     pop();
+
+//     // Draw the einstein's body
+//     push();
+//     fill("#00ff00");
+//     noStroke();
+//     ellipse(einstein.body.x, einstein.body.y, einstein.body.size);
+//     pop();
+// }
+
+
+function drawEinstein() {
     // Draw the tongue tip
     push();
     fill("#ff0000");
     noStroke();
-    ellipse(frog.tongue.x, frog.tongue.y, frog.tongue.size);
+    ellipse(einstein.tongue.x, einstein.tongue.y, einstein.tongue.size);
     pop();
 
     // Draw the rest of the tongue
     push();
     stroke("#ff0000");
-    strokeWeight(frog.tongue.size);
-    line(frog.tongue.x, frog.tongue.y, frog.body.x, frog.body.y);
+    strokeWeight(einstein.tongue.size);
+    line(einstein.tongue.x, einstein.tongue.y, einstein.body.x, einstein.body.y);
     pop();
 
-    // Draw the frog's body
+    // Draw the einstein's body
     push();
-    fill("#00ff00");
-    noStroke();
-    ellipse(frog.body.x, frog.body.y, frog.body.size);
+    imageMode(CENTER);
+    image(einsteinImage, einstein.body.x, einstein.body.y, einstein.body.size, einstein.body.size);
     pop();
 }
+
 
 /**
  * Handles the tongue overlapping the fly
  */
 function checkTongueFlyOverlap() {
     // Get distance from tongue to fly
-    const d = dist(frog.tongue.x, frog.tongue.y, fly.x, fly.y);
+    const d = dist(einstein.tongue.x, einstein.tongue.y, fly.x, fly.y);
     // Check if it's an overlap
-    const eaten = (d < frog.tongue.size / 2 + fly.size / 2);
+    const eaten = (d < einstein.tongue.size / 2 + fly.size / 2);
     if (eaten) {
         // Reset the fly
         resetFly();
         // Bring back the tongue
-        frog.tongue.state = "inbound";
+        einstein.tongue.state = "inbound";
     }
 }
 
@@ -235,7 +260,7 @@ function checkTongueFlyOverlap() {
  * Launch the tongue on click (if it's not launched yet)
  */
 function mousePressed() {
-    if (frog.tongue.state === "idle") {
-        frog.tongue.state = "outbound";
+    if (einstein.tongue.state === "idle") {
+        einstein.tongue.state = "outbound";
     }
 }
