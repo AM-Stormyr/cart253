@@ -44,8 +44,15 @@ let letsGo;
 //difficulty Speed
 let difficulty = 1;
 
-//Counters
+//counters
 let score = 0;
+
+//time 
+let totalTime;
+
+//time limit
+let timeLimit = 18; //how much time do you have to succeed eating treats
+
 
 
 /**
@@ -117,6 +124,7 @@ const fly = {
  */
 function setup() {
     createCanvas(640, 480);
+    frameRate(30); //setting frame rate to 30 instead of 60
 
     // Give the fly its first random position
     resetFly();
@@ -130,23 +138,38 @@ function drawBackGround() {
 
 function draw() {
     // background("#87ceeb");
+
+    totalTime = millis(); //start timer
+
+
     drawBackGround();
     drawFly();
     moveFly();
     moveEinstein();
     moveTongue();
+
     drawEinstein();
     checkTongueFlyOverlap();
 
-    difficulty += 0.0001;
-    console.log(difficulty);
+    difficulty += 0.009; //increasing the speed of the treats falling
 
-    //status bar
+
+    //score bar
     push;
     fill(0);
     textSize(25);
     text('score', 500, 60);
     text(score, 550, 60);
+    pop;
+
+
+    //timer
+    totalTime = int(totalTime / 1000) //converting to seconds and integere (only displaying the whole number)
+    push;
+    fill(250);
+    textSize(25);
+    // text('18', 110, 60);
+    text(timeLimit - totalTime, 110, 60);
     pop;
 }
 
