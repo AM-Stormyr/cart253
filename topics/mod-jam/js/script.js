@@ -129,7 +129,7 @@ function draw() {
  */
 function moveFly() {
     // Move the fly
-    fly.y += fly.speed * 5;
+    fly.y += fly.speed * 1.2;
     // Handle the fly going off the canvas
     if (fly.y > height) {
         resetFly();
