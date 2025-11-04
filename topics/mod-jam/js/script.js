@@ -16,7 +16,7 @@
 "use strict";
 
 /**
- * Here all the image and sound assets are being preloaded for the game
+ * Here all the image and sound assets added as variables
  */
 
 let einsteinImage;
@@ -37,6 +37,16 @@ let treat1;
 let treat2;
 let noMoreTreats;
 let letsGo;
+
+/**
+ * Here are other variable sat
+ */
+let difficulty = 1;
+
+
+/**
+ * Here the assets are being preloaded
+ */
 
 function preload() {
     /**IMAGES*/
@@ -121,6 +131,9 @@ function draw() {
     moveTongue();
     drawEinstein();
     checkTongueFlyOverlap();
+
+    difficulty += 0.0001;
+    console.log(difficulty);
 }
 
 /**
@@ -129,7 +142,7 @@ function draw() {
  */
 function moveFly() {
     // Move the fly
-    fly.y += fly.speed * 1.2;
+    fly.y += fly.speed * difficulty;
     // Handle the fly going off the canvas
     if (fly.y > height) {
         resetFly();
