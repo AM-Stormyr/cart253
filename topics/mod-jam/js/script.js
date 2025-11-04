@@ -19,6 +19,24 @@
  * Here all the image and sound assets are being preloaded for the game
  */
 
+let einstein;
+let treat;
+let backgroundImage;
+
+let goodMorningSong;
+
+let dogPant;
+let eatTreat1;
+let eatTreat2;
+let eatTreat3;
+
+let goodBoy1;
+let goodBoy2;
+let goodBoy3;
+let treat1;
+let treat2;
+let noMoreTreats;
+let letsGo;
 
 function preload() {
     /**IMAGES*/
@@ -91,12 +109,12 @@ function setup() {
 }
 
 function drawBackGround() {
-    image(backgroundImage, 0, 0, 1920, 1080);
+    image(backgroundImage, 0, 0, 640, 480);
 }
 
 function draw() {
-    background("#87ceeb");
-    moveFly();
+    // background("#87ceeb");
+    drawBackGround();
     drawFly();
     moveFrog();
     moveTongue();
