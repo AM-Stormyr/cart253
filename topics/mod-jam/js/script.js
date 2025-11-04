@@ -41,7 +41,11 @@ let letsGo;
 /**
  * Here are other variable sat
  */
+//difficulty Speed
 let difficulty = 1;
+
+//Counters
+let score = 0;
 
 
 /**
@@ -116,6 +120,8 @@ function setup() {
 
     // Give the fly its first random position
     resetFly();
+
+    textAlign(CENTER);
 }
 
 function drawBackGround() {
@@ -134,6 +140,14 @@ function draw() {
 
     difficulty += 0.0001;
     console.log(difficulty);
+
+    //status bar
+    push;
+    fill(0);
+    textSize(25);
+    text('score', 500, 60);
+    text(score, 550, 60);
+    pop;
 }
 
 /**
@@ -269,6 +283,8 @@ function checkTongueFlyOverlap() {
     // Check if it's an overlap
     const eaten = (d < einstein.tongue.size / 2 + fly.size / 2);
     if (eaten) {
+        //score increases with 1
+        score = score + 1; //Adds points
         // Reset the fly
         resetFly();
         // Bring back the tongue
