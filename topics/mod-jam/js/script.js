@@ -129,7 +129,7 @@ function draw() {
  */
 function moveFly() {
     // Move the fly
-    fly.y += fly.speed;
+    fly.y += fly.speed * 5;
     // Handle the fly going off the canvas
     if (fly.y > height) {
         resetFly();
@@ -158,8 +158,8 @@ function drawFly() {
  * Resets the fly to the left with a random y
  */
 function resetFly() {
-    fly.x = random(0, 640)
-    fly.y = -2;
+    fly.x = random(0, 640);
+    fly.y = random(-50, 300);
 }
 
 /**
