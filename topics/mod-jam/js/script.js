@@ -75,7 +75,7 @@ const einstein = {
     // The einstein's body has a position and size
     body: {
         x: 320,
-        y: 520,
+        y: 451,
         size: 150
     },
     // The einstein's tongue has a position, size, speed, and state

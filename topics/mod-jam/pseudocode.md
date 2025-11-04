@@ -1,14 +1,14 @@
-# Pseudocode for Frogfrogfrog
+# Pseudocode for einsteineinsteineinstein
 
 ```
-frog
+einstein
     body
         x: 320 // Halfway across a 640x480 canvas
         y: 480 // Bottom of a 640x480 canvas
-        size: 100 // Diameter of the frog circle
+        size: 100 // Diameter of the einstein circle
     tongue
         x: undefined // Will always match the body
-        y: 480 // At the bottom (important to draw it BEHIND the frog)
+        y: 480 // At the bottom (important to draw it BEHIND the einstein)
         size: 20 // The tip of the tongue
         speed: 20 // Speed the tongue movies in pixels/second
         state: idle // At the start the tongue hasn't been launched
@@ -26,9 +26,9 @@ draw()
     Draw the background // Probably just blue or something
     moveFly()
     drawFly()
-    moveFrog()
+    moveeinstein()
     moveTongue()
-    drawFrog()
+    draweinstein()
     checkTongueFlyOverlap()
 
 moveFly()
@@ -40,11 +40,11 @@ moveFly()
 drawFly()
     Draw a black circle at the fly's position with its size
 
-moveFrog()
-    Set the frog's x to the mouse x
+moveeinstein()
+    Set the einstein's x to the mouse x
 
 moveTongue()
-    Set tongue x to frog x
+    Set tongue x to einstein x
     if (tongue state is idle)
         Do nothing
     else if (tongue state is outbound)
@@ -56,10 +56,10 @@ moveTongue()
         if (tongue hit the bottom)
             set the tongue state to idle
 
-drawFrog()
+draweinstein()
     Draw a red circle at the tongue position with its size
-    Draw a red line from the tongue position to the frog position
-    Draw a green circle at the frog position with its size
+    Draw a red line from the tongue position to the einstein position
+    Draw a green circle at the einstein position with its size
 
 checkTongueFlyOverlap()
     if (tongue circle overlaps the fly)
