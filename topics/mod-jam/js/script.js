@@ -154,7 +154,7 @@ function draw() {
         moveFly();
         moveEinstein();
         moveTongue();
-        difficulty += 0.009;//increasing the speed of the treats falling
+        difficulty += 0.005;//increasing the speed of the treats falling
     }
     else {
         // Game over screen
@@ -241,7 +241,7 @@ function drawGameOver() {
  */
 function resetFly() {
     fly.x = random(0, 640);
-    fly.y = random(-50, 300);
+    fly.y = random(-50, 180);
 }
 
 /**
@@ -263,7 +263,7 @@ function moveTongue() {
     }
     // If the tongue is outbound, it moves up
     else if (einstein.tongue.state === "outbound") {
-        einstein.tongue.y += -einstein.tongue.speed;
+        einstein.tongue.y += -einstein.tongue.speed * difficulty;
         // The tongue bounces back if it hits the top
         if (einstein.tongue.y <= 0) {
             einstein.tongue.state = "inbound";
@@ -271,7 +271,7 @@ function moveTongue() {
     }
     // If the tongue is inbound, it moves down
     else if (einstein.tongue.state === "inbound") {
-        einstein.tongue.y += einstein.tongue.speed;
+        einstein.tongue.y += einstein.tongue.speed * difficulty;
         // The tongue stops if it hits the bottom
         if (einstein.tongue.y >= height) {
             einstein.tongue.state = "idle";
