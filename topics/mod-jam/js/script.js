@@ -167,7 +167,8 @@ function draw() {
 
     //score bar
     push();
-    fill(0);
+    textFont('Press Start 2P');
+    fill(250);
     textSize(25);
     text('score', 500, 60);
     text(score, 550, 60);
@@ -187,6 +188,7 @@ function draw() {
         timeRemaining = 0;  // Don't show negative numbers
     }
     push();
+    textFont('Press Start 2P');
     fill(250);
     textSize(25);
     text(timeRemaining, 110, 60); // Display countdown
@@ -227,6 +229,7 @@ function drawFly() {
 
 function drawGameOver() {
     push();
+    textFont('Press Start 2P');
     fill(255);
     textSize(64);
     textAlign(CENTER, CENTER);
@@ -284,14 +287,14 @@ function moveTongue() {
 function drawEinstein() {
     // Draw the tongue tip
     push();
-    fill("#ff0000");
+    fill(250, 160, 200);
     noStroke();
     ellipse(einstein.tongue.x, einstein.tongue.y, einstein.tongue.size);
     pop();
 
     // Draw the rest of the tongue
     push();
-    stroke("#ff0000");
+    stroke(250, 160, 200);
     strokeWeight(einstein.tongue.size);
     line(einstein.tongue.x, einstein.tongue.y, einstein.body.x, einstein.body.y);
     pop();
