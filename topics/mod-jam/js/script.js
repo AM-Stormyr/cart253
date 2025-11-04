@@ -41,17 +41,20 @@ let letsGo;
 /**
  * Here are other variable sat
  */
-//difficulty Speed
-let difficulty = 1;
 
 //counters
-let score = 0;
 
-//time 
-let totalTime;
+let difficulty = 1; //difficulty Speed
 
-//time limit
-let timeLimit = 18; //how much time do you have to succeed eating treats
+
+let score = 0; //score counter
+
+
+let totalTime; // total time of program running
+let splashTime; // amount of time on splash screen only
+let gameTime; // amount of time in game only
+let timeLimit = 18; // how much time do you have to succeed (eating doggy-treats)
+let startTime; // track when game begins
 
 
 
@@ -130,6 +133,7 @@ function setup() {
     resetFly();
 
     textAlign(CENTER);
+    startTime = millis();
 }
 
 function drawBackGround() {
@@ -164,13 +168,38 @@ function draw() {
 
 
     //timer
-    totalTime = int(totalTime / 1000) //converting to seconds and integere (only displaying the whole number)
+    splashTime = splashTime; //stop counting time on splash
+    totalTime = int((totalTime - splashTime) / 1000) //converting to seconds and integere (only displaying the whole number)
     push;
     fill(250);
     textSize(25);
     // text('18', 110, 60);
-    text(timeLimit - totalTime, 110, 60);
+    text(timeLimit - gameTime, 110, 60); // displaying countdown from 18 seconds
     pop;
+
+    // //timer
+    // gameTime = int((millis() - startTime) / 1000); // Time elapsed since start
+    // let timeRemaining = timeLimit - gameTime; // Time left
+
+    // push();
+    // fill(250);
+    // textSize(25);
+    // text(timeRemaining, 110, 60); // Display countdown
+    // pop();
+    // gameTime = int(totalTime / 1000); // Convert milliseconds to seconds
+    // let timeRemaining = timeLimit - gameTime; // Calculate time left
+
+    //timer
+    gameTime = int((millis() - startTime) / 1000); // Time elapsed since start
+    let timeRemaining = timeLimit - gameTime; // Time left
+
+    push();
+    fill(250);
+    textSize(25);
+    text(timeRemaining, 110, 60); // Display countdown
+    pop();
+
+
 }
 
 /**
@@ -247,31 +276,6 @@ function moveTongue() {
     }
 }
 
-/**
- * Displays the tongue (tip and line connection) and the einstein (body)
- */
-// function draweinstein() {
-//     // Draw the tongue tip
-//     push();
-//     fill("#ff0000");
-//     noStroke();
-//     ellipse(einstein.tongue.x, einstein.tongue.y, einstein.tongue.size);
-//     pop();
-
-//     // Draw the rest of the tongue
-//     push();
-//     stroke("#ff0000");
-//     strokeWeight(einstein.tongue.size);
-//     line(einstein.tongue.x, einstein.tongue.y, einstein.body.x, einstein.body.y);
-//     pop();
-
-//     // Draw the einstein's body
-//     push();
-//     fill("#00ff00");
-//     noStroke();
-//     ellipse(einstein.body.x, einstein.body.y, einstein.body.size);
-//     pop();
-// }
 
 
 function drawEinstein() {
@@ -313,6 +317,13 @@ function checkTongueFlyOverlap() {
         // Bring back the tongue
         einstein.tongue.state = "inbound";
     }
+}
+
+
+function splash() {
+    //timer stuff
+    splashTime = totalTime; //begin splash screen timer
+
 }
 
 /**
