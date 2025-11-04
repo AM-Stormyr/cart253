@@ -42,6 +42,8 @@ let letsGo;
  * Here are other variable sat
  */
 
+
+
 //counters
 
 let difficulty = 1; //difficulty Speed
@@ -136,6 +138,7 @@ function setup() {
 
     textAlign(CENTER);
     startTime = millis();
+
 }
 
 function drawBackGround() {
@@ -167,9 +170,9 @@ function draw() {
 
     //score bar
     push();
-    textFont('Press Start 2P');
+
     fill(250);
-    textSize(25);
+    textSize(19);
     text('score', 500, 60);
     text(score, 550, 60);
     pop();
@@ -188,9 +191,9 @@ function draw() {
         timeRemaining = 0;  // Don't show negative numbers
     }
     push();
-    textFont('Press Start 2P');
+
     fill(250);
-    textSize(25);
+    textSize(19);
     text(timeRemaining, 110, 60); // Display countdown
     pop();
 
@@ -229,9 +232,9 @@ function drawFly() {
 
 function drawGameOver() {
     push();
-    textFont('Press Start 2P');
+
     fill(255);
-    textSize(64);
+    textSize(28);
     textAlign(CENTER, CENTER);
     text("GAME OVER", width / 2, height / 2);
     text("Score: " + score, width / 2, height / 2 + 80);
