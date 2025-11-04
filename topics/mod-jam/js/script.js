@@ -94,7 +94,7 @@ const einstein = {
 const fly = {
     x: 0,
     y: 200, // Will be random
-    size: 10,
+    size: 60,
     speed: 3
 };
 
@@ -140,19 +140,26 @@ function moveFly() {
  * Draws the fly as a black circle
  */
 function drawFly() {
+    // push();
+    // noStroke();
+    // fill("#000000");
+    // ellipse(fly.x, fly.y, fly.size);
+    // pop();
+
+    // Draw the treat 
     push();
-    noStroke();
-    fill("#000000");
-    ellipse(fly.x, fly.y, fly.size);
+    imageMode(CENTER);
+    image(treat, fly.x, fly.y, fly.size, fly.size);
     pop();
 }
+
 
 /**
  * Resets the fly to the left with a random y
  */
 function resetFly() {
     fly.x = 0;
-    fly.y = random(0, 300);
+    fly.y = random(-5, 300);
 }
 
 /**
