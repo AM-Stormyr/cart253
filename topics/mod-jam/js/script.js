@@ -56,6 +56,8 @@ let gameTime; // amount of time in game only
 let timeLimit = 18; // how much time do you have to succeed (eating doggy-treats)
 let startTime; // track when game begins
 
+let gameOver = false;
+
 
 
 /**
@@ -145,54 +147,45 @@ function draw() {
 
     totalTime = millis(); //start timer
 
-
     drawBackGround();
-    drawFly();
-    moveFly();
-    moveEinstein();
-    moveTongue();
+
+    if (!gameOver) { // Only run game if not over
+        drawFly();
+        moveFly();
+        moveEinstein();
+        moveTongue();
+        difficulty += 0.009;//increasing the speed of the treats falling
+    }
+    else {
+        // Game over screen
+        drawGameOver();
+    }
 
     drawEinstein();
     checkTongueFlyOverlap();
 
-    difficulty += 0.009; //increasing the speed of the treats falling
-
 
     //score bar
-    push;
+    push();
     fill(0);
     textSize(25);
     text('score', 500, 60);
     text(score, 550, 60);
-    pop;
+    pop();
 
 
     //timer
-    splashTime = splashTime; //stop counting time on splash
-    totalTime = int((totalTime - splashTime) / 1000) //converting to seconds and integere (only displaying the whole number)
-    push;
-    fill(250);
-    textSize(25);
-    // text('18', 110, 60);
-    text(timeLimit - gameTime, 110, 60); // displaying countdown from 18 seconds
-    pop;
 
-    // //timer
-    // gameTime = int((millis() - startTime) / 1000); // Time elapsed since start
-    // let timeRemaining = timeLimit - gameTime; // Time left
-
-    // push();
-    // fill(250);
-    // textSize(25);
-    // text(timeRemaining, 110, 60); // Display countdown
-    // pop();
-    // gameTime = int(totalTime / 1000); // Convert milliseconds to seconds
-    // let timeRemaining = timeLimit - gameTime; // Calculate time left
 
     //timer
-    gameTime = int((millis() - startTime) / 1000); // Time elapsed since start
-    let timeRemaining = timeLimit - gameTime; // Time left
+    gameTime = int((millis() - startTime) / 1000);
+    let timeRemaining = timeLimit - gameTime;
 
+    // Check if time is up
+    if (timeRemaining <= 0) {
+        gameOver = true;  // End the game!
+        timeRemaining = 0;  // Don't show negative numbers
+    }
     push();
     fill(250);
     textSize(25);
@@ -229,6 +222,16 @@ function drawFly() {
     push();
     imageMode(CENTER);
     image(treat, fly.x, fly.y, fly.size, fly.size);
+    pop();
+}
+
+function drawGameOver() {
+    push();
+    fill(255);
+    textSize(64);
+    textAlign(CENTER, CENTER);
+    text("GAME OVER", width / 2, height / 2);
+    text("Score: " + score, width / 2, height / 2 + 80);
     pop();
 }
 
