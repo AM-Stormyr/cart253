@@ -21,10 +21,32 @@
 
 
 function preload() {
-    //images
+    /**IMAGES*/
+    //Einstein's head
     einstein = loadImage('assets/images/einsteinTwo.png');
+    //Image of a dog treat
     treat = loadImage('assets/images/treatOneShadow.png');
+    //Background image of floor
     backgroundImage = loadImage('assets/images/bgTwo.png');
+
+    /**AUDIO*/
+    //music track 
+    goodMorningSong = loadSound('assets/sounds/goodmorning.mp3')
+    //dog sounds
+    dogPant = loadSound('assets/sounds/dog-panting.mp3')
+    eatTreat1 = loadSound('assets/sounds/eatingSound.mp3')
+    eatTreat2 = loadSound('assets/sounds/eatingSoundTwo.mp3')
+    eatTreat3 = loadSound('assets/sounds/eatingSoundThree.mp3')
+    //human sounds
+    goodBoy1 = loadSound('assets/sounds/youGoodboy.mp3')
+    goodBoy2 = loadSound('assets/sounds/Goodboy.mp3')
+    goodBoy3 = loadSound('assets/sounds/GoodboyThree.mp3')
+    treat1 = loadSound('assets/sounds/treat.mp3')
+    treat2 = loadSound('assets/sounds/treatTwo.mp3')
+    noMoreTreats = loadSound('assets/sounds/noMoreTreats.mp3')
+    //reusing audio from "Doddy Doggy!" to keep the universe consistent :)
+    letsGo = loadSound('assets/sounds/letsGoNew.mp3')
+
 }
 
 
@@ -66,6 +88,10 @@ function setup() {
 
     // Give the fly its first random position
     resetFly();
+}
+
+function drawBackGround() {
+    image(backgroundImage, 0, 0, 1920, 1080);
 }
 
 function draw() {
