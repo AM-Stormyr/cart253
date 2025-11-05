@@ -266,12 +266,6 @@ function moveFly() {
  * Draws the fly as a black circle
  */
 function drawFly() {
-    // push();
-    // noStroke();
-    // fill("#000000");
-    // ellipse(fly.x, fly.y, fly.size);
-    // pop();
-
     // Draw the treat 
     push();
     imageMode(CENTER);
