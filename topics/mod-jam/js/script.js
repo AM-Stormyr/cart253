@@ -92,20 +92,20 @@ function preload() {
     eatTreat1 = loadSound('assets/sounds/eatingSound.mp3');
     eatTreat1.setVolume(0.1);
     eatTreat2 = loadSound('assets/sounds/eatingSoundTwo.mp3');
-    eatTreat2.setVolume(0.1);
+    eatTreat2.setVolume(0.08);
     eatTreat3 = loadSound('assets/sounds/eatingSoundThree.mp3');
-    eatTreat3.setVolume(0.1);
+    eatTreat3.setVolume(0.09);
 
     goodBoy1 = loadSound('assets/sounds/youGoodboy.mp3');  //human sounds
     goodBoy1.setVolume(0.3);
     goodBoy2 = loadSound('assets/sounds/Goodboy.mp3');
     goodBoy2.setVolume(0.3)
     goodBoy3 = loadSound('assets/sounds/GoodboyThree.mp3');
-    goodBoy3.setVolume(0.3;
+    goodBoy3.setVolume(0.25);
     treat1 = loadSound('assets/sounds/treat.mp3');
-    treat1.setVolume(0.3);
+    treat1.setVolume(0.25);
     treat2 = loadSound('assets/sounds/treatTwo.mp3');
-    treat2.setVolume(0.3);
+    treat2.setVolume(0.25);
     noMoreTreats = loadSound('assets/sounds/noMoreTreats.mp3');
     noMoreTreats.setVolume(0.3);
 
