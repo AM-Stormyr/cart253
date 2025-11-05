@@ -190,7 +190,7 @@ function draw() {
         moveFly();
         moveEinstein();
         moveTongue();
-        difficulty += 0.005;//increasing the speed of the treats falling
+        difficulty += 0.01;//increasing the speed of the treats falling
         if (millis() - lastVoiceTime > voiceInterval) {
             const voiceSounds = [goodBoy1, goodBoy2, goodBoy3, treat1, treat2];
             const randomVoice = random(voiceSounds);
