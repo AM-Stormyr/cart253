@@ -29,6 +29,7 @@ let dogPant;
 let eatTreat1;
 let eatTreat2;
 let eatTreat3;
+let titleTreat;
 
 let goodBoy1;
 let goodBoy2;
@@ -59,6 +60,12 @@ let timeLimit = 18; // how much time do you have to succeed (eating doggy-treats
 let startTime; // track when game begins
 
 let gameOver = false;
+let gameStarted = false;
+let noMoreTreatsPlayed = false;
+let waitingForLick = false;
+
+let lastVoiceTime = 0;
+let voiceInterval = 5000;
 
 
 
@@ -68,30 +75,41 @@ let gameOver = false;
 
 function preload() {
     /**IMAGES*/
-    //Einstein's head
-    einsteinImage = loadImage('assets/images/einsteinTwo.png');
-    //Image of a dog treat
-    treat = loadImage('assets/images/treatOneShadow.png');
-    //Background image of floor
-    backgroundImage = loadImage('assets/images/bgTwo.png');
 
-    /**AUDIO*/
-    //music track 
-    goodMorningSong = loadSound('assets/sounds/goodmorning.mp3')
-    //dog sounds
-    dogPant = loadSound('assets/sounds/dog-panting.mp3')
-    eatTreat1 = loadSound('assets/sounds/eatingSound.mp3')
-    eatTreat2 = loadSound('assets/sounds/eatingSoundTwo.mp3')
-    eatTreat3 = loadSound('assets/sounds/eatingSoundThree.mp3')
-    //human sounds
-    goodBoy1 = loadSound('assets/sounds/youGoodboy.mp3')
-    goodBoy2 = loadSound('assets/sounds/Goodboy.mp3')
-    goodBoy3 = loadSound('assets/sounds/GoodboyThree.mp3')
-    treat1 = loadSound('assets/sounds/treat.mp3')
-    treat2 = loadSound('assets/sounds/treatTwo.mp3')
-    noMoreTreats = loadSound('assets/sounds/noMoreTreats.mp3')
-    //reusing audio from "Doddy Doggy!" to keep the universe consistent :)
-    letsGo = loadSound('assets/sounds/letsGoNew.mp3')
+    einsteinImage = loadImage('assets/images/einsteinTwo.png'); //Einstein's head
+    treat = loadImage('assets/images/treatOneShadow.png'); //Image of a dog treat
+    titleTreat = loadImage('assets/images/titleTreat.png');
+    backgroundImage = loadImage('assets/images/bgTwo.png');  //Background image of floor
+
+    /**
+     * AUDIO
+     * */
+
+    goodMorningSong = loadSound('assets/sounds/goodmorning.mp3');  //music track 
+    goodMorningSong.setVolume(0.09);
+
+    dogPant = loadSound('assets/sounds/dog-panting.mp3'); //dog sounds
+    eatTreat1 = loadSound('assets/sounds/eatingSound.mp3');
+    eatTreat1.setVolume(0.1);
+    eatTreat2 = loadSound('assets/sounds/eatingSoundTwo.mp3');
+    eatTreat2.setVolume(0.1);
+    eatTreat3 = loadSound('assets/sounds/eatingSoundThree.mp3');
+    eatTreat3.setVolume(0.1);
+
+    goodBoy1 = loadSound('assets/sounds/youGoodboy.mp3');  //human sounds
+    goodBoy1.setVolume(0.3);
+    goodBoy2 = loadSound('assets/sounds/Goodboy.mp3');
+    goodBoy2.setVolume(0.3)
+    goodBoy3 = loadSound('assets/sounds/GoodboyThree.mp3');
+    goodBoy3.setVolume(0.3;
+    treat1 = loadSound('assets/sounds/treat.mp3');
+    treat1.setVolume(0.3);
+    treat2 = loadSound('assets/sounds/treatTwo.mp3');
+    treat2.setVolume(0.3);
+    noMoreTreats = loadSound('assets/sounds/noMoreTreats.mp3');
+    noMoreTreats.setVolume(0.3);
+
+    letsGo = loadSound('assets/sounds/letsGoNew.mp3');   //reusing audio from "Doddy Doggy!" to keep the universe consistent :)
 
 }
 
@@ -126,6 +144,15 @@ const fly = {
     speed: 3
 };
 
+const startButton = {
+    x: 320,
+    y: 240,
+    width: 200,
+    height: 60,
+    text: "Let's go!"
+};
+
+
 /**
  * Creates the canvas and initializes the fly
  */
@@ -152,12 +179,24 @@ function draw() {
 
     drawBackGround();
 
+    if (!gameStarted) {
+        drawEinstein();
+        drawStartScreen();
+        return;  // Don't run the rest of the game yet
+    }
+
     if (!gameOver) { // Only run game if not over
         drawFly();
         moveFly();
         moveEinstein();
         moveTongue();
         difficulty += 0.005;//increasing the speed of the treats falling
+        if (millis() - lastVoiceTime > voiceInterval) {
+            const voiceSounds = [goodBoy1, goodBoy2, goodBoy3, treat1, treat2];
+            const randomVoice = random(voiceSounds);
+            randomVoice.play();
+            lastVoiceTime = millis();
+        }
     }
     else {
         // Game over screen
@@ -178,20 +217,30 @@ function draw() {
     pop();
 
 
-    //timer
-
 
     //timer
     gameTime = int((millis() - startTime) / 1000);
     let timeRemaining = timeLimit - gameTime;
 
-    // Check if time is up
-    if (timeRemaining <= 0) {
-        gameOver = true;  // End the game!
-        timeRemaining = 0;  // Don't show negative numbers
-    }
-    push();
+    if (timeRemaining <= 0) {   // Check if time is up
+        timeRemaining = 0;
 
+
+        if (!gameOver) {  // First time game ends
+            goodMorningSong.stop();
+            gameOver = true;
+        }
+        if (gameOver && !noMoreTreatsPlayed) {
+            setTimeout(() => {
+                noMoreTreats.play();
+            }, 700);
+            noMoreTreatsPlayed = true;  // Set flag so it never plays again
+        }
+    }
+
+
+
+    push();
     fill(250);
     textSize(19);
     text(timeRemaining, 110, 60); // Display countdown
@@ -240,6 +289,21 @@ function drawGameOver() {
     text("Score: " + score, width / 2, height / 2 + 80);
     pop();
 }
+
+function drawStartScreen() {
+    push();
+    imageMode(CENTER);
+    image(titleTreat, startButton.x, startButton.y, 152, 81);
+    pop();
+
+    // Draw button text
+    fill(250, 160, 200);
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textSize(24);
+    text(startButton.text, startButton.x, startButton.y);
+}
+
 
 
 /**
@@ -321,6 +385,11 @@ function checkTongueFlyOverlap() {
     if (eaten) {
         //score increases with 1
         score = score + 1; //Adds points
+
+        const eatSounds = [eatTreat1, eatTreat2]; //dog chewing sound when treat is caught
+        const randomEatSound = random(eatSounds); // picked randomly between the two audio clips
+        randomEatSound.play();
+
         // Reset the fly
         resetFly();
         // Bring back the tongue
@@ -339,7 +408,29 @@ function splash() {
  * Launch the tongue on click (if it's not launched yet)
  */
 function mousePressed() {
-    if (einstein.tongue.state === "idle") {
+    // Check if clicking the start button (titleTreat image)
+    if (!gameStarted && !waitingForLick) {
+
+
+
+        const treatWidth = 152;
+        const treatHeight = 81;
+
+        const clickedButton = (mouseX > startButton.x - treatWidth / 2 &&
+            mouseX < startButton.x + treatWidth / 2 &&
+            mouseY > startButton.y - treatHeight / 2 &&
+            mouseY < startButton.y + treatHeight / 2);
+
+        if (clickedButton) {
+            goodMorningSong.play();
+            gameStarted = true;
+            startTime = millis();
+            einstein.tongue.state = "outbound";  // Einstein licks the titleTreat!
+        }
+    }
+    // Normal tongue launch during game
+    else if (einstein.tongue.state === "idle" && gameStarted && !gameOver) {
         einstein.tongue.state = "outbound";
     }
 }
+
