@@ -98,7 +98,7 @@ function preload() {
 
     goodBoy1 = loadSound('assets/sounds/youGoodboy.mp3');  //human sounds
     goodBoy1.setVolume(0.3);
-    goodBoy2 = loadSound('assets/sounds/Goodboy.mp3');
+    goodBoy2 = loadSound('assets/sounds/goodboy.mp3');
     goodBoy2.setVolume(0.3)
     goodBoy3 = loadSound('assets/sounds/GoodboyThree.mp3');
     goodBoy3.setVolume(0.25);
