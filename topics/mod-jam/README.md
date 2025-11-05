@@ -6,31 +6,32 @@ AM Stormyr
 [View this project online](https://am-stormyr.github.io/cart253/topics/mod-jam)
 
 ### Documentation video  
-[🎥 Watch Einstein watching the game on YouTube!](https://youtu.be/CCxXBlafNY0)
+[Watch Einstein watching the game on YouTube!](https://youtu.be/CCxXBlafNY0)
 
-## Description
+### Context  
+This project is the sequel to my previous game [*Doggy Doggy!*](https://am-stormyr.github.io/cart253/topics/self-portrait), which is the prequel.  
+In *Doggy Doggy!* the player meets me and Einstein for the first time.  
+After the player answers “yes” to “You wanna do something fun?”, this game begins, the first fun activity in the series.
 
-**Fun Part I: Einstein's Treat Frenzy** is a continuation of my previous game Doggy Doggy!
-At the end of that game, the player answered “yes” to the question “You wanna do something fun?”
-This is the first fun activity, helping good-boy Einstein get as many treats as possible. (Yum yum.)
+### Description  
+*Fun Part I: Einstein’s Treat Frenzy* is a continuation of my previous game *Doggy Doggy!*  
+Einstein catches tossed dog treats with his long pink tongue while his absolute favorite song, *“Good Morning”* by Debbie Reynolds, Donald O’Connor, and Gene Kelly, plays in the background.  
+When the song ends, the fun’s over because he’s had enough treats.  
 
-Einstein catches the tossed dog treats with his long pink tongue while his absolute favorite song, “Good Morning” by Debbie Reynolds, Donald O’Connor, and Gene Kelly, plays in the background.
-When the song ends, the fun’s over because he’s had enough treats.
+The fun can’t last forever... or can it?  
+Play again!  
 
-The fun can’t last forever... or can it?
-Play again!
+### Based on  
+This project is a modification of [Pippin Barr’s](https://pippinbarr.github.io/cart253/) original game **frogfrogfrog**.  
 
 ### Controls
-
 - Click to start
 Use your mouse to move Einstein’s tongue and click again to catch as many treats as you can before time runs out.
 
-## Screenshot(s)
-
+## Screenshot
 ![Image the end of the game](assets/images/treat-frenzy-screenShot.png)
 
 ## Attribution
-
 JavaScript libraries:
 - [p5.js](https://p5js.org) and p5.sound.js
 
