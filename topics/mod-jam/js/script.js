@@ -349,7 +349,7 @@ function resetGame() {
  * Resets the fly to the left with a random y
  */
 function resetFly() {
-    fly.x = random(20, 620);
+    fly.x = random(100, 540);
     fly.y = random(-50, 5);
 }
 
