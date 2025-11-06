@@ -23,12 +23,11 @@ let einsteinImage;
 let treat;
 let backgroundImage;
 
-let goodMorningSong;
+let goodMorningSong; // background song
 
-let dogPant;
 let eatTreat1;
 let eatTreat2;
-let eatTreat3;
+
 let titleTreat;
 
 let goodBoy1;
@@ -37,7 +36,7 @@ let goodBoy3;
 let treat1;
 let treat2;
 let noMoreTreats;
-let letsGo;
+
 
 /**
  * Here are other variable sat
@@ -53,7 +52,6 @@ let difficulty = 1; //difficulty Speed
 let score = 0; //score counter
 
 
-let totalTime; // total time of program running
 let gameTime; // amount of time in game only
 let timeLimit = 18; // how much time do you have to succeed (eating doggy-treats)
 let startTime; // track when game begins
@@ -61,7 +59,6 @@ let startTime; // track when game begins
 let gameOver = false;
 let gameStarted = false;
 let noMoreTreatsPlayed = false;
-let waitingForLick = false;
 
 let lastVoiceTime = 0;
 let voiceInterval = 5000;
@@ -73,8 +70,9 @@ let voiceInterval = 5000;
  */
 
 function preload() {
-    /**IMAGES*/
-
+    /**
+     * IMAGES
+     * */
     einsteinImage = loadImage('assets/images/einsteinTwo.png'); //Einstein's head
     treat = loadImage('assets/images/treatOneShadow.png'); //Image of a dog treat
     titleTreat = loadImage('assets/images/titleTreat.png');
@@ -83,19 +81,18 @@ function preload() {
     /**
      * AUDIO
      * */
-
-    goodMorningSong = loadSound('assets/sounds/goodmorning.mp3');  //music track 
+    //music track 
+    goodMorningSong = loadSound('assets/sounds/goodmorning.mp3');
     goodMorningSong.setVolume(0.09);
 
-    dogPant = loadSound('assets/sounds/dog-panting.mp3'); //dog sounds
+    //dog sounds
     eatTreat1 = loadSound('assets/sounds/eatingSound.mp3');
     eatTreat1.setVolume(0.1);
     eatTreat2 = loadSound('assets/sounds/eatingSoundTwo.mp3');
     eatTreat2.setVolume(0.08);
-    eatTreat3 = loadSound('assets/sounds/eatingSoundThree.mp3');
-    eatTreat3.setVolume(0.09);
 
-    goodBoy1 = loadSound('assets/sounds/youGoodboy.mp3');  //human sounds
+    //human sounds
+    goodBoy1 = loadSound('assets/sounds/youGoodboy.mp3');
     goodBoy1.setVolume(0.29);
     goodBoy2 = loadSound('assets/sounds/goodboy.mp3');
     goodBoy2.setVolume(0.21)
@@ -107,9 +104,6 @@ function preload() {
     treat2.setVolume(0.21);
     noMoreTreats = loadSound('assets/sounds/noMoreTreats.mp3');
     noMoreTreats.setVolume(0.3);
-
-    letsGo = loadSound('assets/sounds/letsGoNew.mp3');   //reusing audio from "Doddy Doggy!" to keep the universe consistent :)
-
 }
 
 
@@ -179,10 +173,13 @@ function drawBackGround() {
     image(backgroundImage, 0, 0, 640, 480);
 }
 
-function draw() {
-    // background("#87ceeb");
 
-    totalTime = millis(); //start timer
+///////////////////////////////////////////////////
+//                      DRAW                    //
+/////////////////////////////////////////////////
+
+
+function draw() {
 
     drawBackGround();
 
@@ -377,15 +374,15 @@ function moveTongue() {
             einstein.tongue.state = "inbound";
         }
     }
-    // If the tongue is inbound, it moves down
+
     else if (einstein.tongue.state === "inbound") {
         einstein.tongue.y += einstein.tongue.speed * difficulty;
-        // The tongue stops if it hits the bottom
         if (einstein.tongue.y >= height) {
             einstein.tongue.state = "idle";
         }
     }
 }
+
 
 
 
@@ -413,7 +410,7 @@ function drawEinstein() {
 
 
 /**
- * Handles the tongue overlapping the fly
+ * Handles the tongue overlapping the treat
  */
 function checkTongueFlyOverlap() {
     // Get distance from tongue to fly
