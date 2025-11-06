@@ -15,51 +15,46 @@
 
 "use strict";
 
-/**
- * Here all the image and sound assets added as variables
- */
-
+///////////////////////////////////////////////////
+//                     IMAGES                   //
+/////////////////////////////////////////////////
 let einsteinImage;
 let treat;
 let backgroundImage;
+let titleTreat; // white bone with title (button you click to start game)
+
+///////////////////////////////////////////////////
+//                    AUDIO                     //
+/////////////////////////////////////////////////
 
 let goodMorningSong; // background song
+let eatTreat1; // dog eating sound
+let eatTreat2; // dog eating sound
+let goodBoy1; // human voice saying "Goodboy"
+let goodBoy2; // human voice saying "Goodboy"
+let goodBoy3; // human voice saying "Goodboy"
+let treat1; // human voice saying "Do you want a treat?"
+let treat2; // human voice saying "Do you want a treat?"
+let noMoreTreats; // human voice saying "No! no more treats."
 
-let eatTreat1;
-let eatTreat2;
-
-let titleTreat;
-
-let goodBoy1;
-let goodBoy2;
-let goodBoy3;
-let treat1;
-let treat2;
-let noMoreTreats;
-
-
-/**
- * Here are other variable sat
- */
-
-
-
-//counters
-
-let difficulty = 1; //difficulty Speed
-
-
-let score = 0; //score counter
-
-
-let gameTime; // amount of time in game only
-let timeLimit = 18; // how much time do you have to succeed (eating doggy-treats)
-let startTime; // track when game begins
+///////////////////////////////////////////////////
+//              GAME STATE VARIABLES            //
+/////////////////////////////////////////////////
 
 let gameOver = false;
 let gameStarted = false;
 let noMoreTreatsPlayed = false;
+let difficulty = 1; //difficulty Speed
 
+///////////////////////////////////////////////////
+//            COUNTERS AND TIMERS               //
+/////////////////////////////////////////////////
+
+
+let score = 0; //score counter
+let gameTime; // amount of time in game only
+let timeLimit = 18; // how much time do you have to succeed (eating doggy-treats)
+let startTime; // track when game begins
 let lastVoiceTime = 0;
 let voiceInterval = 5000;
 
