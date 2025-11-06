@@ -149,7 +149,15 @@ const startButton = {
     y: 240,
     width: 200,
     height: 60,
-    text: "Let's go!"
+    text: "fun part I"
+};
+
+const playAgainButton = {
+    x: 320,
+    y: 150,  // Below the score
+    width: 200,
+    height: 30,
+    text: "new game"
 };
 
 
@@ -273,14 +281,30 @@ function drawFly() {
     pop();
 }
 
+
 function drawGameOver() {
     push();
-
     fill(255);
     textSize(28);
     textAlign(CENTER, CENTER);
     text("GAME OVER", width / 2, height / 2);
     text("Score: " + score, width / 2, height / 2 + 80);
+    pop();
+
+    // Draw play again button
+    push();
+    noFill();
+    fill(250, 160, 200);
+    stroke(255);
+    strokeWeight(3);
+    rectMode(CENTER);
+    rect(playAgainButton.x, playAgainButton.y, playAgainButton.width, playAgainButton.height, 10);
+
+    fill(255);
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textSize(20);
+    text(playAgainButton.text, playAgainButton.x, playAgainButton.y);
     pop();
 }
 
@@ -298,14 +322,35 @@ function drawStartScreen() {
     text(startButton.text, startButton.x, startButton.y);
 }
 
+function resetGame() {
+    // Reset all game variables
+    score = 0;
+    difficulty = 1;
+    gameOver = false;
+    gameStarted = true;
+    noMoreTreatsPlayed = false;
+    startTime = millis();
+    lastVoiceTime = 0;
+
+    // Reset Einstein
+    einstein.body.x = 320;
+    einstein.tongue.state = "idle";
+    einstein.tongue.y = 480;
+
+    // Reset fly
+    resetFly();
+
+    // Start music again
+    goodMorningSong.play();
+}
 
 
 /**
  * Resets the fly to the left with a random y
  */
 function resetFly() {
-    fly.x = random(0, 640);
-    fly.y = random(-50, 180);
+    fly.x = random(20, 620);
+    fly.y = random(-50, 5);
 }
 
 /**
@@ -391,22 +436,36 @@ function checkTongueFlyOverlap() {
     }
 }
 
+function resetGame() {
+    // Reset all game variables
+    score = 0;
+    difficulty = 1;
+    gameOver = false;
+    gameStarted = true;
+    noMoreTreatsPlayed = false;
+    startTime = millis();
+    lastVoiceTime = 0;
 
-function splash() {
-    //timer stuff
-    splashTime = totalTime; //begin splash screen timer
+    // Reset Einstein
+    einstein.body.x = 320;
+    einstein.tongue.state = "idle";
+    einstein.tongue.y = 480;
 
+    // Reset fly
+    resetFly();
+
+    // Start music again
+    goodMorningSong.play();
 }
+
+
 
 /**
  * Launch the tongue on click (if it's not launched yet)
  */
 function mousePressed() {
     // Check if clicking the start button (titleTreat image)
-    if (!gameStarted && !waitingForLick) {
-
-
-
+    if (!gameStarted) {
         const treatWidth = 152;
         const treatHeight = 81;
 
@@ -419,7 +478,17 @@ function mousePressed() {
             goodMorningSong.play();
             gameStarted = true;
             startTime = millis();
-            einstein.tongue.state = "outbound";  // Einstein licks the titleTreat!
+        }
+    }
+    // Check if clicking play again button
+    else if (gameOver) {
+        const clickedPlayAgain = (mouseX > playAgainButton.x - playAgainButton.width / 2 &&
+            mouseX < playAgainButton.x + playAgainButton.width / 2 &&
+            mouseY > playAgainButton.y - playAgainButton.height / 2 &&
+            mouseY < playAgainButton.y + playAgainButton.height / 2);
+
+        if (clickedPlayAgain) {
+            resetGame();
         }
     }
     // Normal tongue launch during game
@@ -427,4 +496,3 @@ function mousePressed() {
         einstein.tongue.state = "outbound";
     }
 }
-
