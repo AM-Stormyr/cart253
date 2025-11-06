@@ -54,7 +54,6 @@ let score = 0; //score counter
 
 
 let totalTime; // total time of program running
-let splashTime; // amount of time on splash screen only
 let gameTime; // amount of time in game only
 let timeLimit = 18; // how much time do you have to succeed (eating doggy-treats)
 let startTime; // track when game begins
@@ -198,7 +197,7 @@ function draw() {
         moveFly();
         moveEinstein();
         moveTongue();
-        difficulty += 0.01;//increasing the speed of the treats falling
+        difficulty += 0.009;//increasing the speed of the treats falling
         if (millis() - lastVoiceTime > voiceInterval) {
             const voiceSounds = [goodBoy1, goodBoy2, goodBoy3, treat1, treat2];
             const randomVoice = random(voiceSounds);

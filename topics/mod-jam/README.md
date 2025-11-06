@@ -24,6 +24,15 @@ Play again!
 ### Based on  
 This project is a modification of [Pippin Barr’s](https://pippinbarr.github.io/cart253/) original game **frogfrogfrog**.  
 
+### Modifications
+- Start screen with a clickable treat (bone) that begins the game
+- Ending triggered by the end of the song (with record scratch cue)
+- Simple score counter and timer display
+- Dynamic difficulty: treats fall faster as time passes
+- Custom visuals and theme (Einstein + treats)
+- Full audio design: soundtrack, eating sounds, and random “good boy” voice clips
+- Restart option after game over
+
 ### Controls
 - Click to start
 Use your mouse to move Einstein’s tongue and click again to catch as many treats as you can before time runs out.
