@@ -14,8 +14,7 @@ In *Doggy Doggy!* the player meets me and Einstein for the first time.
 After the player answers “yes” to “You wanna do something fun?”, this game begins, the first fun activity in the series.
 
 ### Description  
-*Fun Part I: Einstein’s Treat Frenzy* is a continuation of my previous game *Doggy Doggy!*  
-Einstein catches tossed dog treats with his long pink tongue while his absolute favorite song, *“Good Morning”* by Debbie Reynolds, Donald O’Connor, and Gene Kelly, plays in the background.  
+In *Fun Part I: Einstein’s Treat Frenzy* Einstein catches tossed dog treats with his long pink tongue while his absolute favorite song, *“Good Morning”* by Debbie Reynolds, Donald O’Connor, and Gene Kelly, plays in the background.  
 When the song ends, the fun’s over because he’s had enough treats.  
 
 The fun can’t last forever... or can it?  
