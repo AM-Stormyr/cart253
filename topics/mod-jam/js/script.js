@@ -168,6 +168,7 @@ function setup() {
     resetFly(); // Give the fly its first random position
     textAlign(CENTER);
     startTime = millis();
+    einstein.tongue.x = einstein.body.x;
 }
 //========BACKGROUND IMAGE========//
 function drawBackGround() {
@@ -206,16 +207,6 @@ function draw() {
         drawGameOver(); // if the game is over display game over screen
     }
 
-    //========GAME OBJECTS========//
-    drawEinstein();
-
-    //========CHECK COLLISION========//
-    checkTongueFlyOverlap();
-
-    //========UI ELEMENTS========//
-    drawScoreBar();
-    drawDisplayCounter()
-
     //========CHECK TIMER (IF GAME SHOULD END?)========//
     gameTime = int((millis() - startTime) / 1000);
     timeRemaining = max(0, timeLimit - gameTime);
@@ -236,6 +227,17 @@ function draw() {
             noMoreTreatsPlayed = true;
         }
     }
+
+    //========GAME OBJECTS========//
+    drawEinstein();
+
+    //========CHECK COLLISION========//
+    checkTongueFlyOverlap();
+
+    //========UI ELEMENTS========//
+    drawScoreBar();
+    drawDisplayCounter()
+
 }
 
 
