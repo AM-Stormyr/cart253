@@ -20,5 +20,16 @@ body {
   /* Body is the height of the viewport */
   overflow: hidden;
   /* Hide anything that goes off the window size */
+}
 
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  canvas {
+    width: 100vw;
+    height: auto;
+  }
 }

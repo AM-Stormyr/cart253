@@ -495,3 +495,29 @@ function mousePressed() {
         einstein.tongue.state = "outbound";
     }
 }
+
+
+///////////////////////////////////////////////////
+//          SIZE RESPONSIVE TO PHONE            //
+/////////////////////////////////////////////////
+
+
+let touchStartY = 0;
+
+function touchStarted() {
+    touchStartY = touchY;
+
+    if (!gameStarted || gameOver) {
+        mousePressed();
+    }
+    return false;
+}
+
+function touchEnded() {
+    let swipeDistance = touchStartY - touchY;
+
+    if (swipeDistance > 50 && einstein.tongue.state === "idle" && gameStarted && !gameOver) {
+        einstein.tongue.state = "outbound";
+    }
+    return false;
+}
