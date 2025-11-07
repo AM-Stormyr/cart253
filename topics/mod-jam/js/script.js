@@ -502,22 +502,22 @@ function mousePressed() {
 /////////////////////////////////////////////////
 
 
-let touchStartY = 0;
+// let touchStartY = 0;
 
-function touchStarted() {
-    touchStartY = touchY;
+// function touchStarted() {
+//     touchStartY = touchY;
 
-    if (!gameStarted || gameOver) {
-        mousePressed();
-    }
-    return false;
-}
+//     if (!gameStarted || gameOver) {
+//         mousePressed();
+//     }
+//     return false;
+// }
 
-function touchEnded() {
-    let swipeDistance = touchStartY - touchY;
+// function touchEnded() {
+//     let swipeDistance = touchStartY - touchY;
 
-    if (swipeDistance > 50 && einstein.tongue.state === "idle" && gameStarted && !gameOver) {
-        einstein.tongue.state = "outbound";
-    }
-    return false;
-}
+//     if (swipeDistance > 50 && einstein.tongue.state === "idle" && gameStarted && !gameOver) {
+//         einstein.tongue.state = "outbound";
+//     }
+//     return false;
+// }
