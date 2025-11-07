@@ -30,7 +30,7 @@ This project is a modification of [Pippin Barr’s](https://pippinbarr.github.io
 - Simple score counter and timer display
 - Dynamic difficulty: treats fall faster as time passes
 - Custom visuals and theme (Einstein + treats)
-- Full audio design: soundtrack, eating sounds, and random “good boy” voice clips
+- Full audio design: soundtrack, eating sounds, and random "you want a treat?" and “good boy” voice clips
 - Restart option after game over
 
 ### Controls
@@ -53,7 +53,7 @@ JavaScript libraries:
 
 **Audio assets**  
 - “Good Morning” by Debbie Reynolds, Donald O’Connor, and Gene Kelly, from *Singin’ in the Rain*  
-- Eating sounds 1, 2, & 3 by **aunrea**, “Dog Eating Milk-bone,” downloaded from [freesound.org](https://freesound.org/people/aunrea/sounds/495657/)  
+- Eating sounds 1 & 2 by **aunrea**, “Dog Eating Milk-bone,” downloaded from [freesound.org](https://freesound.org/people/aunrea/sounds/495657/)  
 - Record scratch (when time is up) by **luffy**, downloaded from [freesound.org](https://freesound.org/people/luffy/sounds/3536/)  
 - The rest of the audio is recorded by me (Amanda Stormyr) on iPhone and mixed in Ableton Live  
 
