@@ -35,7 +35,8 @@ This project is a modification of [Pippin Barr’s](https://pippinbarr.github.io
 
 ### Controls
 - Click to start
-Use your mouse to move Einstein’s tongue and click again to catch as many treats as you can before time runs out.
+- Use your mouse to move Einstein’s tongue  
+- click again to catch as many treats as you can before time runs out.
 
 ## Screenshot
 ![Image the end of the game](assets/images/treat-frenzy-screen-shot.png)
