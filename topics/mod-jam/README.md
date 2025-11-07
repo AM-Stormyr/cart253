@@ -21,7 +21,7 @@ The fun can’t last forever... or can it?
 Play again!  
 
 ### Based on  
-This project is a modification of [Pippin Barr’s](https://pippinbarr.github.io/cart253/) original game **frogfrogfrog**.  
+This project is a modification of [Pippin Barr’s](https://pippinbarr.com/frogfrogfrog/) original game **frogfrogfrog**.  
 
 ### Modifications
 - Start screen with a clickable treat (bone) that begins the game
