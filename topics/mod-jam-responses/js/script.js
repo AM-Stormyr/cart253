@@ -1,9 +1,8 @@
 /**
- * Title of Project
- * Author Name
+ * Mod-jam Responses
+ * Amanda Stormyr
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * This is really just for the README.md
  */
 
 "use strict";

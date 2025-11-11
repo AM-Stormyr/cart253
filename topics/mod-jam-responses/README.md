@@ -1,59 +1,55 @@
-# Art Jam Response
+# Mod Jam Response  
+**By Amanda Stormyr**  
 
-Responses by Amanda Stormyr. 
-Thanks for letting me look at your creative work. It was really fun!  
+Here are my reflections on three Mod Jam projects from class from Arielle Wong, Jordan Lobasso and Chloé Guérin.
+ 
+## Arielle Wong – “FrogFrogFrog: The Quest for Immortality”  
+**Links:**  
+- [Play the game](https://wonarii.github.io/cart253/mod-jam/)  
+- [View the code](https://github.com/wonarii/cart253/tree/main/mod-jam)  
 
-## Arielle Wong – 'Ari and the Soup' 
+Wow, there’s so much to explore in this game, and so many details and parameters, even though it sticks to the frog-eating-flies format. It becomes a completely new experience where the frog isn’t just catching flies but looking for a balanced, healthy life. The added challenges like solving math puzzles and chatting with the frog make it feel alive and interactive, and every round feels a little different.  
 
-Hi Arielle,  
-Your self-portrait is very cute and fun. It’s such a simple idea with the glasses steaming up, but it gives me a real sense of what it’s like being you. I imagine you love a hot bowl of soup, curled up on the couch with a blanket, orange and red leaves outside your window, about to watch your favorite show, but your glasses keep fogging up from the steam.
+The mods you made are hilarious, with old age, meditation, depression, back pain, and those quotes from old people like “Did you know that my neighbour bought new types of trash bags? Wonder if it’s the divorce making them crazy.” It actually made me laugh out loud. They feel personal, like things you’ve overheard your family members saying.  
 
-Your avatar is also super cute. It’s simple but really effective in how you added the bangs on one side. That little detail breaks the symmetry and gives the character so much life, so it doesn’t just feel like mirrored shapes.
-The color palette is warm and soft, which gives me that cozy feeling right away. Having the soup bowl in blue works really nicely too, because it pops against all the warm tones and immediately draws my eye to it.
+Your use of variables to control new states like aging and mood adds a lot of depth to the original game logic. I love how the frog’s appearance changes with age, the wrinkles and colour shifts give a clear sense of time passing. It’s a really smart use of visual feedback tied to the code.
 
-The clicking sound effect for the bowl works great. It makes me, as a player, feel like I’ve picked something up and put it back down. I would just suggest lowering the volume a bit, because since there are no other sounds, it is very loud if someone has their volume high (especially on headphones).
+I do wonder about the choice to leave out audio. Maybe it was intentional, or just a time constraint, but adding sound could really build the atmosphere. There’s so much potential here for sound design, like the frog meditating with soft breathing or a relaxing hum.  
 
-The outline that appears when hovering over the soup is also a nice touch. It tells me there’s something to interact with. 
+You might also think about adjusting the pacing. The life meter decreases quite fast, which makes it hard to read the funny quotes and explore all the features. It might still feel urgent and stressful if slowed just a bit, but it would give players time to enjoy everything.  
 
-The steam effect on the glasses works really well too. It’s smooth and reads clearly once you notice it. I might just make the steam appear a little faster. To be honest, I only discovered it after reading your README, which might just be me, but because nothing else changes right away when moving the mouse, I didn’t realize something was happening at first.
-Maybe you could add one or two more small sounds. For example, if there was a soft “Mmm, yummy” sound when the soup is near the face, it would make it feel like the avatar is reacting.
-You could also add a bit of ambient sound to set the mood, like a crackling fire or a TV show playing quietly in the background. That would help make the “click” sound less harsh and give a fuller sense of the environment. It’s a simple but powerful way to suggest a lot without adding visuals, using sound as part of the setting for your self-portrait.
+Your code is organized and easy to follow, and conceptually it’s full of personality. This mod shows both humor and care, and I can’t wait to see what you do next.  
 
-You did such a great job. It really feels like I got to know a bit more about you through this piece.
+---
 
+## Jordan Lobasso – “FrogFrogFrog”  
+**Links:**  
+- [Play the game](https://lazer6769.github.io/Cart-253/Topics/frogmodjam/frogfrogfrog/)  
+- [View the code](https://github.com/Lazer6769/Cart-253/tree/main/Topics/frogmodjam/frogfrogfrog)  
 
-## Aydan Mc Grail – 'Death By Boredom'
+What really gets me here is the sound design and overall concept. The start menu with the church bell, cat meow, spooky organ, and then the screams, “argh,” and gulp sounds is genius. It’s so chaotic that it becomes funny in a great way. The story of having “sinned” because of the 10 frogments adds another hilarious layer.  
 
-Hi Aydan,
-Nooo… your code isn’t working… and honestly, that really bummed me out because I was so curious about your design and the functions you were using. 
-First of all, I totally get it. It took me an entire day to figure out how to preload images into JavaScript, so I really appreciate your effort here.
-Looking through your code, I noticed this part:
+I love how you used sound triggers with each interaction. It feels like every event has a reaction. It makes the gameplay loop feel alive.
 
-bottomImg = loadImage('/assets/images/glow_real.png') //glow image  
-topImg = loadImage('/assets/images/star_real.png') //star image  
-bgImg = loadImage('/assets/images/normandie_lena.png') //bg sea
+Visually, I really like the instruction screen, but the text blends in a bit. You could try adjusting the text color so it’s easier to read. The centered and left-aligned text mix gives it an odd rhythm, which is kind of fun, but a little contrast or a slight font tweak could help the text stand out while keeping your frog-hell vibe.  
 
-It seems like those files don’t exist in your image assets folder. There’s only one PNG there called bee.png, so that might be one of the reasons the project isn’t loading properly.
+The use of memes and GIFs is really effective. You build suspense before the game even starts, which is such a strong design choice.  
 
-Aside from that, I’m really excited to see your self-portrait because your code looks super fun and creative with the different layers of images, a rotating star and music when I am clicking the mouse botton. Can’t wait!
-
-I also really appreciate the way you added comments in your JavaScript file, not only describing the different functions but also reflecting on your process. It might technically be “cleaner” to document that journal-style in your GitHub commits, but personally, I really enjoy reading it right there in the code. It helps me understand your thought process and makes it easier to follow, especially as someone who’s still learning.
+I could imagine a custom score or timer display that fits your theme better, something chaotic, slimy, or apocalyptic, to tie the story together. Your code is neat and readable, and your attention to audio and timing shows great understanding of how sound can drive interaction.  
 
 
 
-## Jordan Jordan Lobasso – 'Character color customization'
+## Chloé Guérin – “FrogFrogFrog”  
+**Links:**  
+- [Play the game](https://chloe-jpeg.github.io/CART253/MOD-JAM/)  
+- [View the code](https://github.com/chloe-jpeg/CART253/tree/main/MOD-JAM)  
 
-Hi Jordan,
-First of all, your self-portrait is really fun. I’m a big fan of Windows Paint. Me and my best friend used to spend hours taking turns making drawings in Paint while listening to ‘No Doubt’. So I felt both entertained and a bit nostalgic playing your game.
+This game feels really sweet and peaceful. The sound design is calming, and you’ve created a cozy, slow atmosphere with minimal elements. You could add more sounds to deepen it, like buzzing flies or soft slurp sounds when the tongue overlaps. Or even something absurd, like flies coughing or the frog talking to itself. Those little surprises could make it feel more personal and fun.  
 
-Design wise, the first thing that caught my eye is that there’s no margin on the left side between the sliders and the edge of the screen. I would spend a bit of time thinking about the design as a whole, because right now all the squares and rectangles feel a little crowded, and arranging them so the overall composition feels more balanced would make a big difference. The sliders and knobs are also part of your portrait. If they aren’t visually adjusted to fit the rest of the composition, they can feel a bit like they were just copy pasted in without personal styling or reflection.
+Your background setup with the tree and the little pond straw is really soothing. You could consider drawing the background in Illustrator and importing it as an image if you want to save some time, since you’ve drawn all your elements as code directly in VS Code. It’s a lovely setting, but that might help speed up the process for future projects.  
 
-I also find it really interesting that your self-portrait is a black silhouette that you invite the player or viewer to shape however they want. I think you’re onto something interesting here, questioning what a “self-portrait” even is, since we can only understand others through our own lens and experiences. It feels like you’re exploring identity and perception in a playful way, and I think that concept could be pushed even further.
+Right now the game is very easy. I would say almost impossible to lose, which is interesting. You could lean into that even more and make it a meditation game where you simply exist in the frog’s world.  
 
-About the title, I think if you added a creative twist so it doesn’t just describe the functionality but connects more to the idea of self-portraiture, it could add depth and make the piece feel more personal. Something that hints at your concept or emotion behind it would pull the player in more.
+From a code point of view, adding movement along the y-axis for the flies would make their paths more dynamic, and a reset function would let players loop the game without reloading. Both would make the experience smoother.  
 
-Another thing I found myself wishing for was an undo function. Although, I also see how not having one could make sense as part of the creative experience. Maybe there’s a reason why the player can’t undo, maybe it ties into how identity and expression can’t be reversed once they’re made visible. I’d just love to understand your decisions a little better in that regard.
-
-Overall, I think you have a really solid foundation for something that could become quite existential and interesting through your design choices. If you refine the layout and visual balance, and make the elements feel more intentional, you could really emphasize that mysterious color-changing silhouette. Who is this figure? Is it you, or a reflection of whoever interacts with it? The ambiguity makes me want to know more, especially if I can sense that you’ve been reflecting on those questions while creating it.
-
-> ![Image Jordan's selfportrait costumized by me](assets/images/jordan_selfportrait_screenshot.png)
+The start and end screens look great with the leaf design and custom font, clean and consistent.  
