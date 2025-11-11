@@ -11,29 +11,28 @@
 "use strict";
 
 
-const incinerator = {
+const machines = [{
+    type: "incinerator",
     x: 0,
     y: 100,
     width: 100,
     height: 100,
     fill: "#ff4400"
-}
-
-const freezer = {
+}, {
+    type: "freezer",
     x: 150,
     y: 100,
     width: 100,
     height: 100,
     fill: "#bbbbff"
-}
-
-const crusher = {
+}, {
+    type: "crusher",
     x: 300,
     y: 100,
     width: 100,
     height: 100,
     fill: "#777777"
-}
+}];
 
 /**
  * Create the canvas
@@ -47,10 +46,14 @@ function setup() {
  */
 function draw() {
     background(0);
+    for (let machine of machines) {
+        drawMachine(machine);
+    }
 
-    drawMachine(incinerator);
-    drawMachine(freezer);
-    drawMachine(crusher);
+    // drawMachine(incinerator);
+    // drawMachine(freezer);
+    // drawMachine(crusher);
+
 
 }
 
