@@ -1,0 +1,7 @@
+{
+    "description": "Instructions in french and english for car-dino-game",
+    "instructions": {
+        "en": "Click to generate a car name.",
+        "fr": "Cliquez pour générer un nom de voiture"
+    }
+}

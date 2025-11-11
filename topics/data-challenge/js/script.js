@@ -1,6 +1,6 @@
 /**
- * Terrible New Car
- * Pippin Barr
+ * Data-Challenge
+ * Arielle Wong & Amanda Stormyr
  * 
  * A program to generate new car model names using dinosaurs.
  * 
@@ -14,7 +14,8 @@
 let carData = undefined;
 let dinosaurData = undefined;
 let langData = undefined;
-let lang = "fr";
+let lang = "en";
+
 
 // Starts with the instruction
 let carName = "Click to generate a car name.";
@@ -23,6 +24,9 @@ let carName = "Click to generate a car name.";
  * Load the car and dinosaur data
  */
 function preload() {
+    dinosaurData = loadJSON("assets/data/dinosaurs.json");
+    carData = loadJSON("assets/data/cars.json");
+    langData = loadJSON("assets/data/lang.json");
 
 }
 
@@ -31,6 +35,16 @@ function preload() {
 */
 function setup() {
     createCanvas(600, 400);
+
+    carName = langData.instructions[lang];
+
+    // if (lang === "fr") {
+    //     carName = langData.instructions.fr;
+    // }
+
+    // else if (lang === "en") {
+    //     carName = langData.instructions.en;
+    // }
 }
 
 /**
@@ -51,5 +65,9 @@ function draw() {
  * Generate a new car name
  */
 function mousePressed() {
+    let dinosaurChoice = random(dinosaurData.dinosaurs);
+    let carsChoice = random(carData.cars);
+
+    carName = (dinosaurChoice + carsChoice);
 
 }
