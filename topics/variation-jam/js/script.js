@@ -12,11 +12,19 @@
 let state = "menu";
 
 let blobs = [];
+let fontRegular;
+let fontMedium;
+let fontSemiBold;
+
 
 function preload() {
     for (let i = 1; i <= 9; i++) {
         blobs.push(loadImage(`assets/images/dormant/blob${i}.png`));
     }
+    fontRegular = loadFont('assets/fonts/PixelifySans-Regular.ttf');
+    fontMedium = loadFont('assets/fonts/PixelifySans-Medium.ttf');
+    fontSemiBold = loadFont('assets/fonts/PixelifySans-SemiBold.ttf');
+
 }
 
 /**

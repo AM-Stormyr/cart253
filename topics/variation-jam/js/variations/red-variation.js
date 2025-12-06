@@ -9,6 +9,10 @@
  */
 
 let noiseTexture;
+let showIntro = true;
+let showInstructions = false;
+let introSwitchTimer = null;
+
 
 let currentBlob = 0;
 let nextBlob = 1;
@@ -16,15 +20,23 @@ let fadeAmount = 0;
 let fading = true;
 let scaleFactor = 0.5; // I can tweak this later
 
+let dormantGameOver = false;
+let holdingOption = false; // option key = staying still
+
+
 function redSetup() {
     generateNoiseTexture();
+    showIntro = true;
+    showInstructions = false;
+    introSwitchTimer = null;
 }
 
 
 
 
-//////////////////////////////////////////////////////
-////////////////////  BG TEXTURE ///////////////////////
+
+////////////////////////////////////////////////////////
+///////////////// BACKGROUND TEXTURE //////////////////
 //////////////////////////////////////////////////////
 
 
@@ -59,8 +71,49 @@ function generateNoiseTexture() {
 /**
  * This will be called every frame when the red variation is active
  */
+
+//////////////////////////////////////////////////////
+////////////////////  DRAW ///////////////////////
+//////////////////////////////////////////////////////
+
 function redDraw() {
     image(noiseTexture, 0, 0);
+
+    if (showIntro && !dormantGameOver) {
+
+        // draw intro text
+        textFont(fontRegular);
+        fill(0, 160);
+        textAlign(CENTER, CENTER);
+        textSize(20);
+        text("take one slow breath.\nthen enter slime-time.", width / 2, height / 2);
+
+        // start switch timer only once
+        if (introSwitchTimer === null) {
+            introSwitchTimer = setTimeout(() => {
+                if (showIntro) {
+                    showIntro = false;
+                    showInstructions = true;
+                }
+            }, 2500); // 2.5 seconds
+        }
+
+        return;
+    }
+    if (showInstructions && !dormantGameOver) {
+
+        textFont(fontRegular);
+        fill(0, 160);
+        textAlign(CENTER, CENTER);
+        textSize(20);
+
+        text("time moves differently for slime.\nhold OPTION till the slime is fully dormant.", width / 2, height / 2);
+
+        // do not continue the game until OPTION is held
+        if (!holdingOption) return;
+    }
+
+
 
     let imgA = blobs[currentBlob];
     let imgB = blobs[nextBlob];
@@ -96,6 +149,19 @@ function redDraw() {
     }
 
     tint(255);
+
+    if (dormantGameOver) { // little quiet "dead" message
+        fill(0, 150);
+        textAlign(CENTER, CENTER);
+        textSize(20);
+        text("game over", width / 2, height - 40);
+        return; // stop everything forever
+    }
+
+    if (!holdingOption) {
+        // waiting for the player to hold down option
+        return;
+    }
 }
 
 
@@ -106,7 +172,26 @@ function redKeyPressed(event) {
     if (event.keyCode === 27) {
         state = "menu";
     }
+
+    if (event.key === "Alt") {
+        holdingOption = true;
+        showIntro = false;
+        showInstructions = false; // hide all text when committed
+    }
+
+
 }
+/**
+ * This is where game over happens if the key is lifted. 
+ */
+function redKeyReleased(event) {
+    if (event.key === "Alt") {
+        holdingOption = false;
+        dormantGameOver = true;
+    }
+}
+
+
 
 /**
  * This will be called whenever the mouse is pressed while the red variation is active
