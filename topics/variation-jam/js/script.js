@@ -15,7 +15,7 @@ let state = "menu";
  * Create the canvas
 */
 function setup() {
-    createCanvas(500, 500);
+    createCanvas(650, 650);
 }
 
 
