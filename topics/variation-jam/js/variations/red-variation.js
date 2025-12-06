@@ -10,10 +10,23 @@
 
 let noiseTexture;
 
+let currentBlob = 0;
+let nextBlob = 1;
+let fadeAmount = 0;
+let fading = true;
+let scaleFactor = 0.5; // I can tweak this later
 
 function redSetup() {
     generateNoiseTexture();
 }
+
+
+
+
+//////////////////////////////////////////////////////
+////////////////////  BG TEXTURE ///////////////////////
+//////////////////////////////////////////////////////
+
 
 function generateNoiseTexture() {
     noiseTexture = createGraphics(width, height);
@@ -22,13 +35,10 @@ function generateNoiseTexture() {
     for (let x = 0; x < width; x++) {
         for (let y = 0; y < height; y++) {
 
-            // Base grain - shifted lighter
-            let grain = random(180, 240);  // bumped up brightness
+            let grain = random(180, 240);
 
-            // Perlin shadows - softened + lighter
             let p = noise(x * 0.01, y * 0.01) * 50 - 25;
 
-            // Combine
             let c = constrain(grain + p, 0, 255);
 
             noiseTexture.set(x, y, color(c));
@@ -52,6 +62,40 @@ function generateNoiseTexture() {
 function redDraw() {
     image(noiseTexture, 0, 0);
 
+    let imgA = blobs[currentBlob];
+    let imgB = blobs[nextBlob];
+
+    let w = imgA.width * scaleFactor;
+    let h = imgA.height * scaleFactor;
+
+    let cx = width / 2 - w / 2;
+    let cy = height / 2 - h / 2;
+
+    // old blob (fade out)
+    tint(255, 255 - fadeAmount);
+    image(imgA, cx, cy, w, h);
+
+    // new blob (fade in)
+    tint(255, fadeAmount);
+    image(imgB, cx, cy, w, h);
+
+    // fade logic
+    if (fading) {
+        fadeAmount += 1; // slow-ish
+
+        if (fadeAmount >= 255) {
+            fadeAmount = 0;
+            currentBlob = nextBlob;
+            nextBlob++;
+
+            if (nextBlob >= blobs.length) {
+                nextBlob = blobs.length - 1;
+                fading = false; // it's fully sclerotia now
+            }
+        }
+    }
+
+    tint(255);
 }
 
 

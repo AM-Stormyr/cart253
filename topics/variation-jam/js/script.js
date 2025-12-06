@@ -11,6 +11,14 @@
 
 let state = "menu";
 
+let blobs = [];
+
+function preload() {
+    for (let i = 1; i <= 9; i++) {
+        blobs.push(loadImage(`assets/images/dormant/blob${i}.png`));
+    }
+}
+
 /**
  * Create the canvas
 */
