@@ -7,18 +7,24 @@
 /**
  * This will be called just before the green variation starts
  */
+
 let slimePixel;
 let px = 0;
 let py = 0;
 let step = 15;
 
-// oats
-// oats
 let oatImgs = [];
 let oats = [];
 let oatCount = 7;
-let oatSize = 35;
+let oatSize = 20;
 
+let tail = [];
+let pixelW = 15;
+let pixelH = 15;
+
+
+
+// todo: redraw oats later so they match the scale
 function greenPreload() {
     slimePixel = loadImage("assets/images/forage/slime-mold-pixel.png");
 
@@ -47,6 +53,8 @@ function greenSetup() {
             y: gy,
             img: img
         });
+        console.log("pixel size:", slimePixel.width, slimePixel.height);
+
     }
 }
 
@@ -61,9 +69,31 @@ function greenDraw() {
         image(o.img, o.x, o.y, oatSize, oatSize);
     }
 
+    // eat oats if touching them
+    for (let i = oats.length - 1; i >= 0; i--) {
+        let o = oats[i];
+        if (px === o.x && py === o.y) {
+            oats.splice(i, 1);
+        }
+    }
+
+    // draw tail (continuous, aligned with head)
+    noStroke();
+    fill(250, 240, 120, 200);
+    for (let t of tail) {
+        rect(
+            t.x - pixelW / 2,
+            t.y - pixelH / 2,
+            pixelW,
+            pixelH
+        );
+    }
+
+
     // draw the pixel blob
     image(slimePixel, px - slimePixel.width / 2, py - slimePixel.height / 2);
 }
+
 
 /**
  * This will be called whenever a key is pressed while the green variation is active
@@ -75,15 +105,19 @@ function greenKeyPressed(event) {
 
     // arrow keys move in 15px hops
     if (event.keyCode === UP_ARROW) {
+        tail.push({ x: px, y: py });
         py -= step;
     }
     else if (event.keyCode === DOWN_ARROW) {
+        tail.push({ x: px, y: py });
         py += step;
     }
     else if (event.keyCode === LEFT_ARROW) {
+        tail.push({ x: px, y: py });
         px -= step;
     }
     else if (event.keyCode === RIGHT_ARROW) {
+        tail.push({ x: px, y: py });
         px += step;
     }
 }
