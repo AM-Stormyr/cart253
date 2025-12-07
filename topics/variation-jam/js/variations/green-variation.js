@@ -12,21 +12,54 @@ let px = 0;
 let py = 0;
 let step = 15;
 
+// oats
+// oats
+let oatImgs = [];
+let oats = [];
+let oatCount = 7;
+let oatSize = 35;
+
 function greenPreload() {
     slimePixel = loadImage("assets/images/forage/slime-mold-pixel.png");
+
+    // load all 7 oat sprites
+    for (let i = 1; i <= 7; i++) {
+        oatImgs.push(loadImage(`assets/images/forage/oat${i}.png`));
+    }
 }
 
 function greenSetup() {
     // start in the middle, kinda arbitrary
-    px = width / 2;
-    py = height / 2;
+    px = Math.floor(width / 2 / step) * step;
+    py = Math.floor(height / 2 / step) * step;
+
+    // spawn oats on the grid
+    oats = [];
+    for (let i = 0; i < oatCount; i++) {
+        let gx = Math.floor(random(width / step)) * step;
+        let gy = Math.floor(random(height / step)) * step;
+
+        // random oat image
+        let img = oatImgs[Math.floor(Math.random() * oatImgs.length)];
+
+        oats.push({
+            x: gx,
+            y: gy,
+            img: img
+        });
+    }
 }
 
 /**
  * This will be called every frame when the green variation is active
  */
 function greenDraw() {
-    background(200, 225, 250); //bg colour
+    background(200, 225, 250); // bg colour
+
+    // draw oats
+    for (let o of oats) {
+        image(o.img, o.x, o.y, oatSize, oatSize);
+    }
 
     // draw the pixel blob
     image(slimePixel, px - slimePixel.width / 2, py - slimePixel.height / 2);
@@ -54,10 +87,10 @@ function greenKeyPressed(event) {
         px += step;
     }
 }
+
 /**
  * This will be called whenever the mouse is pressed while the green variation is active
  */
 function greenMousePressed() {
 
 }
-
