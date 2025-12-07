@@ -10,6 +10,7 @@
 let slimePixel;
 let px = 0;
 let py = 0;
+let step = 15;
 
 function greenPreload() {
     slimePixel = loadImage("assets/images/forage/slime-mold-pixel.png");
@@ -25,7 +26,7 @@ function greenSetup() {
  * This will be called every frame when the green variation is active
  */
 function greenDraw() {
-    background(200, 225, 210); //bg colour
+    background(200, 225, 250); //bg colour
 
     // draw the pixel blob
     image(slimePixel, px - slimePixel.width / 2, py - slimePixel.height / 2);
@@ -38,8 +39,21 @@ function greenKeyPressed(event) {
     if (event.keyCode === 27) {
         state = "menu";
     }
-}
 
+    // arrow keys move in 15px hops
+    if (event.keyCode === UP_ARROW) {
+        py -= step;
+    }
+    else if (event.keyCode === DOWN_ARROW) {
+        py += step;
+    }
+    else if (event.keyCode === LEFT_ARROW) {
+        px -= step;
+    }
+    else if (event.keyCode === RIGHT_ARROW) {
+        px += step;
+    }
+}
 /**
  * This will be called whenever the mouse is pressed while the green variation is active
  */
