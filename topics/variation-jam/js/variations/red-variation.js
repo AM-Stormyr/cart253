@@ -94,7 +94,7 @@ function redDraw() {
         fill(0, 150);
         textAlign(CENTER, CENTER);
         textSize(20);
-        text("[esc]_ return to menu", width / 2, height / 2);
+        text("return to menu [esc]", width / 2, height / 2);
         return;
     }
 
@@ -153,7 +153,7 @@ function redDraw() {
         fill(0, 150);
         textAlign(CENTER, CENTER);
         textSize(20);
-        text("game over_ press [esc]", width / 2, height - 100);
+        text("game over // menu [esc]", width / 2, height - 100);
         return;
     }
 

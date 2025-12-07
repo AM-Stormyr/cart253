@@ -16,30 +16,31 @@ let step = 15;
 let oatImgs = [];
 let oats = [];
 let oatCount = 7;
-let oatSize = 20;
 
 let tail = [];
 let pixelW = 15;
 let pixelH = 15;
 
+// storing this so both player and collision code use the same size
+let playerSize = 15;
 
 
-// todo: redraw oats later so they match the scale
+// I load the slime pixel + oat sprites
 function greenPreload() {
     slimePixel = loadImage("assets/images/forage/slime-mold-pixel.png");
 
-    // load all 7 oat sprites
-    for (let i = 1; i <= 7; i++) {
+    // load all oat sprites
+    for (let i = 1; i <= 11; i++) {
         oatImgs.push(loadImage(`assets/images/forage/oat${i}.png`));
     }
 }
 
 function greenSetup() {
-    // start in the middle, kinda arbitrary
+    // start in the middle of the screen, snapped to the grid
     px = Math.floor(width / 2 / step) * step;
     py = Math.floor(height / 2 / step) * step;
 
-    // spawn oats on the grid
+    // spawn oats on the grid, each with its real width/height
     oats = [];
     for (let i = 0; i < oatCount; i++) {
         let gx = Math.floor(random(width / step)) * step;
@@ -51,10 +52,11 @@ function greenSetup() {
         oats.push({
             x: gx,
             y: gy,
-            img: img
+            img: img,
+            // storing the actual PNG size so collision is accurate
+            w: img.width,
+            h: img.height
         });
-        console.log("pixel size:", slimePixel.width, slimePixel.height);
-
     }
 }
 
@@ -62,24 +64,46 @@ function greenSetup() {
  * This will be called every frame when the green variation is active
  */
 function greenDraw() {
-    background(200, 225, 250); // bg colour
+    background(200, 225, 250);
 
-    // draw oats
+    // draw all oats at their original resolutions
     for (let o of oats) {
-        image(o.img, o.x, o.y, oatSize, oatSize);
+        image(o.img, o.x, o.y, o.w, o.h);
     }
 
-    // eat oats if touching them
+    // collision detection for variable-sized oats (bounding boxes)
     for (let i = oats.length - 1; i >= 0; i--) {
         let o = oats[i];
-        if (px === o.x && py === o.y) {
+
+        // player's box (centered around px, py)
+        let half = playerSize * 0.5;
+        let playerLeft = px - half;
+        let playerRight = px + half;
+        let playerTop = py - half;
+        let playerBottom = py + half;
+
+        // oat's rectangle
+        let oatLeft = o.x;
+        let oatRight = o.x + o.w;
+        let oatTop = o.y;
+        let oatBottom = o.y + o.h;
+
+        // checking overlap between the two rectangles
+        let overlap =
+            playerLeft < oatRight &&
+            playerRight > oatLeft &&
+            playerTop < oatBottom &&
+            playerBottom > oatTop;
+
+        // remove oat if hit
+        if (overlap) {
             oats.splice(i, 1);
         }
     }
 
-    // draw tail (continuous, aligned with head)
+    // draw tail pixels
     noStroke();
-    fill(250, 240, 120, 200);
+    fill(250, 240, 120);
     for (let t of tail) {
         rect(
             t.x - pixelW / 2,
@@ -89,8 +113,7 @@ function greenDraw() {
         );
     }
 
-
-    // draw the pixel blob
+    // draw the player pixel
     image(slimePixel, px - slimePixel.width / 2, py - slimePixel.height / 2);
 }
 
@@ -103,7 +126,7 @@ function greenKeyPressed(event) {
         state = "menu";
     }
 
-    // arrow keys move in 15px hops
+    // whenever I move, I drop a tail segment
     if (event.keyCode === UP_ARROW) {
         tail.push({ x: px, y: py });
         py -= step;
