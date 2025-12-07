@@ -7,15 +7,28 @@
 /**
  * This will be called just before the green variation starts
  */
-function greenSetup() {
+let slimePixel;
+let px = 0;
+let py = 0;
 
+function greenPreload() {
+    slimePixel = loadImage("assets/images/forage/slime-mold-pixel.png");
+}
+
+function greenSetup() {
+    // start in the middle, kinda arbitrary
+    px = width / 2;
+    py = height / 2;
 }
 
 /**
  * This will be called every frame when the green variation is active
  */
 function greenDraw() {
-    background("green");
+    background(200, 225, 210); //bg colour
+
+    // draw the pixel blob
+    image(slimePixel, px - slimePixel.width / 2, py - slimePixel.height / 2);
 }
 
 /**
@@ -33,3 +46,4 @@ function greenKeyPressed(event) {
 function greenMousePressed() {
 
 }
+

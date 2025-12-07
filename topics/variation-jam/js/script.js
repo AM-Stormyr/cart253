@@ -25,7 +25,12 @@ function preload() {
     fontMedium = loadFont('assets/fonts/PixelifySans-Medium.ttf');
     fontSemiBold = loadFont('assets/fonts/PixelifySans-SemiBold.ttf');
 
+    // forgot to preload the green stuff
+    if (typeof greenPreload === "function") {
+        greenPreload();
+    }
 }
+
 
 /**
  * Create the canvas
