@@ -18,7 +18,7 @@ let currentBlob = 0;
 let nextBlob = 1;
 let fadeAmount = 0;
 let fading = true;
-let scaleFactor = 0.5; // I can tweak this later
+let scaleFactor = 0.4; // I can tweak this later
 
 let dormantGameOver = false;
 let holdingOption = false; // option key = staying still
@@ -29,6 +29,14 @@ function redSetup() {
     showIntro = true;
     showInstructions = false;
     introSwitchTimer = null;
+
+    // reset game state
+    currentBlob = 0;
+    nextBlob = 1;
+    fadeAmount = 0;
+    fading = true;
+    holdingOption = false;
+    dormantGameOver = false;
 }
 
 
@@ -79,6 +87,17 @@ function generateNoiseTexture() {
 function redDraw() {
     image(noiseTexture, 0, 0);
 
+    // if we are in the "holding" state, check if the keys are STILL held
+    if (holdingOption && !dormantGameOver) {
+        // CONTROL = 17, OPTION/ALT = 18
+        let ctrlDown = keyIsDown(17);
+        let altDown = keyIsDown(18);
+        if (!(ctrlDown && altDown)) {
+            holdingOption = false;
+            dormantGameOver = true;
+        }
+    }
+
     if (showIntro && !dormantGameOver) {
 
         // draw intro text
@@ -86,7 +105,7 @@ function redDraw() {
         fill(0, 160);
         textAlign(CENTER, CENTER);
         textSize(20);
-        text("take one slow breath.\nthen enter slime-time.", width / 2, height / 2);
+        text("take one slow breath.\nthen enter slime-time.", width / 2, height - 125);
 
         // start switch timer only once
         if (introSwitchTimer === null) {
@@ -107,10 +126,23 @@ function redDraw() {
         textAlign(CENTER, CENTER);
         textSize(20);
 
-        text("time moves differently for slime.\nhold OPTION till the slime is fully dormant.", width / 2, height / 2);
+        text("time moves differently for slime.\nhold CONTROL + OPTION till the slime is fully dormant.", width / 2, height - 125);
 
-        // do not continue the game until OPTION is held
+        // do not continue the game until CONTROL + OPTION are held
         if (!holdingOption) return;
+    }
+
+    if (dormantGameOver) { // little quiet "dead" message
+        fill(0, 150);
+        textAlign(CENTER, CENTER);
+        textSize(20);
+        text("game over", width / 2, height - 120);
+        return; // stop everything forever
+    }
+
+    if (!holdingOption) {
+        // waiting for the player to hold down control + option
+        return;
     }
 
 
@@ -149,19 +181,6 @@ function redDraw() {
     }
 
     tint(255);
-
-    if (dormantGameOver) { // little quiet "dead" message
-        fill(0, 150);
-        textAlign(CENTER, CENTER);
-        textSize(20);
-        text("game over", width / 2, height - 40);
-        return; // stop everything forever
-    }
-
-    if (!holdingOption) {
-        // waiting for the player to hold down option
-        return;
-    }
 }
 
 
@@ -173,22 +192,18 @@ function redKeyPressed(event) {
         state = "menu";
     }
 
-    if (event.key === "Alt") {
+    // control + option together
+    if (event.ctrlKey && event.altKey) {
         holdingOption = true;
         showIntro = false;
         showInstructions = false; // hide all text when committed
     }
-
-
 }
 /**
  * This is where game over happens if the key is lifted. 
  */
 function redKeyReleased(event) {
-    if (event.key === "Alt") {
-        holdingOption = false;
-        dormantGameOver = true;
-    }
+    // left empty now, we handle "release" in redDraw()
 }
 
 
