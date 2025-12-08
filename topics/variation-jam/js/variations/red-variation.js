@@ -18,11 +18,10 @@ let scaleFactor = 0.5;
 let dormantGameOver = false;
 let holdingOption = false;
 
-let noiseAlpha = 0; // fade in noise when holding keys
+let noiseAlpha = 0;
 
-// win stuff
 let dormantWin = false;
-let winLines = [
+let redWinLines = [
     "congratulations!",
     "you did it!",
     "you have entered full dormancy",
@@ -31,11 +30,10 @@ let winLines = [
     "it takes courage to slow down.",
     "FINAL"
 ];
-let winIndex = 0;
-let winTimer = null;
-let winFrames = 0;
-let winDelayFrames = 140; // slower pacing
-
+let redWinIndex = 0;
+let redWinTimer = null;
+let redWinFrames = 0;
+let redWinDelayFrames = 140;
 
 function redSetup() {
     generateNoiseTexture();
@@ -43,18 +41,22 @@ function redSetup() {
     showInstructions = false;
     introSwitchTimer = null;
 
+    currentBlob = 0;
+    nextBlob = 1;
+    fadeAmount = 0;
+    fading = true;
+    scaleFactor = 0.5;
+
     dormantGameOver = false;
     holdingOption = false;
 
     noiseAlpha = 0;
 
     dormantWin = false;
-    winIndex = 0;
-    winFrames = 0;
-    if (winTimer) clearInterval(winTimer);
+    redWinIndex = 0;
+    redWinFrames = 0;
+    if (redWinTimer) clearInterval(redWinTimer);
 }
-
-
 
 /*****************************************************
  **************** BACKGROUND TEXTURE *****************
@@ -84,14 +86,11 @@ function generateNoiseTexture() {
     }
 }
 
-
-
 /*****************************************************
  ************************ DRAW ************************
  *****************************************************/
 function redDraw() {
 
-    // same BG as forage game
     background(200, 225, 250);
 
     // fade noise texture in slowly
@@ -100,9 +99,8 @@ function redDraw() {
     image(noiseTexture, 0, 0);
     pop();
 
-
-    // final ESC screen (after all win lines)
-    if (dormantWin && winLines[winIndex] === "FINAL") {
+    // final ESC screen
+    if (dormantWin && redWinLines[redWinIndex] === "FINAL") {
         textFont(fontRegular);
         fill(0, 150);
         textAlign(CENTER, CENTER);
@@ -111,21 +109,21 @@ function redDraw() {
         return;
     }
 
-    // win text sequence before final screen
+    // win text sequence
     if (dormantWin) {
         textFont(fontRegular);
         fill(0, 150);
         textAlign(CENTER, CENTER);
         textSize(20);
 
-        if (winFrames > winDelayFrames && winIndex < winLines.length - 1) {
-            winIndex++;
-            winFrames = 0;
+        if (redWinFrames > redWinDelayFrames && redWinIndex < redWinLines.length - 1) {
+            redWinIndex++;
+            redWinFrames = 0;
         } else {
-            winFrames++;
+            redWinFrames++;
         }
 
-        text(winLines[winIndex], width / 2, height / 2);
+        text(redWinLines[redWinIndex], width / 2, height / 2);
         return;
     }
 
@@ -170,7 +168,6 @@ function redDraw() {
         return;
     }
 
-
     if (!holdingOption) {
         return;
     }
@@ -188,7 +185,6 @@ function redDraw() {
         noiseAlpha += 0.4;
         if (noiseAlpha > 255) noiseAlpha = 255;
     }
-
 
     // ---------------- blob fading ----------------
     let imgA = blobs[currentBlob];
@@ -217,15 +213,13 @@ function redDraw() {
             if (nextBlob >= blobs.length) {
                 nextBlob = blobs.length - 1;
                 fading = false;
-                dormantWin = true; // slime becomes fully dormant
+                dormantWin = true;
             }
         }
     }
 
     tint(255);
 }
-
-
 
 /*****************************************************
  ******************** KEY INPUTS *********************

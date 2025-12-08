@@ -33,8 +33,7 @@ let gameState = "instructions";
 let blueWinLines = [
     "Congratulations!",
     "you are fully merged.",
-    "life is most beautiful when shared.",
-    "return to menu [esc]"
+    "life is most beautiful when shared."
 ];
 let blueWinIndex = 0;
 let blueWinTimer = 0;
@@ -76,9 +75,9 @@ function blueDraw() {
 
     if (gameState === "instructions") {
         textFont(fontRegular);
-        fill(0, 160);
+        textSize(30);
+        fill(0, 150);
         textAlign(CENTER, CENTER);
-        textSize(20);
         text("Two players: left + right\nPress the shown keys to merge\n\nPress ENTER to start",
             width / 2, height / 2);
         return;
@@ -102,8 +101,8 @@ function blueDraw() {
         image(winnerBlobImg, bx, by);
 
         textFont(fontRegular);
-        fill(0, 160);
-        textSize(20);
+        textSize(28);
+        fill(0, 140);
         textAlign(CENTER, CENTER);
 
         if (blueWinTimer > blueWinDelay && blueWinIndex < blueWinLines.length - 1) {
