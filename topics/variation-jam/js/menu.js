@@ -5,9 +5,9 @@
  */
 
 const menuText = `
-(R) Red variation
-(G) Green variation
-(B) Blue variation`
+(R) DORMANT
+(G) FORAGE
+(B) OSCILLATE`
 
 /**
  * Display the main menu
@@ -17,6 +17,7 @@ function menuDraw() {
 
     push();
     fill(255);
+    textFont(fontRegular);
     textSize(32);
     textAlign(CENTER, CENTER);
     text(menuText, width / 2, height / 2);
