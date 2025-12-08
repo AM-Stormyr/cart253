@@ -48,6 +48,9 @@ function greenPreload() {
 }
 
 function greenSetup() {
+    //to make sure the blob and the pixel are the same colours
+    noSmooth();
+
     // sorta center it on the grid
     px = Math.floor((width / 2) / step) * step;
     py = Math.floor((height / 2) / step) * step;
@@ -203,7 +206,7 @@ function greenDraw() {
 
     // main blob in the middle
     if (blobAlpha > 0) {
-        tint(253, 238, 57, blobAlpha);
+        tint(255, blobAlpha);  // keep blob colour EXACT, only fade alpha
         image(mainBlob, width / 2 - mainBlob.width / 2, height / 2 - mainBlob.height / 2);
         noTint();
     }
