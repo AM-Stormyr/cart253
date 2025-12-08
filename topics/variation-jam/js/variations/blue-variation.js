@@ -97,12 +97,29 @@ function blueDraw() {
 
 
 function blueKeyPressed(event) {
+
     if (event.keyCode === 27) {
         state = "menu";
         return;
     }
 
     let k = event.key.toLowerCase();
+
+    // FINAL SHARED STEP
+    if (finalStep) {
+        if (k === "g") {
+            stepProgress++;
+        }
+
+        if (stepProgress >= stepGoal) {
+            // NEXT: merge + winner blob in next increment
+            finalStep = "done";
+        }
+
+        return;
+    }
+
+    // NORMAL STEPS
     let moved = false;
 
     if (k === currentLeftKey) {
@@ -118,22 +135,31 @@ function blueKeyPressed(event) {
     if (!moved) return;
 
     if (stepProgress >= stepGoal) {
+
         leftPixelIndex++;
         rightPixelIndex--;
 
+        // check if they meet
         if (leftPixelIndex >= rightPixelIndex) {
             leftPixelIndex = rightPixelIndex;
-            finalStep = true;
+
+            finalStep = true; // activate final shared press mode
+            currentLeftKey = "g";
+            currentRightKey = "g";
+
+            stepProgress = 0;
+            stepGoal = 15;
+            return;
         }
 
+        // new normal step
         stepProgress = 0;
         stepGoal = int(random(35, 60));
 
-        if (!finalStep) {
-            currentLeftKey = leftKeys[int(random(leftKeys.length))];
-            currentRightKey = rightKeys[int(random(rightKeys.length))];
-        }
+        currentLeftKey = leftKeys[int(random(leftKeys.length))];
+        currentRightKey = rightKeys[int(random(rightKeys.length))];
     }
 }
+
 
 function blueMousePressed() { }
