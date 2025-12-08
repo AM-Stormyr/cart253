@@ -36,7 +36,7 @@ function bluePreload() {
 }
 
 function blueSetup() {
-
+    // dotted path building
     pathPixels = [];
     let margin = 15;
     let gap = 15;
@@ -51,6 +51,15 @@ function blueSetup() {
     leftPixelIndex = 0;
     rightPixelIndex = pathPixels.length - 1;
 
+    // set first required keys + goal
+    currentLeftKey = leftKeys[int(random(leftKeys.length))];
+    currentRightKey = rightKeys[int(random(rightKeys.length))];
+
+    stepGoal = int(random(35, 60));
+    stepProgress = 0;
+    finalStep = false;
+
+    // starting blob positions
     leftPos = {
         x: pathPixels[leftPixelIndex].x - leftBlobImg.width / 2 + pathPixelImg.width / 2,
         y: pathPixels[leftPixelIndex].y - leftBlobImg.height / 2 + pathPixelImg.height / 2
@@ -61,6 +70,7 @@ function blueSetup() {
         y: pathPixels[rightPixelIndex].y - rightBlobImg.height / 2 + pathPixelImg.height / 2
     };
 }
+
 
 function blueDraw() {
     background(200, 225, 250);
