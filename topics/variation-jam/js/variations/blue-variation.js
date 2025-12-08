@@ -2,97 +2,97 @@
  * BLUE VARIATION — Oscillate
  */
 
-let pathPixelImg;
-let pathPixels = [];
-
 let leftBlobImg;
 let rightBlobImg;
+let winnerBlobImg;
 
 let leftPos;
 let rightPos;
 
-let leftKeys = ["a", "s", "d", "f", "g"];
-let rightKeys = ["l", "k", "j", "h", "g"];
+let targetLeftPos;
+let targetRightPos;
+
+let wobbleTime = 0;
+
+let rounds = 0;
+let maxRounds = 5;
+
+let stepProgress = 0;
+let stepGoal = 0;
 
 let currentLeftKey = "";
 let currentRightKey = "";
 
-let leftPixelIndex = 0;
-let rightPixelIndex = 0;
+let merged = false;
 
-let stepGoal = 0;
-let stepProgress = 0;
-
-let finalStep = false;
+let allKeys = "abcdefghijklmnopqrstuvwxyz".split("");
 
 
 function bluePreload() {
-    pathPixelImg = loadImage("assets/images/oscillate/path-pixel.png");
     leftBlobImg = loadImage("assets/images/oscillate/left-blob2.png");
     rightBlobImg = loadImage("assets/images/oscillate/right-blob1.png");
+    winnerBlobImg = loadImage("assets/images/oscillate/winner-blob2.png");
 }
+
 
 function blueSetup() {
-    pathPixels = [];
-    let margin = 15;
-    let gap = 15;
-    let step = pathPixelImg.width + gap;
 
-    let y = height / 2 - pathPixelImg.height / 2;
+    rounds = 0;
+    merged = false;
 
-    for (let x = margin; x < width - margin; x += step) {
-        pathPixels.push({ x: x, y: y });
-    }
-
-    leftPixelIndex = 0;
-    rightPixelIndex = pathPixels.length - 1;
-
-    currentLeftKey = leftKeys[int(random(leftKeys.length))];
-    currentRightKey = rightKeys[int(random(rightKeys.length))];
-
-    stepGoal = int(random(35, 60));
     stepProgress = 0;
-    finalStep = false;
+    stepGoal = int(random(35, 60));
 
-    leftPos = {
-        x: pathPixels[leftPixelIndex].x - leftBlobImg.width / 2 + pathPixelImg.width / 2,
-        y: pathPixels[leftPixelIndex].y - leftBlobImg.height / 2 + pathPixelImg.height / 2
-    };
+    currentLeftKey = random(allKeys).toUpperCase();
+    currentRightKey = random(allKeys).toUpperCase();
 
-    rightPos = {
-        x: pathPixels[rightPixelIndex].x - rightBlobImg.width / 2 + pathPixelImg.width / 2,
-        y: pathPixels[rightPixelIndex].y - rightBlobImg.height / 2 + pathPixelImg.height / 2
-    };
+    // STARTING POSITIONS (updated)
+    leftPos = { x: 40, y: height - 40 - leftBlobImg.height }; // bottom-left
+    rightPos = { x: width - 40 - rightBlobImg.width, y: 40 }; // top-right
+
+    targetLeftPos = { x: leftPos.x, y: leftPos.y };
+    targetRightPos = { x: rightPos.x, y: rightPos.y };
 }
+
 
 function blueDraw() {
     background(200, 225, 250);
 
-    //wobble (blobs movement)
-    let wobble = sin(frameCount * 0.1) * 2;
+    wobbleTime += 0.05;
+    let wobbleX = sin(wobbleTime) * 6; // bigger wobble
+    let wobbleY = cos(wobbleTime) * 6;
 
-    for (let p of pathPixels) {
-        image(pathPixelImg, p.x, p.y);
+    // smoother slide
+    leftPos.x = lerp(leftPos.x, targetLeftPos.x, 0.05);
+    leftPos.y = lerp(leftPos.y, targetLeftPos.y, 0.05);
+
+    rightPos.x = lerp(rightPos.x, targetRightPos.x, 0.05);
+    rightPos.y = lerp(rightPos.y, targetRightPos.y, 0.05);
+
+    if (!merged) {
+        image(leftBlobImg, leftPos.x + wobbleX, leftPos.y + wobbleY);
+        image(rightBlobImg, rightPos.x - wobbleX, rightPos.y - wobbleY);
+    } else {
+        image(
+            winnerBlobImg,
+            width / 2 - winnerBlobImg.width / 2 + wobbleX,
+            height / 2 - winnerBlobImg.height / 2 + wobbleY
+        );
+        return;
     }
 
-    leftPos.x = pathPixels[leftPixelIndex].x - leftBlobImg.width / 2 + pathPixelImg.width / 2;
-    leftPos.y = pathPixels[leftPixelIndex].y - leftBlobImg.height / 2 + pathPixelImg.height / 2;
-
-    rightPos.x = pathPixels[rightPixelIndex].x - rightBlobImg.width / 2 + pathPixelImg.width / 2;
-    rightPos.y = pathPixels[rightPixelIndex].y - rightBlobImg.height / 2 + pathPixelImg.height / 2;
-
-    image(leftBlobImg, leftPos.x, leftPos.y + wobble);
-    image(rightBlobImg, rightPos.x, rightPos.y - wobble);
-
+    // TEXT (bigger + swapped)
     textFont(fontRegular);
     fill(0, 120);
-    textSize(20);
+    textSize(26);
 
+    // left player → TOP LEFT
     textAlign(LEFT, TOP);
-    text("left: [" + currentLeftKey + "]", 20, 20);
+    text("left: " + currentLeftKey, 40, 40);
 
-    textAlign(RIGHT, TOP);
-    text("right: [" + currentRightKey + "]", width - 20, 20);
+    // right player → BOTTOM RIGHT
+    textAlign(RIGHT, BOTTOM);
+    text("right: " + currentRightKey, width - 40, height - 40);
 }
 
 
@@ -103,61 +103,54 @@ function blueKeyPressed(event) {
         return;
     }
 
-    let k = event.key.toLowerCase();
+    if (merged) return;
 
-    // FINAL SHARED STEP
-    if (finalStep) {
-        if (k === "g") {
-            stepProgress++;
-        }
+    let k = event.key.toUpperCase();
 
-        if (stepProgress >= stepGoal) {
-            // NEXT: merge + winner blob in next increment
-            finalStep = "done";
-        }
-
-        return;
+    // FINAL ROUND
+    if (rounds === maxRounds - 1) {
+        if (k === "G") stepProgress++;
+    } else {
+        if (k === currentLeftKey || k === currentRightKey) stepProgress++;
     }
-
-    // NORMAL STEPS
-    let moved = false;
-
-    if (k === currentLeftKey) {
-        stepProgress++;
-        moved = true;
-    }
-
-    if (k === currentRightKey) {
-        stepProgress++;
-        moved = true;
-    }
-
-    if (!moved) return;
 
     if (stepProgress >= stepGoal) {
 
-        leftPixelIndex++;
-        rightPixelIndex--;
-
-        // check if they meet
-        if (leftPixelIndex >= rightPixelIndex) {
-            leftPixelIndex = rightPixelIndex;
-
-            finalStep = true; // activate final shared press mode
-            currentLeftKey = "g";
-            currentRightKey = "g";
-
-            stepProgress = 0;
-            stepGoal = 15;
-            return;
-        }
-
-        // new normal step
+        rounds++;
         stepProgress = 0;
         stepGoal = int(random(35, 60));
 
-        currentLeftKey = leftKeys[int(random(leftKeys.length))];
-        currentRightKey = rightKeys[int(random(rightKeys.length))];
+        // MERGE
+        if (rounds === maxRounds) {
+            merged = true;
+            leftPos = { x: width / 2, y: height / 2 };
+            rightPos = { x: width / 2, y: height / 2 };
+            return;
+        }
+
+        // movement fraction
+        let t = rounds / maxRounds;
+
+        // left blob goes toward center
+        targetLeftPos = {
+            x: lerp(40, width / 2 - leftBlobImg.width / 2, t),
+            y: lerp(height - 40 - leftBlobImg.height, height / 2 - leftBlobImg.height / 2, t)
+        };
+
+        // right blob goes toward center
+        targetRightPos = {
+            x: lerp(width - 40 - rightBlobImg.width, width / 2 - rightBlobImg.width / 2, t),
+            y: lerp(40, height / 2 - rightBlobImg.height / 2, t)
+        };
+
+        // NEXT KEY
+        if (rounds === maxRounds - 1) {
+            currentLeftKey = "G";
+            currentRightKey = "G";
+        } else {
+            currentLeftKey = random(allKeys).toUpperCase();
+            currentRightKey = random(allKeys).toUpperCase();
+        }
     }
 }
 
