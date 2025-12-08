@@ -1,50 +1,73 @@
 /**
- * This file contains the code to run *only* the blue variation part of the program.
- * Note how it has its own draw, blueDraw(), and its own keyPressed, blueKeyPressed().
- * This keeps the stuff the menu needs to do *separate* from the rest of the program.
+ * This file contains the code to run only the blue variation part of the program.
  */
 
-let pathPixelImg; // new
-let pathPixels = []; // new
+let pathPixelImg;
+let pathPixels = [];
+
+let leftBlobImg;
+let rightBlobImg;
+
+let leftPos;
+let rightPos;
+let leftKeys = ["a", "s", "d", "f", "g"];
+let rightKeys = ["l", "k", "j", "h", "g"];
+
+let leftIndex = 0;
+let rightIndex = 0;
+
 
 function bluePreload() {
-    pathPixelImg = loadImage("assets/images/oscillate/path-pixel.png"); // new
+    pathPixelImg = loadImage("assets/images/oscillate/path-pixel.png");
+    leftBlobImg = loadImage("assets/images/oscillate/left-blob2.png");
+    rightBlobImg = loadImage("assets/images/oscillate/right-blob1.png");
 }
 
-/**
- * This will be called just before the blue variation starts
- */
 function blueSetup() {
-    // make a simple straight line path
+
+    // dotted path
     pathPixels = [];
+    let margin = 15;
     let gap = 15;
-    for (let x = 0; x < width; x += gap) {
-        pathPixels.push({ x: x, y: height / 2 });
+    let step = pathPixelImg.width + gap;
+
+    let y = height / 2 - pathPixelImg.height / 2;
+
+    for (let x = margin; x < width - margin; x += step) {
+        pathPixels.push({ x: x, y: y });
     }
+
+    leftPos = { x: margin, y: height / 2 - leftBlobImg.height / 2 };
+    rightPos = { x: width - margin - rightBlobImg.width, y: height / 2 - rightBlobImg.height / 2 };
 }
 
-/**
- * This will be called every frame when the blue variation is active
- */
 function blueDraw() {
     background(200, 225, 250);
 
-    // draw the little pixels across the middle
     for (let p of pathPixels) {
         image(pathPixelImg, p.x, p.y);
     }
+
+    image(leftBlobImg, leftPos.x, leftPos.y);
+    image(rightBlobImg, rightPos.x, rightPos.y);
 }
 
-/**
- * This will be called whenever a key is pressed while the blue variation is active
- */
 function blueKeyPressed(event) {
     if (event.keyCode === 27) {
         state = "menu";
+        return;
+    }
+
+    let k = event.key.toLowerCase();
+
+    if (k === leftKeys[leftIndex]) {
+        leftIndex++;
+    }
+
+    if (k === rightKeys[rightIndex]) {
+        rightIndex++;
     }
 }
 
-/**
- * This will be called whenever the mouse is pressed while the blue variation is active
- */
+
 function blueMousePressed() { }
