@@ -27,6 +27,19 @@ let merged = false;
 
 let allKeys = "abcdefghijklmnopqrstuvwxyz".split("");
 
+let gameState = "instructions";
+
+// renamed to avoid global conflicts
+let blueWinLines = [
+    "Congratulations!",
+    "you are fully merged.",
+    "life is most beautiful when shared.",
+    "return to menu [esc]"
+];
+let blueWinIndex = 0;
+let blueWinTimer = 0;
+let blueWinDelay = 120;
+
 
 function bluePreload() {
     leftBlobImg = loadImage("assets/images/oscillate/left-blob2.png");
@@ -37,60 +50,84 @@ function bluePreload() {
 
 function blueSetup() {
 
-    rounds = 0;
+    gameState = "instructions";
     merged = false;
 
+    rounds = 0;
     stepProgress = 0;
     stepGoal = int(random(35, 60));
 
     currentLeftKey = random(allKeys).toUpperCase();
     currentRightKey = random(allKeys).toUpperCase();
 
-    // STARTING POSITIONS (updated)
-    leftPos = { x: 40, y: height - 40 - leftBlobImg.height }; // bottom-left
-    rightPos = { x: width - 40 - rightBlobImg.width, y: 40 }; // top-right
+    leftPos = { x: 40, y: height - 40 - leftBlobImg.height };
+    rightPos = { x: width - 40 - rightBlobImg.width, y: 40 };
 
     targetLeftPos = { x: leftPos.x, y: leftPos.y };
     targetRightPos = { x: rightPos.x, y: rightPos.y };
+
+    blueWinIndex = 0;
+    blueWinTimer = 0;
 }
 
 
 function blueDraw() {
     background(200, 225, 250);
 
+    if (gameState === "instructions") {
+        textFont(fontRegular);
+        fill(0, 160);
+        textAlign(CENTER, CENTER);
+        textSize(20);
+        text("Two players: left + right\nPress the shown keys to merge\n\nPress ENTER to start",
+            width / 2, height / 2);
+        return;
+    }
+
     wobbleTime += 0.05;
-    let wobbleX = sin(wobbleTime) * 6; // bigger wobble
+    let wobbleX = sin(wobbleTime) * 6;
     let wobbleY = cos(wobbleTime) * 6;
 
-    // smoother slide
     leftPos.x = lerp(leftPos.x, targetLeftPos.x, 0.05);
     leftPos.y = lerp(leftPos.y, targetLeftPos.y, 0.05);
 
     rightPos.x = lerp(rightPos.x, targetRightPos.x, 0.05);
     rightPos.y = lerp(rightPos.y, targetRightPos.y, 0.05);
 
-    if (!merged) {
-        image(leftBlobImg, leftPos.x + wobbleX, leftPos.y + wobbleY);
-        image(rightBlobImg, rightPos.x - wobbleX, rightPos.y - wobbleY);
-    } else {
-        image(
-            winnerBlobImg,
-            width / 2 - winnerBlobImg.width / 2 + wobbleX,
-            height / 2 - winnerBlobImg.height / 2 + wobbleY
-        );
+
+    if (gameState === "win") {
+
+        let bx = width / 2 - winnerBlobImg.width / 2 + wobbleX;
+        let by = height / 2 - winnerBlobImg.height / 2 + wobbleY;
+        image(winnerBlobImg, bx, by);
+
+        textFont(fontRegular);
+        fill(0, 160);
+        textSize(20);
+        textAlign(CENTER, CENTER);
+
+        if (blueWinTimer > blueWinDelay && blueWinIndex < blueWinLines.length - 1) {
+            blueWinIndex++;
+            blueWinTimer = 0;
+        } else {
+            blueWinTimer++;
+        }
+
+        text(blueWinLines[blueWinIndex], width / 2, height - 120);
         return;
     }
 
-    // TEXT (bigger + swapped)
+
+    image(leftBlobImg, leftPos.x + wobbleX, leftPos.y + wobbleY);
+    image(rightBlobImg, rightPos.x - wobbleX, rightPos.y - wobbleY);
+
     textFont(fontRegular);
     fill(0, 120);
     textSize(26);
 
-    // left player → TOP LEFT
     textAlign(LEFT, TOP);
     text("left: " + currentLeftKey, 40, 40);
 
-    // right player → BOTTOM RIGHT
     textAlign(RIGHT, BOTTOM);
     text("right: " + currentRightKey, width - 40, height - 40);
 }
@@ -103,11 +140,15 @@ function blueKeyPressed(event) {
         return;
     }
 
+    if (gameState === "instructions") {
+        if (event.keyCode === 13) gameState = "play";
+        return;
+    }
+
     if (merged) return;
 
     let k = event.key.toUpperCase();
 
-    // FINAL ROUND
     if (rounds === maxRounds - 1) {
         if (k === "G") stepProgress++;
     } else {
@@ -120,30 +161,28 @@ function blueKeyPressed(event) {
         stepProgress = 0;
         stepGoal = int(random(35, 60));
 
-        // MERGE
         if (rounds === maxRounds) {
             merged = true;
+            gameState = "win";
+
             leftPos = { x: width / 2, y: height / 2 };
             rightPos = { x: width / 2, y: height / 2 };
+
             return;
         }
 
-        // movement fraction
         let t = rounds / maxRounds;
 
-        // left blob goes toward center
         targetLeftPos = {
             x: lerp(40, width / 2 - leftBlobImg.width / 2, t),
             y: lerp(height - 40 - leftBlobImg.height, height / 2 - leftBlobImg.height / 2, t)
         };
 
-        // right blob goes toward center
         targetRightPos = {
             x: lerp(width - 40 - rightBlobImg.width, width / 2 - rightBlobImg.width / 2, t),
             y: lerp(40, height / 2 - rightBlobImg.height / 2, t)
         };
 
-        // NEXT KEY
         if (rounds === maxRounds - 1) {
             currentLeftKey = "G";
             currentRightKey = "G";
