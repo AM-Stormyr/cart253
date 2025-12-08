@@ -28,6 +28,7 @@ function preload() {
     // forgot to preload the green stuff
     if (typeof greenPreload === "function") {
         greenPreload();
+        bluePreload();
     }
 }
 
