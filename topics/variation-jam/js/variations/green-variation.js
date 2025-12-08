@@ -136,9 +136,9 @@ function greenDraw() {
     background(200, 225, 250);
 
     if (gameOver) {
-        fill(0);
-        textFont(fontMedium);
-        textSize(32);
+        fill(0, 150);
+        textFont(fontRegular);
+        textSize(20);
         textAlign(CENTER, CENTER);
         text("game over", width / 2, height / 2 - 15);
         text("oats caught: " + score, width / 2, height / 2 + 15);
@@ -254,9 +254,9 @@ function greenDraw() {
     image(slimePixel, px - slimePixel.width / 2, py - slimePixel.height / 2);
 
     // UI text and time pixels
-    fill(0);
-    textFont(fontMedium);
-    textSize(24);
+    fill(0, 150);
+    textFont(fontRegular);
+    textSize(20);
     textAlign(LEFT, TOP);
     text("oats: " + score, 10, 10);
 
