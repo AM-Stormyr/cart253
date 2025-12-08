@@ -1,5 +1,5 @@
 /**
- * This file contains the code to run only the blue variation part of the program.
+ * BLUE VARIATION — Oscillate
  */
 
 let pathPixelImg;
@@ -14,20 +14,17 @@ let rightPos;
 let leftKeys = ["a", "s", "d", "f", "g"];
 let rightKeys = ["l", "k", "j", "h", "g"];
 
-let leftIndex = 0;
-let rightIndex = 0;
+let currentLeftKey = "";
+let currentRightKey = "";
 
 let leftPixelIndex = 0;
 let rightPixelIndex = 0;
 
-// shared progress system
 let stepGoal = 0;
 let stepProgress = 0;
 
-let currentLeftKey = "";
-let currentRightKey = "";
-
 let finalStep = false;
+
 
 function bluePreload() {
     pathPixelImg = loadImage("assets/images/oscillate/path-pixel.png");
@@ -36,7 +33,6 @@ function bluePreload() {
 }
 
 function blueSetup() {
-    // dotted path building
     pathPixels = [];
     let margin = 15;
     let gap = 15;
@@ -51,7 +47,6 @@ function blueSetup() {
     leftPixelIndex = 0;
     rightPixelIndex = pathPixels.length - 1;
 
-    // set first required keys + goal
     currentLeftKey = leftKeys[int(random(leftKeys.length))];
     currentRightKey = rightKeys[int(random(rightKeys.length))];
 
@@ -59,7 +54,6 @@ function blueSetup() {
     stepProgress = 0;
     finalStep = false;
 
-    // starting blob positions
     leftPos = {
         x: pathPixels[leftPixelIndex].x - leftBlobImg.width / 2 + pathPixelImg.width / 2,
         y: pathPixels[leftPixelIndex].y - leftBlobImg.height / 2 + pathPixelImg.height / 2
@@ -71,9 +65,11 @@ function blueSetup() {
     };
 }
 
-
 function blueDraw() {
     background(200, 225, 250);
+
+    //wobble (blobs movement)
+    let wobble = sin(frameCount * 0.1) * 2;
 
     for (let p of pathPixels) {
         image(pathPixelImg, p.x, p.y);
@@ -85,9 +81,20 @@ function blueDraw() {
     rightPos.x = pathPixels[rightPixelIndex].x - rightBlobImg.width / 2 + pathPixelImg.width / 2;
     rightPos.y = pathPixels[rightPixelIndex].y - rightBlobImg.height / 2 + pathPixelImg.height / 2;
 
-    image(leftBlobImg, leftPos.x, leftPos.y);
-    image(rightBlobImg, rightPos.x, rightPos.y);
+    image(leftBlobImg, leftPos.x, leftPos.y + wobble);
+    image(rightBlobImg, rightPos.x, rightPos.y - wobble);
+
+    textFont(fontRegular);
+    fill(0, 120);
+    textSize(20);
+
+    textAlign(LEFT, TOP);
+    text("left: [" + currentLeftKey + "]", 20, 20);
+
+    textAlign(RIGHT, TOP);
+    text("right: [" + currentRightKey + "]", width - 20, 20);
 }
+
 
 function blueKeyPressed(event) {
     if (event.keyCode === 27) {
@@ -96,20 +103,35 @@ function blueKeyPressed(event) {
     }
 
     let k = event.key.toLowerCase();
+    let moved = false;
 
-    if (k === leftKeys[leftIndex]) {
-        leftIndex++;
-        leftPixelIndex++;
-        if (leftPixelIndex >= pathPixels.length) {
-            leftPixelIndex = pathPixels.length - 1;
-        }
+    if (k === currentLeftKey) {
+        stepProgress++;
+        moved = true;
     }
 
-    if (k === rightKeys[rightIndex]) {
-        rightIndex++;
+    if (k === currentRightKey) {
+        stepProgress++;
+        moved = true;
+    }
+
+    if (!moved) return;
+
+    if (stepProgress >= stepGoal) {
+        leftPixelIndex++;
         rightPixelIndex--;
-        if (rightPixelIndex < 0) {
-            rightPixelIndex = 0;
+
+        if (leftPixelIndex >= rightPixelIndex) {
+            leftPixelIndex = rightPixelIndex;
+            finalStep = true;
+        }
+
+        stepProgress = 0;
+        stepGoal = int(random(35, 60));
+
+        if (!finalStep) {
+            currentLeftKey = leftKeys[int(random(leftKeys.length))];
+            currentRightKey = rightKeys[int(random(rightKeys.length))];
         }
     }
 }
