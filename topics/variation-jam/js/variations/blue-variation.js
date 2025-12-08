@@ -4,18 +4,22 @@
  * This keeps the stuff the menu needs to do *separate* from the rest of the program.
  */
 
+function bluePreload() {
+    // will load stuff later
+}
+
 /**
  * This will be called just before the blue variation starts
  */
 function blueSetup() {
-
+    // nothing yet
 }
 
 /**
  * This will be called every frame when the blue variation is active
  */
 function blueDraw() {
-    background("blue");
+    background(200, 225, 250); // same bg as other variations
 }
 
 /**
@@ -31,5 +35,5 @@ function blueKeyPressed(event) {
  * This will be called whenever the mouse is pressed while the blue variation is active
  */
 function blueMousePressed() {
-
+    // nothing here yet
 }
