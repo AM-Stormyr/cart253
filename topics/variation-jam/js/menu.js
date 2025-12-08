@@ -1,54 +1,44 @@
-/**
- * This menu file contains the code to run *only* the menu part of the program.
- * Note how it has its own draw, menuDraw(), and its own keyPressed, menuKeyPressed().
- * This keeps the stuff the menu needs to do *separate* from the rest of the program.
- */
-
 const menuText = `
-(R) DORMANT
-(G) FORAGE
-(B) OSCILLATE`
+(1) DORMANT
+(2) FORAGE
+(3) OSCILLATE`;
 
-/**
- * Display the main menu
- */
 function menuDraw() {
-    background(0);
+    background(200, 225, 250);
 
     push();
-    fill(255);
     textFont(fontRegular);
-    textSize(32);
-    textAlign(CENTER, CENTER);
-    text(menuText, width / 2, height / 2);
+    fill(0, 150);
+    textSize(25);
+    textAlign(LEFT, CENTER);
+    let x = width / 2 - 78;
+    let y = height / 2 - 15;
+
+    text(menuText, x, y);
+    pop();
+
     pop();
 }
 
-/**
- * Listen to the keyboard
- */
 function menuKeyPressed(event) {
     switch (event.keyCode) {
-        case 82:
+        case 49: // 1
             state = "red-variation";
             redSetup();
             break;
 
-        case 71:
+        case 50: // 2
             state = "green-variation";
             greenSetup();
             break;
 
-        case 66:
+        case 51: // 3
             state = "blue-variation";
             blueSetup();
             break;
     }
 }
 
-/**
- * This will be called whenever the mouse is pressed while the menu is active
- */
 function menuMousePressed() {
-
+    // nothing
 }

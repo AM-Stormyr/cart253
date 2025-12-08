@@ -18,6 +18,8 @@ let scaleFactor = 0.5;
 let dormantGameOver = false;
 let holdingOption = false;
 
+let noiseAlpha = 0; // fade in noise when holding keys
+
 // win stuff
 let dormantWin = false;
 let winLines = [
@@ -43,6 +45,8 @@ function redSetup() {
 
     dormantGameOver = false;
     holdingOption = false;
+
+    noiseAlpha = 0;
 
     dormantWin = false;
     winIndex = 0;
@@ -86,7 +90,16 @@ function generateNoiseTexture() {
  ************************ DRAW ************************
  *****************************************************/
 function redDraw() {
+
+    // same BG as forage game
+    background(200, 225, 250);
+
+    // fade noise texture in slowly
+    push();
+    tint(255, noiseAlpha);
     image(noiseTexture, 0, 0);
+    pop();
+
 
     // final ESC screen (after all win lines)
     if (dormantWin && winLines[winIndex] === "FINAL") {
@@ -122,7 +135,7 @@ function redDraw() {
         fill(0, 160);
         textAlign(CENTER, CENTER);
         textSize(20);
-        text("take one slow breath.\nthen enter slime-time.", width / 2, height - 100);
+        text("take one slow breath.\nthen enter slime-time.", width / 2, height / 2);
 
         if (introSwitchTimer === null) {
             introSwitchTimer = setTimeout(() => {
@@ -141,8 +154,8 @@ function redDraw() {
         fill(0, 160);
         textAlign(CENTER, CENTER);
         textSize(20);
-        text("time moves differently for slime.\nhold OPTION + CONTROLtill the slime is fully dormant.",
-            width / 2, height - 100);
+        text("time moves differently for slime.\nhold OPTION + CONTROL \ntill the slime is fully dormant.",
+            width / 2, height / 2);
 
         if (!holdingOption) return;
     }
@@ -153,9 +166,10 @@ function redDraw() {
         fill(0, 150);
         textAlign(CENTER, CENTER);
         textSize(20);
-        text("game over // menu [esc]", width / 2, height - 100);
+        text("game over // menu [esc]", width / 2, height / 2);
         return;
     }
+
 
     if (!holdingOption) {
         return;
@@ -167,6 +181,12 @@ function redDraw() {
             holdingOption = false;
             dormantGameOver = true;
         }
+    }
+
+    // fade noise in while holding ctrl+opt
+    if (holdingOption) {
+        noiseAlpha += 0.4;
+        if (noiseAlpha > 255) noiseAlpha = 255;
     }
 
 
