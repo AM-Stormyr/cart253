@@ -1,35 +1,148 @@
-# TITLE OF PROJECT
+# Dormant. Forage. Oscillate. Repeat.  
+AM Stormyr  
+(CART 253 Variation Jam)
 
-AUTHOR NAME
+---
 
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+## Live Log
+
+Follow the ongoing slime-mold research, cultivation notes, and installation experiments:  
+https://am-stormyr.github.io/slime-mold-log/
+
+---
 
 ## Description
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
+**Dormant. Forage. Oscillate. Repeat.** is a series of three small games inspired by my semester-long work with *Physarum polycephalum*, somatic practice, and performance.
 
-> *The Mayor of Clown Town* is a simulator experience that allows the user to control a small town populated entirely by clowns.
+This project grew from a simple question:
 
-> The experience is controlled via the mouse, with left click selecting a clown and bringing up a menu of options such as "slip of banana peel" or "get into impossible capacious clown-car."
+**What would it feel like to sense, think, and move like slime mold?**
 
-> The project is meant to give the user a sense of what it would be the mayor of a town of clowns, eventually getting the sense that clowns are not taking their civic duties seriously.
+Throughout the semester I cultivated Physarum, documented its behaviors, built a Slime Mold Oracle Machine with Arduino, and created performances about oscillation, breath, and merging. All of this shaped the logic and atmosphere of each variation.
 
-## Screenshot(s)
+Each game explores a different mode of slime-mold existence: slowing down, seeking food, or pulsing toward another body.
 
-This bit should have some images of the program running so that the reader has a sense of what it looks like. For example:
+Right now the timescales are short and human for demonstration. In the future I want these games to unfold in non human slime-mold time:
 
-> ![Image of a clown face](./assets/images/clown.png)
+- Dormancy that lasts ten to twenty four hours  
+- Foraging slowed into a careful puzzle  
+- Oscillation stretched across long rhythmic cycles  
+
+Think of these versions as early experiments toward that direction.
+
+---
+
+## The Variations
+
+### ⏀ DORMANT  
+A game about slowing down until you shift into slime time.  
+Hold **OPTION + CONTROL** without letting go.  
+Release too early and your slime collapses.  
+Release never, and you drift fully into dormancy.
+
+### ⏁ FORAGE  
+You are a pseudopod seeking oats before dawn.  
+Move with the **arrow keys**, collect oats, and leave a glowing trail.  
+Oats rearrange themselves on slime time.  
+Your slime mold always looks for the shortest route.
+
+### ⏈ OSCILLATE  
+A two player merging ritual.  
+Both players press the prompted keys.  
+Each press moves the blobs closer until they merge into one pulsing organism.  
+Based on my performance work with breath, timing, and oscillation.
+
+---
+
+## Based On
+
+This project began from Pippin Barr’s Variations Menu Template:  
+https://pippinbarr.com/cart253/assignments/variation-jam/
+
+---
+
+## Assets
+
+### Visuals  
+All pixel sprites created using:  
+https://make8bitart.com/
+
+### Audio  
+Synth oscillations created using:  
+https://musiclab.chromeexperiments.com/Oscillators/
+
+Slurp sound:  
+Cartoon Slurp by lil_slugger  
+https://freesound.org/people/lil_slugger/sounds/759264/
+
+### Fonts  
+**Pixelify Sans** for all game text.
+
+---
+
+## Controls
+
+### DORMANT  
+- Hold **OPTION + CONTROL**  
+- Release too early → game over  
+- Press **ESC** to return to menu
+
+### FORAGE  
+- Move with **Arrow Keys**  
+- Collect oats before dawn  
+- Press **ENTER** to start  
+- Press **ESC** to return to menu
+
+### OSCILLATE  
+- Two players  
+- Press the keys shown on screen  
+- Merge to win  
+- Press **ENTER** to start  
+- Press **ESC** to return to menu
+
+---
+
+## Context and Inspiration
+
+This project comes from:
+
+- growing and observing *Physarum polycephalum*  
+- building an Oracle Machine using Arduino and sensors  
+- documenting Physarum’s growth patterns  
+- somatic movement research around breath, oscillation, and slowness  
+- performance work exploring merging and attention  
+- thinking about non human temporality and how bodies sense the world  
+
+Physarum has been a collaborator in my art practice this semester.  
+Its way of thinking through pulsation, memory, and branching networks directly influenced how the games behave.
+
+I have also been inspired by artists who think with living systems.  
+James Bridle’s **Server Farm** is a strong reference for thinking about multispecies time, communication, and the infrastructures we share:  
+https://serverfarm.jamesbridle.com/#presentation
+
+---
 
 ## Attribution
 
-This bit should attribute any code, assets or other elements used taken from other sources. For example:
+### Libraries  
+- p5.js  
+- p5.sound.js
 
-> - This project uses [p5.js](https://p5js.org).
-> - The clown image is a capture of the clown from the Apple emoji character set.
-> - The barking sound effect is "single dog bark 1" by crazymonke9 from freesound.org: https://freesound.org/people/crazymonke9/sounds/418107/
+### Academic and Artistic References  
+- Bonnie Bainbridge Cohen  
+- Erin Manning — *The Minor Gesture*  
+- James Bridle — *Server Farm*  
 
-## License
+### Starting Template  
+Variations Menu by Pippin Barr
 
-This bit should include the license you want to apply to your work. For example:
+---
 
-> This project is licensed under a Creative Commons Attribution ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en)) license with the exception of libraries and other components with their own licenses.
+## Thanks and Transparency
+
+Thank you to:
+
+- Pippin Barr for the template, guidance, and teaching  
+- Claude for debugging support  
+- Eric Campbell for oscillation research, collaboration, and general slime energy  

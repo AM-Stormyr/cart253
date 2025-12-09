@@ -1,10 +1,10 @@
 /**
- * This file contains the code to run *only* the red variation part of the program.
- * Note how it has its own draw, redDraw(), and its own keyPressed, redKeyPressed().
- * This keeps the stuff the menu needs to do *separate* from the rest of the program.
+ * RED VARIATION
+ * (hold OPTION + CONTROL to enter dormancy)
  */
 
 let noiseTexture;
+
 let showIntro = true;
 let showInstructions = false;
 let introSwitchTimer = null;
@@ -35,8 +35,14 @@ let redWinTimer = null;
 let redWinFrames = 0;
 let redWinDelayFrames = 140;
 
+
+/**
+ * setup red stuff
+ */
 function redSetup() {
+
     generateNoiseTexture();
+
     showIntro = true;
     showInstructions = false;
     introSwitchTimer = null;
@@ -45,7 +51,6 @@ function redSetup() {
     nextBlob = 1;
     fadeAmount = 0;
     fading = true;
-    scaleFactor = 0.5;
 
     dormantGameOver = false;
     holdingOption = false;
@@ -55,16 +60,20 @@ function redSetup() {
     dormantWin = false;
     redWinIndex = 0;
     redWinFrames = 0;
+
     if (redWinTimer) clearInterval(redWinTimer);
 }
 
-/*****************************************************
- **************** BACKGROUND TEXTURE *****************
- *****************************************************/
+
+/**
+ * background noise texture
+ */
 function generateNoiseTexture() {
+
     noiseTexture = createGraphics(width, height);
     noiseTexture.loadPixels();
 
+    // base noise
     for (let x = 0; x < width; x++) {
         for (let y = 0; y < height; y++) {
 
@@ -75,31 +84,34 @@ function generateNoiseTexture() {
             noiseTexture.set(x, y, color(c));
         }
     }
+
     noiseTexture.updatePixels();
 
+    // sprinkle grain
     noiseTexture.noStroke();
     for (let i = 0; i < 2000; i++) {
-        let x = random(width);
-        let y = random(height);
+        let gx = random(width);
+        let gy = random(height);
         noiseTexture.fill(255, 50);
-        noiseTexture.rect(x, y, 1, 1);
+        noiseTexture.rect(gx, gy, 1, 1);
     }
 }
 
-/*****************************************************
- ************************ DRAW ************************
- *****************************************************/
+
+/**
+ * draw
+ */
 function redDraw() {
 
     background(200, 225, 250);
 
-    // fade noise texture in slowly
+    // fade noise
     push();
     tint(255, noiseAlpha);
     image(noiseTexture, 0, 0);
     pop();
 
-    // final ESC screen
+    // final screen
     if (dormantWin && redWinLines[redWinIndex] === "FINAL") {
         textFont(fontRegular);
         fill(0, 150);
@@ -109,16 +121,20 @@ function redDraw() {
         return;
     }
 
-    // win text sequence
+    // win text cycling
     if (dormantWin) {
+
         textFont(fontRegular);
         fill(0, 150);
         textAlign(CENTER, CENTER);
         textSize(20);
 
-        if (redWinFrames > redWinDelayFrames && redWinIndex < redWinLines.length - 1) {
+        if (redWinFrames > redWinDelayFrames &&
+            redWinIndex < redWinLines.length - 1) {
+
             redWinIndex++;
             redWinFrames = 0;
+
         } else {
             redWinFrames++;
         }
@@ -129,6 +145,7 @@ function redDraw() {
 
     // intro text
     if (showIntro && !dormantGameOver) {
+
         textFont(fontRegular);
         fill(0, 160);
         textAlign(CENTER, CENTER);
@@ -143,17 +160,23 @@ function redDraw() {
                 }
             }, 2500);
         }
+
         return;
     }
 
     // instructions
     if (showInstructions && !dormantGameOver) {
+
         textFont(fontRegular);
         fill(0, 160);
         textAlign(CENTER, CENTER);
         textSize(20);
-        text("time moves differently for slime.\nhold OPTION + CONTROL \ntill the slime is fully dormant.",
-            width / 2, height / 2);
+
+        text(
+            "time moves differently for slime.\nhold OPTION + CONTROL \ntill the slime is fully dormant.",
+            width / 2,
+            height / 2
+        );
 
         if (!holdingOption) return;
     }
@@ -168,11 +191,10 @@ function redDraw() {
         return;
     }
 
-    if (!holdingOption) {
-        return;
-    }
+    // if not holding option we don't animate
+    if (!holdingOption) return;
 
-    // continuous check for release (game over)
+    // detect release
     if (holdingOption) {
         if (!keyIsDown(CONTROL) || !keyIsDown(ALT)) {
             holdingOption = false;
@@ -180,13 +202,11 @@ function redDraw() {
         }
     }
 
-    // fade noise in while holding ctrl+opt
-    if (holdingOption) {
-        noiseAlpha += 0.4;
-        if (noiseAlpha > 255) noiseAlpha = 255;
-    }
+    // fade in noise
+    noiseAlpha += 0.4;
+    if (noiseAlpha > 255) noiseAlpha = 255;
 
-    // ---------------- blob fading ----------------
+    // blob fade between frames
     let imgA = blobs[currentBlob];
     let imgB = blobs[nextBlob];
 
@@ -203,7 +223,7 @@ function redDraw() {
     image(imgB, cx, cy, w, h);
 
     if (fading) {
-        fadeAmount += 1;
+        fadeAmount++;
 
         if (fadeAmount >= 255) {
             fadeAmount = 0;
@@ -221,14 +241,18 @@ function redDraw() {
     tint(255);
 }
 
-/*****************************************************
- ******************** KEY INPUTS *********************
- *****************************************************/
+
+/**
+ * keys
+ */
 function redKeyPressed(event) {
+
+    // back to menu
     if (event.keyCode === 27) {
-        state = "menu"; // esc back to menu
+        state = "menu";
     }
 
+    // activate dormancy
     if (event.altKey && event.ctrlKey) {
         holdingOption = true;
         showIntro = false;
@@ -236,4 +260,7 @@ function redKeyPressed(event) {
     }
 }
 
-function redMousePressed() { }
+
+function redMousePressed() {
+    // no mouse
+}

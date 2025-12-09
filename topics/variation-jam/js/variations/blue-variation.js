@@ -1,22 +1,25 @@
 /**
  * BLUE VARIATION — Oscillate
+ * (two players press keys and slowly merge)
  */
 
+// images
 let leftBlobImg;
 let rightBlobImg;
 let winnerBlobImg;
 
+// positions
 let leftPos;
 let rightPos;
-
 let targetLeftPos;
 let targetRightPos;
 
+// wobble
 let wobbleTime = 0;
 
+// rounds + key presses
 let rounds = 0;
 let maxRounds = 5;
-
 let stepProgress = 0;
 let stepGoal = 0;
 
@@ -24,11 +27,11 @@ let currentLeftKey = "";
 let currentRightKey = "";
 
 let merged = false;
-
 let allKeys = "abcdefghijklmnopqrstuvwxyz".split("");
 
 let gameState = "instructions";
 
+// win text
 let blueWinLines = [
     "Congratulations!",
     "you are fully merged.",
@@ -38,25 +41,33 @@ let blueWinIndex = 0;
 let blueWinTimer = 0;
 let blueWinDelay = 120;
 
-// === AUDIO ===
+// audio
 let osc1, osc2, slurp;
 
 
+/**
+ * preload blue stuff
+ */
 function bluePreload() {
+
+    // images
     leftBlobImg = loadImage("assets/images/oscillate/left-blob2.png");
     rightBlobImg = loadImage("assets/images/oscillate/right-blob1.png");
     winnerBlobImg = loadImage("assets/images/oscillate/winner-blob2.png");
 
-    // audio
+    // sounds
     osc1 = loadSound("assets/sounds/oscillate/oscillation1.mp3");
     osc2 = loadSound("assets/sounds/oscillate/oscillation2.mp3");
     slurp = loadSound("assets/sounds/oscillate/slurp-edit.mp3");
 }
 
 
+/**
+ * setup blue stuff
+ */
 function blueSetup() {
 
-    // stop everything just in case
+    // stop any leftover audio
     if (osc1 && osc1.isPlaying()) osc1.stop();
     if (osc2 && osc2.isPlaying()) osc2.stop();
     if (slurp && slurp.isPlaying()) slurp.stop();
@@ -68,9 +79,11 @@ function blueSetup() {
     stepProgress = 0;
     stepGoal = int(random(35, 60));
 
+    // starting keys
     currentLeftKey = random(allKeys).toUpperCase();
     currentRightKey = random(allKeys).toUpperCase();
 
+    // starting positions
     leftPos = { x: 40, y: height - 40 - leftBlobImg.height };
     rightPos = { x: width - 40 - rightBlobImg.width, y: 40 };
 
@@ -82,24 +95,36 @@ function blueSetup() {
 }
 
 
+/**
+ * draw loop
+ */
 function blueDraw() {
+
     background(200, 225, 250);
 
-    // === instructions screen ===
+    // instructions
     if (gameState === "instructions") {
+
         textFont(fontRegular);
         fill(0, 150);
         textSize(20);
         textAlign(CENTER, CENTER);
-        text("Two players: left + right\nPress the shown keys to merge\n\nPress ENTER to start",
-            width / 2, height / 2);
+
+        text(
+            "Two players: left + right\nPress the shown keys to merge\n\nPress ENTER to start",
+            width / 2,
+            height / 2
+        );
+
         return;
     }
 
+    // wobble
     wobbleTime += 0.05;
     let wobbleX = sin(wobbleTime) * 6;
     let wobbleY = cos(wobbleTime) * 6;
 
+    // easing
     leftPos.x = lerp(leftPos.x, targetLeftPos.x, 0.05);
     leftPos.y = lerp(leftPos.y, targetLeftPos.y, 0.05);
 
@@ -107,11 +132,12 @@ function blueDraw() {
     rightPos.y = lerp(rightPos.y, targetRightPos.y, 0.05);
 
 
-    // === WIN SCREEN ===
+    // WIN
     if (gameState === "win") {
 
         let bx = width / 2 - winnerBlobImg.width / 2 + wobbleX;
         let by = height / 2 - winnerBlobImg.height / 2 + wobbleY;
+
         image(winnerBlobImg, bx, by);
 
         textFont(fontRegular);
@@ -119,6 +145,7 @@ function blueDraw() {
         textSize(20);
         textAlign(CENTER, CENTER);
 
+        // cycle win messages
         if (blueWinTimer > blueWinDelay && blueWinIndex < blueWinLines.length - 1) {
             blueWinIndex++;
             blueWinTimer = 0;
@@ -132,8 +159,7 @@ function blueDraw() {
     }
 
 
-    // === NORMAL PLAY ===
-
+    // normal play
     image(leftBlobImg, leftPos.x + wobbleX, leftPos.y + wobbleY);
     image(rightBlobImg, rightPos.x - wobbleX, rightPos.y - wobbleY);
 
@@ -149,10 +175,13 @@ function blueDraw() {
 }
 
 
+/**
+ * key input
+ */
 function blueKeyPressed(event) {
 
+    // esc to menu
     if (event.keyCode === 27) {
-        // stop audio on menu return
         if (osc1 && osc1.isPlaying()) osc1.stop();
         if (osc2 && osc2.isPlaying()) osc2.stop();
         if (slurp && slurp.isPlaying()) slurp.stop();
@@ -160,12 +189,10 @@ function blueKeyPressed(event) {
         return;
     }
 
-    // === start the game ===
+    // start game
     if (gameState === "instructions") {
         if (event.keyCode === 13) {
             gameState = "play";
-
-            // start oscillation1 loop
             if (osc1) osc1.loop();
         }
         return;
@@ -175,28 +202,27 @@ function blueKeyPressed(event) {
 
     let k = event.key.toUpperCase();
 
+    // last round uses only G
     if (rounds === maxRounds - 1) {
         if (k === "G") stepProgress++;
     } else {
         if (k === currentLeftKey || k === currentRightKey) stepProgress++;
     }
 
+    // hit step goal
     if (stepProgress >= stepGoal) {
 
         rounds++;
         stepProgress = 0;
         stepGoal = int(random(35, 60));
 
-        // === MERGE MOMENT ===
+        // MERGE moment
         if (rounds === maxRounds) {
 
             merged = true;
             gameState = "win";
 
-            // stop background osc
             if (osc1 && osc1.isPlaying()) osc1.stop();
-
-            // play merge audio
             if (osc2) osc2.play();
             if (slurp) setTimeout(() => slurp.play(), 150);
 
@@ -206,6 +232,7 @@ function blueKeyPressed(event) {
             return;
         }
 
+        // move blobs toward center
         let t = rounds / maxRounds;
 
         targetLeftPos = {
@@ -218,6 +245,7 @@ function blueKeyPressed(event) {
             y: lerp(40, height / 2 - rightBlobImg.height / 2, t)
         };
 
+        // next keys
         if (rounds === maxRounds - 1) {
             currentLeftKey = "G";
             currentRightKey = "G";
@@ -229,4 +257,6 @@ function blueKeyPressed(event) {
 }
 
 
-function blueMousePressed() { }
+function blueMousePressed() {
+    // no mouse
+}

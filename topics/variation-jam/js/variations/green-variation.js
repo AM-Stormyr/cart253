@@ -30,20 +30,20 @@ let playerSize = 15;
 
 // game state
 let score = 0;
-let gameTime = 45; // total seconds
+let gameTime = 45;
 let gameOver = false;
 
-// auto movement pacing
 let moveCounter = 0;
 let moveInterval = 4;
 
-// center blob fade
 let blobAlpha = 255;
 let hasStartedMoving = false;
 
-// shared oat timer (for rearranging all oats)
 let oatTimerMax = 6;
 let oatTimer = oatTimerMax;
+
+// NEW
+let gameState = "instructions";
 
 
 /**
@@ -69,7 +69,6 @@ function greenSetup() {
 
     noSmooth();
 
-    // center on the grid
     px = Math.floor(width / 2 / step) * step;
     py = Math.floor(height / 2 / step) * step;
 
@@ -87,7 +86,8 @@ function greenSetup() {
 
     oatTimer = oatTimerMax;
 
-    // create oats
+    gameState = "instructions";
+
     oats = [];
     for (let i = 0; i < oatCount; i++) {
         spawnOat();
@@ -95,8 +95,9 @@ function greenSetup() {
 }
 
 
+
 /**
- * spawn one non-overlapping oat
+ * spawn oat non-overlapping
  */
 function spawnOat() {
 
@@ -142,7 +143,6 @@ function spawnOat() {
         attempts++;
     }
 
-    // fallback
     let img = random(oatImgs);
     oats.push({
         x: margin,
@@ -162,7 +162,26 @@ function spawnOat() {
 function greenDraw() {
     background(200, 225, 250);
 
-    // game over
+    // -------------------------------------
+    // NEW INSTRUCTION SCREEN
+    // -------------------------------------
+    if (gameState === "instructions") {
+
+        textFont(fontRegular);
+        fill(0, 150);
+        textSize(20);
+        textAlign(CENTER, CENTER);
+
+        text(
+            "Collect oats before dawn.\nSlime mold always seeks the quickest paths.\nMove with the arrow keys.\n\nPress ENTER to start",
+            width / 2,
+            height / 2
+        );
+
+        return;
+    }
+
+    // GAME OVER
     if (gameOver) {
         fill(0);
         textFont(fontMedium);
@@ -173,7 +192,8 @@ function greenDraw() {
         return;
     }
 
-    // main game countdown
+
+    // main countdown
     gameTime -= deltaTime / 1000;
     if (gameTime <= 0) {
         gameTime = 0;
@@ -204,7 +224,7 @@ function greenDraw() {
         if (blobAlpha < 0) blobAlpha = 0;
     }
 
-    // oat timer (shared)
+    // oat timer
     oatTimer -= deltaTime / 1000;
     if (oatTimer <= 0) {
         oats = [];
@@ -235,7 +255,7 @@ function greenDraw() {
         pop();
     }
 
-    // collision check
+    // collisions
     for (let o of oats) {
         if (o.eaten) continue;
 
@@ -263,6 +283,7 @@ function greenDraw() {
         }
     }
 
+
     // tail fade
     noStroke();
     for (let i = tail.length - 1; i >= 0; i--) {
@@ -275,13 +296,13 @@ function greenDraw() {
         if (t.alpha <= 0) tail.splice(i, 1);
     }
 
-    // player sprite
+    // player
     image(slimePixel, px - slimePixel.width / 2, py - slimePixel.height / 2);
 
 
-    // =====================================
-    //               UI
-    // =====================================
+    // -------------------------------------
+    // UI
+    // -------------------------------------
 
     let uiPadding = 20;
     let uiTextSize = 18;
@@ -294,10 +315,8 @@ function greenDraw() {
     textAlign(LEFT, TOP);
     text("oats: " + score, uiPadding, uiPadding);
 
-    // compute baseline alignment
     let textBaseline = uiPadding + uiTextSize * 0.75;
 
-    // time-pixel bar: 6 segments, 15px spacing
     let barCount = 6;
     let pixelSpacing = 15;
     let barW = timePixelImg.width;
@@ -320,7 +339,6 @@ function greenDraw() {
         }
     }
 
-    // right: game timer
     textAlign(RIGHT, TOP);
     text(Math.ceil(gameTime), width - uiPadding, uiPadding);
 }
@@ -331,6 +349,14 @@ function greenDraw() {
  * KEYS
  */
 function greenKeyPressed(event) {
+
+    // instructions start
+    if (gameState === "instructions") {
+        if (event.keyCode === 13) {
+            gameState = "play";
+        }
+        return;
+    }
 
     if (event.keyCode === 27) {
         state = "menu";
@@ -351,5 +377,5 @@ function greenKeyPressed(event) {
 
 
 function greenMousePressed() {
-    // no mouse
+    // nothing
 }
