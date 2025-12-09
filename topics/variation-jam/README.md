@@ -13,9 +13,9 @@ https://am-stormyr.github.io/slime-mold-log/
 
 ## Description
 
-**Dormant. Forage. Oscillate. Repeat.** is a series of three small games inspired by my semester-long work with *Physarum polycephalum*, somatic practice, and performance.
+**Dormant. Forage. Oscillate. Repeat.** is a series of three small games inspired by my semester-long work with *Physarum polycephalum*, somatic practice, performance, and electronic arts.
 
-This project grew from a simple question:
+This project grew from the question:
 
 **What would it feel like to sense, think, and move like slime mold?**
 
@@ -23,13 +23,13 @@ Throughout the semester I cultivated Physarum, documented its behaviors, built a
 
 Each game explores a different mode of slime-mold existence: slowing down, seeking food, or pulsing toward another body.
 
-Right now the timescales are short and human for demonstration. In the future I want these games to unfold in non human slime-mold time:
+Right now the (game) timescales are short and human for demonstration. In the future I want these games to be played in non human slime-mold time:
 
 - Dormancy that lasts ten to twenty four hours  
-- Foraging slowed into a careful puzzle  
+- Foraging slowed into puzzle  
 - Oscillation stretched across long rhythmic cycles  
 
-Think of these versions as early experiments toward that direction.
+Think of these versions as prototypes toward that direction.
 
 ---
 
@@ -38,38 +38,42 @@ Think of these versions as early experiments toward that direction.
 ### ⏀ DORMANT  
 A game about slowing down until you shift into slime time.  
 Hold **OPTION + CONTROL** without letting go.  
-Release too early and your slime collapses.  
+Release too early and your slime wakes up.  
 Release never, and you drift fully into dormancy.
 
 **Screenshot:**  
-![Dormant Screenshot](assets/images/screenshots/dormant-screenshot.png)
+<img src="assets/images/screenshots/dormant-screenshot.png" width="60%">
 
 ---
 
 ### ⏁ FORAGE  
 You are a pseudopod seeking oats before dawn.  
-Move with the **arrow keys**, collect oats, and leave a glowing trail.  
-Oats rearrange themselves on slime time.  
+Move with the **arrow keys**, collect oats, and leave a physarum trail (like they do).  
+Oats rearrange themselves.  
 Your slime mold always looks for the shortest route.
 
 **Instructions Screenshot:**  
-![Forage Instructions](assets/images/screenshots/forage-instructions-screenshot.png)
+<img src="assets/images/screenshots/forage-instructions-screenshot.png" width="60%">
 
 **Gameplay Screenshot:**  
-![Forage Gameplay](assets/images/screenshots/forage-screenshot.png)
+<img src="assets/images/screenshots/forage-screenshot.png" width="60%">
 
 ---
 
 ### ⏈ OSCILLATE  
-A two player merging ritual.  
-Both players press the prompted keys.  
-Each press moves the blobs closer until they merge into one pulsing organism.  
-Based on my performance work with breath, timing, and oscillation.
+A two player merging ritual.
+Both players press the prompted keys.
+Each press moves the blobs closer until they merge into one pulsing organism.
 
-**Screenshots:**  
-![Oscillate Gameplay 1](assets/images/screenshots/oscillation-screenshot-1.png)  
-![Oscillate Gameplay 2](assets/images/screenshots/oscillation-screenshot-2.png)  
-![Oscillate Gameplay 3](assets/images/screenshots/oscillation-screenshot-3.png)
+Physarum (slime mold) moves through oscillation. It is a single-cell organism that contracts and expands about once per minute. That rhythm is fast for a single cell, but to humans it looks like complete stillness.
+
+When two Physarum bodies touch, they eventually merge into a single organism. Their pulses influence one another and settle into a shared rhythm over time.
+
+
+**Screenshots (ordered 3 → 2 → 1):**  
+<img src="assets/images/screenshots/oscillation-screenshot-3.png" width="60%">  
+<img src="assets/images/screenshots/oscillation-screenshot-2.png" width="60%">  
+<img src="assets/images/screenshots/oscillation-screenshot-1.png" width="60%">
 
 ---
 
@@ -133,7 +137,7 @@ This project comes from:
 - thinking about non human temporality and how bodies sense the world  
 
 Physarum has been a collaborator in my art practice this semester.  
-Its way of thinking through pulsation, memory, and branching networks directly influenced how the games behave.
+Its way of thinking through pulsation, descisions, and branching networks influenced how I wanted this game to be experienced.
 
 I have also been inspired by artists who think with living systems.  
 James Bridle’s **Server Farm** is a strong reference for thinking about multispecies time, communication, and the infrastructures we share:  
