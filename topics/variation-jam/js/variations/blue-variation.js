@@ -29,7 +29,6 @@ let allKeys = "abcdefghijklmnopqrstuvwxyz".split("");
 
 let gameState = "instructions";
 
-// renamed to avoid global conflicts
 let blueWinLines = [
     "Congratulations!",
     "you are fully merged.",
@@ -39,15 +38,28 @@ let blueWinIndex = 0;
 let blueWinTimer = 0;
 let blueWinDelay = 120;
 
+// === AUDIO ===
+let osc1, osc2, slurp;
+
 
 function bluePreload() {
     leftBlobImg = loadImage("assets/images/oscillate/left-blob2.png");
     rightBlobImg = loadImage("assets/images/oscillate/right-blob1.png");
     winnerBlobImg = loadImage("assets/images/oscillate/winner-blob2.png");
+
+    // audio
+    osc1 = loadSound("assets/sounds/oscillate/oscillation1.mp3");
+    osc2 = loadSound("assets/sounds/oscillate/oscillation2.mp3");
+    slurp = loadSound("assets/sounds/oscillate/slurp-edit.mp3");
 }
 
 
 function blueSetup() {
+
+    // stop everything just in case
+    if (osc1 && osc1.isPlaying()) osc1.stop();
+    if (osc2 && osc2.isPlaying()) osc2.stop();
+    if (slurp && slurp.isPlaying()) slurp.stop();
 
     gameState = "instructions";
     merged = false;
@@ -73,6 +85,7 @@ function blueSetup() {
 function blueDraw() {
     background(200, 225, 250);
 
+    // === instructions screen ===
     if (gameState === "instructions") {
         textFont(fontRegular);
         fill(0, 150);
@@ -94,6 +107,7 @@ function blueDraw() {
     rightPos.y = lerp(rightPos.y, targetRightPos.y, 0.05);
 
 
+    // === WIN SCREEN ===
     if (gameState === "win") {
 
         let bx = width / 2 - winnerBlobImg.width / 2 + wobbleX;
@@ -113,9 +127,12 @@ function blueDraw() {
         }
 
         text(blueWinLines[blueWinIndex], width / 2, height - 120);
+
         return;
     }
 
+
+    // === NORMAL PLAY ===
 
     image(leftBlobImg, leftPos.x + wobbleX, leftPos.y + wobbleY);
     image(rightBlobImg, rightPos.x - wobbleX, rightPos.y - wobbleY);
@@ -135,12 +152,22 @@ function blueDraw() {
 function blueKeyPressed(event) {
 
     if (event.keyCode === 27) {
+        // stop audio on menu return
+        if (osc1 && osc1.isPlaying()) osc1.stop();
+        if (osc2 && osc2.isPlaying()) osc2.stop();
+        if (slurp && slurp.isPlaying()) slurp.stop();
         state = "menu";
         return;
     }
 
+    // === start the game ===
     if (gameState === "instructions") {
-        if (event.keyCode === 13) gameState = "play";
+        if (event.keyCode === 13) {
+            gameState = "play";
+
+            // start oscillation1 loop
+            if (osc1) osc1.loop();
+        }
         return;
     }
 
@@ -160,9 +187,18 @@ function blueKeyPressed(event) {
         stepProgress = 0;
         stepGoal = int(random(35, 60));
 
+        // === MERGE MOMENT ===
         if (rounds === maxRounds) {
+
             merged = true;
             gameState = "win";
+
+            // stop background osc
+            if (osc1 && osc1.isPlaying()) osc1.stop();
+
+            // play merge audio
+            if (osc2) osc2.play();
+            if (slurp) setTimeout(() => slurp.play(), 150);
 
             leftPos = { x: width / 2, y: height / 2 };
             rightPos = { x: width / 2, y: height / 2 };
