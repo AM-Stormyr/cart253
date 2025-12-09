@@ -183,9 +183,9 @@ function greenDraw() {
 
     // GAME OVER
     if (gameOver) {
-        fill(0);
+        fill(0, 150);
         textFont(fontMedium);
-        textSize(32);
+        textSize(20);
         textAlign(CENTER, CENTER);
         text("game over", width / 2, height / 2 - 20);
         text("oats caught: " + score, width / 2, height / 2 + 20);
