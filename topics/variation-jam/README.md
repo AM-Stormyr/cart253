@@ -70,7 +70,7 @@ Physarum (slime mold) moves through oscillation. It is a single-cell organism th
 When two Physarum bodies touch, they eventually merge into a single organism. Their pulses influence one another and settle into a shared rhythm over time.
 
 
-**Screenshots (ordered 3 → 2 → 1):**  
+**Screenshots:**  
 <img src="assets/images/screenshots/oscillation-screenshot-3.png" width="60%">  
 <img src="assets/images/screenshots/oscillation-screenshot-2.png" width="60%">  
 <img src="assets/images/screenshots/oscillation-screenshot-1.png" width="60%">
