@@ -9,7 +9,7 @@ function menuDraw() {
     push();
     textFont(fontRegular);
     fill(0, 150);
-    textSize(25);
+    textSize(22);
     textAlign(LEFT, CENTER);
     let x = width / 2 - 78;
     let y = height / 2 - 15;

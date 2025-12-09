@@ -75,8 +75,8 @@ function blueDraw() {
 
     if (gameState === "instructions") {
         textFont(fontRegular);
-        textSize(30);
         fill(0, 150);
+        textSize(20);
         textAlign(CENTER, CENTER);
         text("Two players: left + right\nPress the shown keys to merge\n\nPress ENTER to start",
             width / 2, height / 2);
@@ -101,8 +101,8 @@ function blueDraw() {
         image(winnerBlobImg, bx, by);
 
         textFont(fontRegular);
-        textSize(28);
-        fill(0, 140);
+        fill(0, 150);
+        textSize(20);
         textAlign(CENTER, CENTER);
 
         if (blueWinTimer > blueWinDelay && blueWinIndex < blueWinLines.length - 1) {
@@ -122,7 +122,7 @@ function blueDraw() {
 
     textFont(fontRegular);
     fill(0, 120);
-    textSize(26);
+    textSize(22);
 
     textAlign(LEFT, TOP);
     text("left: " + currentLeftKey, 40, 40);
