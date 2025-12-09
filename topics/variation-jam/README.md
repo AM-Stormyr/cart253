@@ -41,17 +41,35 @@ Hold **OPTION + CONTROL** without letting go.
 Release too early and your slime collapses.  
 Release never, and you drift fully into dormancy.
 
+**Screenshot:**  
+![Dormant Screenshot](assets/images/screenshots/dormant-screenshot.png)
+
+---
+
 ### ⏁ FORAGE  
 You are a pseudopod seeking oats before dawn.  
 Move with the **arrow keys**, collect oats, and leave a glowing trail.  
 Oats rearrange themselves on slime time.  
 Your slime mold always looks for the shortest route.
 
+**Instructions Screenshot:**  
+![Forage Instructions](assets/images/screenshots/forage-instructions-screenshot.png)
+
+**Gameplay Screenshot:**  
+![Forage Gameplay](assets/images/screenshots/forage-screenshot.png)
+
+---
+
 ### ⏈ OSCILLATE  
 A two player merging ritual.  
 Both players press the prompted keys.  
 Each press moves the blobs closer until they merge into one pulsing organism.  
 Based on my performance work with breath, timing, and oscillation.
+
+**Screenshots:**  
+![Oscillate Gameplay 1](assets/images/screenshots/oscillation-screenshot-1.png)  
+![Oscillate Gameplay 2](assets/images/screenshots/oscillation-screenshot-2.png)  
+![Oscillate Gameplay 3](assets/images/screenshots/oscillation-screenshot-3.png)
 
 ---
 
